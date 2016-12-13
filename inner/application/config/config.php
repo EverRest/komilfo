@@ -2,7 +2,7 @@
 
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	$config['base_url'] = 'http://chystaoselya.com/';
+	$config['base_url'] = 'http://kom.sufix/';
 
 	/*
 	|--------------------------------------------------------------------------
