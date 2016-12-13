@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document of Bereka CMS © 2013. All rights reserved */
+.short .qq-upload-button{padding: 0; text-align: left; background: none; border: none; text-decoration: underline; color: #000}
+.adm_hidden{display: none!important;}
+.crop_modal {position: absolute; left:50%; top: 50px; z-index:999; width:1000px; height:190px; margin:0 0 0 -500px;box-shadow:0 0 20px #000;}
+.watermark_modal {position:fixed; left:50%; top: 50px; z-index:999; width:1000px; height:190px; margin:0 0 0 -500px;box-shadow:0 0 20px #000;}
+/*.images_list .ui-state-highlight{float: left}*/
+/*.crop_source{margin-left: 40px}*/
+.admin_component.login,.admin_base {     width: 1000px; }
+.admin_component.login input, .admin_base *{box-sizing: content-box!important;}
+.delete_or_no A {box-sizing: content-box!important;}
+/*.photo_cut .links {bottom: 0;}*/
+.admin_component Article {margin:0 0 10px 10px;}
+#reviews_list iframe {display: none;}
+.gallery {border: none; border-radius: 0;}
+.atributes {position:relative; float:left; width:100%;}
+	.atributes Input {border:1px solid #ccc; height:24px; margin:4px; padding:0 6px; width:60%; color:#666; font:12px Arial;}
+	.atributes Input::-webkit-input-placeholder {color:#666; font:12px Arial; text-transform:none;}
+	.atributes Input:-moz-placeholder {color:#666; text-transform:none;}
+	.atributes Input::-moz-placeholder {color:#666; text-transform:none;}
+	.atributes Input:-ms-input-placeholder {color:#666; text-transform:none;}
+	.images_list .links .atributes A {background:none; transition:color 0.2s linear 0s;}
+	.images_list .links .atributes A:hover {color:#000; transition:color 0.2s linear 0s;}
+.admin_menu .adm_plus, .admin_menu .adm_minus {
+    text-decoration: none;
+    background: none!important;
+    color: #000;
+    font-size: 18px;
+}
+Header.header {position: relative;}
+Footer.footer {width: 100%; float: left;}
+* {letter-spacing: normal;}
+input, textarea {letter-spacing: normal; text-transform: none;}
+
+.city_place {float: left; height: 500px; width: 774px; overflow-x: hidden;}
+	.city_place ul {float: left; padding-left: 20px; width: 100%;}
+		.city_place input {margin-right: 5px;}

@@ -1,0 +1,278 @@
+@charset "utf-8";
+/*--------------------------------------------------     Admin CSS Document of SUFIX © 2013. All rights reserved     ------------------------------------------------------*/
+/*------------------------------------------------------------------     Вигляд доданих компонентів     -------------------------------------------------------------------*/
+/* компонент в адмінці (вигляд)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.admin_base *,.admin_component.login * {box-sizing:content-box;}
+.admin_base Article Header H1,.admin_base Article Header H2 {box-sizing:border-box;}
+.admin_base {position:relative; width:auto; padding:0 10px; margin:0 auto;}
+.admin_component {position:relative; float:left; width:100%; background:#fff; box-shadow:0 0 5px #ccc; margin:0 0 20px 0; transition:box-shadow 0.2s linear 0s;}
+.admin_component:hover {box-shadow:0 0 8px #858585; transition:box-shadow 0.2s linear 0s;}
+.admin_component.login {margin:20px 0;}
+	.adcom_panel {width:100%; height:50px; border-bottom:1px solid #e9e9e9; margin:0 0 20px 0; background:#fff; transition:background 0.2s linear 0s;}
+	.admin_component:hover .adcom_panel {background:#e9e9e9; transition:background 0.2s linear 0s;}
+		.type_of_component {width:60px; height:51px; background:#fff; border-right:1px solid #e9e9e9;}
+			.type_of_component DIV {width:30px; height:30px; position:relative; float:left; left:15px; top:10px; background:url(../img/category_icons.png) no-repeat;
+			                        margin:0; padding:0;}
+			/* іконки компонентів
+			---------------------------------*/
+			.type_of_component .hidden {background-position:0 0; display:block;}
+			.type_of_component .article {background-position:0 -30px;}
+			.type_of_component .metetegs {background-position:0 -60px;}
+			.type_of_component .menu {background-position:0 -90px;}
+			.type_of_component .shop {background-position:0 -120px;}
+			.type_of_component .site_name {background-position:0 -150px;}
+			.type_of_component .seo_link {background-position:0 -180px;}
+			.type_of_component .feedback {background-position:0 -210px;}
+			.type_of_component .map {background-position:0 -240px;}
+			.type_of_component .catalog,.type_of_component .orders.all_goods {background-position:0 -270px;}
+			.type_of_component .gallery {background-position:0 -330px;}
+			.type_of_component .news {background-position:0 -300px;}
+			.type_of_component .charts {background-position:0 -300px;}
+			.type_of_component .filters,.type_of_component .filter {background-position:0 -360px;}
+			.type_of_component .delivery {background-position:0 -390px;}
+			.type_of_component .option {background-position:0 -1200px;}
+			.type_of_component .administrators {background-position:0 -660px;}
+			.type_of_component .comments,.type_of_component .reviews {background-position:0 -450px;}
+			.type_of_component .login {background-position:0 -480px;}
+			.type_of_component .xml_map {background-position:0 -510px;}
+			.type_of_component .users {background-position:0 -540px;}
+			.type_of_component .orders {background-position:0 -570px;}
+			.type_of_component .watermark {background-position:0 -600px;}
+			.type_of_component .common {background-position:0 -630px;}
+			.type_of_component .access {background-position:0 -660px;}
+			.type_of_component .exchange {background-position:0 -690px;}
+			.type_of_component .languages {background-position:0 -720px;}
+			.type_of_component .information,.type_of_component.delivery .article {background-position:0 -780px;}
+			.type_of_component .subscribe {background-position:0 -810px;}
+			.type_of_component .subscribers {background-position:0 -840px;}
+			.type_of_component .articles {background-position:0 -870px;}
+			.type_of_component .history {background-position:0 -900px;}
+			.type_of_component .cm_send {background-position:0 -900px;}
+			.type_of_component .button {background-position:0 -990px;}
+			.type_of_component .canvas,.type_of_component .butt,.type_of_component .baguette,.type_of_component .additional {background-position:0 -1020px;}
+			.type_of_component .paper {background-position:0 -1050px;}
+			.type_of_component .wallpaper {background-position:0 -1080px;}
+			.type_of_component .codes {background-position:0 -1110px;}
+			.type_of_component.brands .catalog {background-position:0 -1170px;}
+			.type_of_component.last_vis .catalog {background-position:0 -1140px;}
+			.type_of_component .gag {background-position:0 -1230px;}
+			.type_of_component .sales {background-position:0 -1110px;}
+			.type_of_component .statistic {background-position:0 -1260px;}
+			.type_of_component .accounts {background-position:0 -1290px;}
+			.type_of_component .orders.archive {background-position:0 -1320px;}
+			.type_of_component .orders.new {background-position:0 -1350px;}
+			.type_of_component .orders.in_progres {background-position:0 -1380px;}
+			.type_of_component .orders.in_progres {background-position:0 -1380px;}
+			.type_of_component .orders.add_to {background-position:0 -1410px;}
+			.type_of_component .orders.for_send {background-position:0 -1440px;}
+			.type_of_component.shop_window .catalog {background-position:0 -1470px;}
+			.type_of_component .members {background-position:0 -840px;}
+			.type_of_component .static_information {background-position:0 -1500px;}
+			.type_of_component .events {background-position:0 -1530px;}
+			.type_of_component .publications {background-position:0 -1590px;}
+			.type_of_component .works {background-position:0 -1560px;}
+			.type_of_component.cat .option {background-position:0 -1620px;}
+			.type_of_component .com_recommended {background-position:0 -1650px;}
+			.type_of_component .com_last,.type_of_component .club {background-position:0 -1680px;}
+			.type_of_component.items .com_last {background-position:0 -270px;}
+			.type_of_component.serv .catalog {background-position:0 -870px;}
+			.type_of_component .information {background-position:0 -1230px;}
+			/*  ---------------------------  */
+		.component_edit_links {width:auto; height:50px;}
+			.component_edit_links .only_text {color:#474747; font:12px/15px Tahoma; height:50px; padding:0 12px; width:auto;}
+				.component_edit_links .only_text Div {display:table-cell; height:50px; vertical-align:middle; width:auto; color:#cba42c;}
+			.component_edit_links A {width:auto; height:32px; padding:18px 12px 0 12px; color:#474747; font:12px/15px Arial; text-decoration:none; background:none;
+			                         transition:background 0.2s linear 0s;}
+			.component_edit_links A:hover {background:#fff; transition:background 0.2s linear 0s;}
+			.component_edit_links A B,.for_sucsess .save_links A B {background:url(../img/icons_2.png) no-repeat -3px -5px; width:15px; height:15px; position:relative;
+			                                                        float:left; top:0; margin:0 6px 0 0;}
+			.component_edit_links A.show_hide.active B {background-position:-45px -4px;}
+			.component_edit_links A.show_hide B {background-position:-45px -28px;}
+			.component_edit_links A.save B,.for_sucsess .save_links A.save_adm B {background-position:-24px -4px;}
+			.component_edit_links A.apply B,.for_sucsess .save_links A.apply_adm B {background-position:-195px -61px;}
+			.component_edit_links A.cancel B,.for_sucsess .save_links A.cansel_adm B {background-position:-129px -4px;}
+			.component_edit_links A.save.re-load B,.for_sucsess .save_links A.save_adm.re-load B {background-position:-264px -77px;}
+			.component_edit_links A.add_bottom B {background-position:-109px -96px;}
+			.component_edit_links A.filters B {background-position:-228px -96px;}
+			.component_edit_links A.options B {background-position:-274px -96px;}
+			.component_edit_links A.add_bottom B.active {background-position:-67px -96px;}
+			.component_edit_links A.add B {background-position:-130px -27px;}
+		.component_edit_links A.change_main.active {background:#fff;}
+			.component_edit_links A.change_main B {background-position:-174px -4px;}
+		.component_pos {width:60px; height:50px;}
+			.component_pos A {width:60px; height:25px; background:none; transition:background 0.2s linear 0s;}
+			.component_pos A.no_active {cursor:default;}
+			.component_pos A:hover {background:#fff; transition:background 0.2s linear 0s;}
+			.component_pos A.no_active:hover {background:none;}
+				.component_pos A B {background:url(../img/icons_2.png) no-repeat -1px -50px; position:relative; float:left; top:5px; left:20px; width:21px; height:13px;}
+				A.up_component:hover B {background-position:0 -96px;}
+				A.down_component:hover B {background-position:-21px -97px;}
+				A.down_component B {background-position:-22px -50px;}
+				A.up_component.no_active B {background-position:-1px -73px;}
+				A.down_component.no_active B {background-position:-22px -72px;}
+		.component_del {width:auto; height:50px;}
+			A.delete_component {width:60px; height:50px; background:none;}
+			A.delete_component:hover {background:#fff; transition:background 0.2s linear 0s;}
+				A.delete_component B {background:url(../img/icons_2.png) no-repeat -106px -1px; position:relative; float:left; width:20px; height:20px; top:15px; left:21px;}
+				A.delete_component:hover B {background-position:-106px -24px;}
+	.admin_component Article {width:96%; padding:0 2%; margin:-15px 0 15px 0; box-shadow:none; border:none;}
+		.admin_component Article Header,.admin_component Article Header H1,.admin_component Article Header H2 {width:100%;}
+	.admin_map {width:100%; height:300px; margin:0 0 12px 0;}
+	/* вкладки в детальному
+	---------------------------------*/
+	.adm_tabs {width:100%;}
+		.adm_tabs_header {width:100%; border-bottom:2px solid #e9e9e9; margin:-20px 0 20px;}
+			.adm_tabs_header TD {padding:0;}
+			.adm_tabs_header LI {margin:0 10px;}
+				.adm_tabs_header LI A {font:12px/15px Arial; color:#474747; text-decoration:none; padding:8px 0; position:relative; float:left;
+				                       transition:all 0.2s linear 0s;}
+				.adm_tabs_header LI A:hover {color:#a32d2d; transition:all 0.2s linear 0s;}
+				.adm_tabs_header LI.active A {color:#a32d2d; font-weight:800; transition:all 0.2s linear 0s;}
+		.adm_tabs_content {width:100%;}
+			.adm_tab {width:100%;}
+				.sim_title {width:100%; text-align:center; padding:10px 0; font:700 15px/20px Arial;}
+				.sim_title_2 {width:100%; padding:5px 0 10px;}
+					.sim_title_2 Div {width:50%; text-align:center; font:400 15px/20px Arial; position:relative; float:left;}
+				.sim_cols {width:100%;}
+					.sim_one_col {width:50%;}
+						.sim_one_col .evry_title Input {padding:6px 2%; width:74%; left:50%; margin:0 0 0 -39%; position:relative;}
+						.admin_menu UL.sim_result {width:96%; left:2%;}
+/* компонент в адмінці (редагування)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.evry_title {position:relative; float:left; margin:0 0 15px 0; width:100%;}
+	.evry_title.padding {width:79%; padding:0 0 0 21%;}
+		.no_float {width:78% !important; position:relative; float:left; padding:5px 0 0; font:15px/20px Arial;}
+			.no_float.bold {font-weight:bold;}
+		.evry_title LABEL.block_label {font:15px/20px Arial; color:#000; width:20%; height:26px; padding:5px 1% 0 0; text-align:right; min-height:1px; position:relative;
+		                               float:left;}
+		.evry_title Span.word {position:relative; float:left; padding:0 5px; line-height:26px;}
+		.admin_base Input,.admin_base Textarea,.login Input {margin:0; padding:6px 10px; color:#505050; font:15px/20px Arial; width:76%; height:17px; background:#fff; outline:none; border:1px solid #ccc;
+		                                                     transition:border 0.3s linear 0s, color 0.2s linear 0s;}
+		.admin_base Textarea {height:140px;}
+		.evry_title.wrong Input,.evry_title.wrong Textarea {border:1px solid #A32D2D; color:#A32D2D; transition:border 0.3s linear 0s, color 0.2s linear 0s;}
+		.evry_title Input.short,.evry_title Textarea.short {width:23%;}
+		.evry_title Input.short-er,.evry_title Textarea.short-er {width:10%;}						
+		.admin_base Input:focus,.admin_base Textarea:focus,.login Input:focus {border:1px solid #8c8c8c; color:#000; box-shadow:none; transition:border 0.3s linear 0s, color 0.2s linear 0s;}
+		.evry_title Input[type="checkbox"],.evry_title Input[type="radio"] {vertical-align:middle; width:auto;}
+		.evry_title Label.inline_label {font:15px/20px Arial; color:#505050; cursor:pointer;}
+		.evry_title Label.inline_label:hover,.evry_title Input[type="radio"]:checked + label,.evry_title Input[type="checkbox"]:checked + label {color:#000;}
+	.cke_chrome {clear:both; width:100% !important;}
+	.admin_massage {padding:20px 0 20px 2%;}
+		.admin_massage A {color:#a32d2d; text-decoration:underline;}
+		.admin_massage A:hover {text-decoration:none;}
+	#map_centration {color:#A32D2D; text-decoration:none;}
+	#map_centration:hover {text-decoration:underline;}
+	.admin_map_edit {height:400px; width:99%;}
+	.margin_right {margin:0 30px 0 0;}
+		.evry_title .margin_right Input {width:92px; padding:6px 10px;}
+		.evry_title .margin_right .check_label I {left:0; margin:4px;}
+		.evry_title .margin_right .check_label {margin:5px 0 0 0;}
+		.clear_both_div {width:100%; clear:both;}
+	/* прапорці мов
+	---------------------------------*/
+	.component_lang {width:auto; height:40px; padding:10px 0 0 0;}
+		.component_lang A {position:relative; float:left; width:30px; height:30px; margin:0 10px 0 0;}
+			.component_lang A Img {width:20px; height:20px; position:absolute; top:50%; left:50%; margin:-10px 0 0 -10px; opacity:0.5; transition:all 0.2s linear 0s;}
+			.component_lang A.active Img {opacity:1; transition:all 0.2s linear 0s; width:30px; height:30px; position:absolute; top:50%; left:50%; margin:-15px 0 0 -15px;}
+			.component_lang A:hover Img {opacity:1; transition:all 0.2s linear 0s;}
+	.language_labels {width:20%; padding:0 1% 0 0;}
+		.evry_title .language_labels LABEL.block_label {width:100%;}
+	/* чекбокси та радіобаттони
+	-----------------------------------------*/
+	.controls {width:auto;}
+		.radio_label,.check_label {font:13px/20px; color:#505050; text-decoration:none; position:relative; float:left; clear:both; cursor:pointer;}
+		.radio_label:hover,.radio_label.active {color:#000;}
+			.radio_label I {width:12px; height:15px; background:url(../img/icons_2.png) no-repeat -89px -3px; position:relative; float:left; top:3px; padding:0 5px 0 0;}
+			.radio_label.active I {background-position:-89px -26px;}
+			.radio_label.disabled I {background-position:-154px -95px;}
+			.radio_label.disabled {color:#ccc;}
+			.radio_label.disabled:hover {color:#ccc; cursor:default;}
+			.radio_label Input {display:none;}
+		.holder .check_label {float:none;}
+		.check_label:hover,.check_label.active {color:#000;}
+			.check_label I,.ca_panel .check_label I {width:14px; height:15px; background:url(../img/icons_2.png) no-repeat -46px -96px; position:relative; float:left;
+			                                         left:50%; margin:0 5px 0 -4px;}
+			.ca_panel .check_label I,.controls .check_label I {left:0; margin:2px 5px 0 0;}
+			.check_label.active I {background-position:-67px -96px;}
+			.check_label.active.disabled I {background-position:-88px -96px;}
+			.check_label.disabled I {background-position:-109px -96px;}
+			.check_label.disabled {color:#ccc;}
+			.check_label.disabled:hover {color:#ccc; cursor:default;}
+			.check_label Input {display:none;}
+		/* радіобаттон-слайдер
+		-----------------------------------------*/
+		.select {width:201px; margin:1px 0 0 0;}
+			.iPhoneCheckContainer {-webkit-transform:translate3d(0,0,0); position:relative; height:28px; cursor:pointer; overflow:hidden;}
+			  .iPhoneCheckContainer input {position:absolute; top:5px; left:30px; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity:0;}
+			  .iPhoneCheckContainer label {font:14px/18px Tahoma; cursor:pointer; display:block; height:28px; position:absolute; width:auto; top:0; padding-top:4px; overflow:hidden;}
+			  .iPhoneCheckContainer, .iPhoneCheckContainer label {user-select:none; -moz-user-select:none; -khtml-user-select:none;}
+			.iPhoneCheckDisabled {filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity:0.5;}
+			label.iPhoneCheckLabelOn {color:#fff; background:url(../img/slider.png) no-repeat; left:0;
+									  padding-top:4px; text-align:left!important;}
+			  label.iPhoneCheckLabelOn span {padding-left:13px;}
+			label.iPhoneCheckLabelOff {color:#fff !important; background:url(../img/slider.png) no-repeat; text-align:right; width:100% !important;}
+			  label.iPhoneCheckLabelOff span {padding-right:8px;}
+			.iPhoneCheckHandle {display:block; height:28px; cursor:pointer; position:absolute; top:0; left:0; width:43px !important;
+								background: url(../img/slider.png) no-repeat -201px 0; padding-left:3px;}
+				.iPhoneCheckHandleRight {height:100%; width:100%; padding-right:3px; background: url(../img/slider.png) no-repeat right 0;}
+	/* нижня панель з кнопками для збереження компоненту
+	---------------------------------*/
+	.admin_view_article {width:100%;}
+	.for_sucsess {width:100%; height:50px; border-top:1px solid #e9e9e9; margin:20px 0 0 0; background:#fff; transition:background 0.2s linear 0s;}
+	.admin_component:hover .for_sucsess {background:#e9e9e9; transition:background 0.2s linear 0s;}
+	.for_sucsess.short .save_links {position:relative; float:left; padding:0 0 0 21%;}
+		.save_links {width:auto; height:50px;}
+			.for_sucsess .save_links A,.for_sucsess .save_links Input {width:auto; height:32px; padding:18px 12px 0 12px; color:#474747; font:12px/15px Arial;
+			                                                           cursor:pointer; text-decoration:none; background:none; transition:background 0.2s linear 0s;
+																	   border:none;}
+			.for_sucsess .save_links A:hover,.for_sucsess .save_links Input:hover {background:#fff; transition:background 0.2s linear 0s;}
+			.for_sucsess .save_links Input.login {height:50px; padding:0 12px 0 24px; background:url(../img/login.png) no-repeat 12px 17px;
+												  transition:background 0.2s linear 0s;}
+			.for_sucsess .save_links Input.login:hover {background:#fff url(../img/login.png) no-repeat 12px 17px; transition:background 0.2s linear 0s;}
+	/* збереження компоненту + прелоадер
+	---------------------------------*/
+	.component_loader {position:absolute; top:0; right:0; bottom:0; left:0; z-index:10000; opacity:0.9; display:none;
+	                   background:#fff url(../img/component_loader.gif) no-repeat center center;}
+	.component_loader_complete {background-image:none;}
+	/* метатеги
+	---------------------------------*/
+	.editing_metategs {width:100%;}
+		.letters_sum {width:59px; height:22px; background:url(../img/met_but.png) no-repeat; position:absolute; top:42px; left:20%; text-align:center;
+						  font-family:Tahoma, serif; font-size:14px; font-weight:bold; padding:2px 0 0 0; color:#000; margin:0 0 0 -59px;}
+				.letters_sum.red {color:#d81d1d;}
+				.letters_sum.green {color:#03d103;}
+				.letters_sum.yellow {color:#c8bb2e;}
+			A.generation {width:86px; height:24px; background:url(../img/met_but.png) no-repeat top right; position:absolute; top:42px; left:20%; margin:0 0 0 -86px;}
+		.for_sucsess {width:100%; position:relative; float:left;}
+			.fil_chap {width:100%; padding:0 0 20px 0;}
+	/* мови в налаштуваннях
+	---------------------------------*/
+	.common_settings {width:100%;}
+		.one_lang_set {width:60px;}
+			.for_lang_set {width:24px; padding:10px 18px; border-bottom:1px solid #ededed;}
+			.one_lang_set.grey .for_lang_set,.one_lang_set.grey .flag {background:#ededed; border-bottom:1px solid #fff;}
+			.one_lang_set .for_lang_set,.one_lang_set .flag {background:#fff; border-bottom:1px solid #ededed;}
+				.one_lang_set .radio,.one_lang_set .radio.checked {width:12px; height:13px; background:url(../img/icons_2.png) no-repeat -89px -5px; left:6px;
+				                                                   cursor:pointer; margin:0 0 18px 0; padding:0;}
+				.one_lang_set .radio.checked {background-position:-89px -28px;}
+				.one_lang_set .radio.no_active {background-position:-154px -97px; cursor:default;}
+				.one_lang_set .radio input{display: none}
+				.one_lang_set .check,.one_lang_set .check.checked {width:14px; height:15px; background:url(../img/icons_2.png) no-repeat -46px -96px; left:5px;
+				                                                   cursor:pointer;}
+				.one_lang_set .check.checked {background-position:-67px -96px;}
+				.one_lang_set .check input {display: none}
+			.flag {width:24px; padding:10px 18px; font-family:'Ubuntu', Tahoma, serif; font-size:12px; color:#474747; text-align:center;}
+				.flag DIV {width:24px; height:20px; background:url(../img/flags.png) no-repeat 0 0;}
+					.flag .ua {background-position:0 0;}
+					.flag .ua.no_active {background-position:0 -20px;}
+					.flag .ru {background-position:0 -80px;}
+					.flag .ru.no_active {background-position:0 -100px;}
+					.flag .en {background-position:0 -40px;}
+					.flag .en.no_active {background-position:0 -60px;}
+					.flag .pl {background-position:0 -120px;}
+					.flag .pl.no_active {background-position:0 -140px;}
+					.flag .it {background-position:0 -161px;}
+					.flag .it.no_active {background-position:0 -140px;}
+		.for_lang_suc {width:100%; padding:20px 0;}
+			.for_lang_suc .sucsess {left:94px; top:18px;}

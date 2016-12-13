@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document of Bereka CMS © 2013. All rights reserved */
+
+@import url(admin_component.css);
+@import url(admin_main_panel.css);
+@import url(admin_tables.css);
+
+@import url(unique.css);

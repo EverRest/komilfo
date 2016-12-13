@@ -1,0 +1,4 @@
+Host: tanyagrig.com
+User-agent: *
+Disallow:
+Sitemap: http://komilfo.sufix.com/sitemap.xml

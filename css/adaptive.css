@@ -1,0 +1,81 @@
+/*==========  Desktop First Method  ==========*/
+
+/* Large Devices, Desktops */
+@media only screen and (max-width : 1750px) {
+
+	.page-nav.page-prev{left: 15px;}
+	.page-nav.page-next{right: 15px;}
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 1200px) {
+
+	.small-photo .slick-list{max-height: 396px;}
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 991px) {
+
+	.top-line{padding: 30px 0 20px;}
+
+	.product-details_left{width: 100%; padding: 0;}
+	.product-details_right{width: 100%; padding: 0;}
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 767px) {
+
+	.menu_btn{display: block; width: 100%; text-align: center; font: 600 18px/26px 'Open Sans'; position: relative; transition: all .5s; text-decoration: none; padding: 10px 0 10px; color: #7d7d7d; 
+				border-top: 1px solid #7d7d7d; border-bottom: 1px solid #7d7d7d; text-transform: uppercase;}
+		.menu_btn p{display: inline-block; position: relative; margin-right: 5px;}
+		.menu_btn .burger{display: block; width: 40px; position: absolute; right: 10px; top: 10px;}
+			.menu_btn .burger span{display: block;height: 5px;border-radius: 2px;background: #7d7d7d;transition: all .5s;}
+			.menu_btn .burger span+span{margin-top: 6px;}
+
+	.main-nav{display: none;}
+	.header-main{padding: 5px 0 15px;}
+	.header-social{display: none;}
+	.top-line{text-align: center;}
+	
+	.shops-wrapper{padding: 0 0 20px;}
+		.shop-map{position: relative;}
+		.shops-box{margin: 0 0 30px; max-width: none;}
+	
+}
+
+/* Custom Devices, Phones */
+@media only screen and (max-width : 650px) {
+
+	.collection-slider.left-slider{width: 100%; padding: 0; margin: 0 0 30px;}
+	.collection-slider.right-slider{width: 100%; padding: 0;}
+
+	.footer-logo{width: 100%; margin: 0 0 10px; text-align: center;}
+	.footer-btn{width: 100%; margin: 0 0 10px; text-align: center;}
+	.footer-social{width: 100%; margin: 0 0 10px; text-align: center;}
+	.development{width: 100%; text-align: center;}
+
+	.catalog-wrapper{padding: 0;}
+
+	.small-photo{display: none;}
+	.product-photo{padding: 0;}
+
+	.main-proto .slick-dots{position: absolute; width: 100%; bottom: 15px; left: 0; text-align: center; font-size: 0;}
+		.main-proto .slick-dots li{display: inline-block; margin: 0 3px;}
+			.main-proto .slick-dots li button{display: block; width: 10px; height: 10px; background-color: #fff; border-radius: 50%; border: none; padding: 0; font-size: 0;
+													 transition: all .3s linear;}
+			.main-proto .slick-dots li.slick-active button,
+			.main-proto .slick-dots li button:hover{background-color: #6a6a6a; transition: all .3s linear;}
+
+}
+
+/* Custom Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+	.catalog-item{width: 100%; padding: 0;}
+
+	.shops-box{padding: 15px 15px 30px;}
+
+}
