@@ -1,6 +1,4 @@
-<?php defined('ROOT_PATH') or exit('No direct script access allowed');
-	$config['languages'] = $config['languages'] !== '' ? unserialize(stripslashes($config['languages'])) : array();
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <div class="fm admin_component">
 	<div class="component_loader"></div>
 	<div class="fm adcom_panel">
@@ -18,21 +16,23 @@
 				<label class="block_label">Доступні мови:</label>
 			</div>
 			<?php
+				$config['languages'] = $config['languages'] != '' ? unserialize($config['languages']) : array();
+
 				$i = 0;
 				foreach ($languages as $key => $val)
 				{
 			?>
-			<div class="fm one_lang_set<?php if ($i % 2 === 0): ?> grey<?php endif; ?>">
+			<div class="fm one_lang_set<?php if ($i % 2 == 0) echo ' grey'; ?>">
 				<div class="fm for_lang_set">
-					<div class="fm radio<?php if ($key === $config['def_lang']): ?> checked<?php endif; ?>">
-						<input type="radio" value="<?=$key;?>"<?php if ($key === $config['def_lang']): ?> checked="checked"<?php endif; ?>>
+					<div class="fm radio<?php if ($key == $config['def_lang']) echo ' checked'; ?>">
+						<input type="radio" value="<?php echo $key; ?>"<?php if ($key == $config['def_lang']) echo ' checked="checked"'; ?> />
 					</div>
-					<div class="fm check<?php if (in_array($key, $config['languages'], true)): ?> checked<?php endif; ?>">
-						<input type="checkbox" value="<?=$key;?>"<?php if (in_array($key, $config['languages'], true)): ?> checked="checked"<?php endif; ?>>
+					<div class="fm check<?php if (in_array($key, $config['languages'])) echo ' checked'; ?>">
+						<input type="checkbox" value="<?php echo $key; ?>"<?php if (in_array($key, $config['languages'])) echo ' checked="checked"'; ?> />
 					</div>
 				</div>
 				<div class="fm flag">
-					<div class="fm <?=$key;?>"></div><?=mb_substr($val, 0, 3);?>
+					<div class="fm <?php echo $key; ?>"></div><?php echo mb_substr($val, 0, 3); ?>
 				</div>
 			</div>
 			<?php
@@ -49,27 +49,33 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function () {
-		var $component = $('.admin_component');
+
 		/**
 		 * Radio
 		 */
-		$component.find('.for_lang_set').find('.check').map(function () {
+
+		$('.for_lang_set .check').each(function () {
 			if (!$(this).hasClass('checked')) {
-				$(this).prevAll('.radio').eq(0).addClass('no_active');
+				$(this).prevAll('.radio:eq(0)').addClass('no_active');
 			}
 		});
-		$component.find('.for_lang_set').on('click', '.radio', function () {
-			if ($(this).nextAll('.check').eq(0).hasClass('checked')) {
-				$component.find('.for_lang_set')
-					.find('.radio').removeClass('checked')
-					.find('input').prop('checked', false);
-				$(this).addClass('checked').find('input').prop('checked', true);
+
+		$('.for_lang_set .radio').on('click', function () {
+
+			if ($(this).nextAll('.check:eq(0)').hasClass('checked')) {
+				$('.for_lang_set .radio').removeClass('checked');
+				$('.for_lang_set .radio').find('input').removeAttr('checked');
+
+				$(this).addClass('checked');
+				$(this).find('input').attr('checked', 'checked');
 			}
 		});
+
 		/**
 		 * Checkbox
 		 */
-		$component.find('.for_lang_set').on('click', '.check', function () {
+		$('.for_lang_set .check').on('click', function () {
+
 			if ($(this).hasClass('checked')) {
 				if (!$(this).closest('.for_lang_set').find('.radio').hasClass('checked')) {
 					$(this).removeClass('checked');
@@ -84,30 +90,35 @@
 				$(this).closest('.one_lang_set').find('.flag div').removeClass('no_active');
 			}
 		});
+
 		$('.for_sucsess .save_adm, .component_edit_links .save').on('click', function (e) {
 			e.preventDefault();
-			global_helper.loader($component);
+
+			component_loader_show($('.component_loader'), '');
+
 			var languages = [];
-			$('.one_lang_set input[type="checkbox"]:checked').map(function (i, val) {
+
+			$('.one_lang_set input[type="checkbox"]:checked').each(function (i, val) {
 				languages.push($(val).val());
 			});
-			var uri = '<?=$this->uri->full_url('admin/config/save_languages');?>',
+
+			var uri = '<?php echo $this->uri->full_url('admin/config/save_languages'); ?>',
 				request = {
-					config: {
-						def_lang : $('.for_lang_set .radio.checked').find('input').val(),
-						languages : languages
-					}
+					def_lang : $('.for_lang_set .radio.checked').find('input').val(),
+					languages : languages
 				};
+
 			$.post(
 				uri,
 				request,
 				function (response) {
 					if (response.success) {
-						global_helper.loader($component);
+						component_loader_hide($('.component_loader'), '');
 					}
 				},
 				'json'
 			);
+
 		});
 	});
 </script>

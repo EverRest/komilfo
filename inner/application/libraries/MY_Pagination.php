@@ -137,10 +137,16 @@
 			else $output .= $this->first_tag_open . '<span class="disabled">' . $this->first_link . '</span>' . $this->first_tag_close;
 			*/
 			// Render the "previous" link
+			
 			if ($this->cur_page > 1)
 			{
 				$output .= $this->prev_tag_open . '<a href="' . $this->get_link($prev) . '" class="pag_left">' . $this->prev_link . '</a>' . $this->prev_tag_close;
 			}
+			else
+			{
+				$output .= '<span class="pag_left">' . $this->prev_link . '</span>';
+			}
+			
 			//else $output .= $this->prev_tag_open . '<span class="pag_left">' . $this->prev_link . '</span>' . $this->prev_tag_close;
 
 			// Write the digit links
@@ -193,6 +199,10 @@
 			if ($this->cur_page < $num_pages)
 			{
 				$output .= $this->next_tag_open . '<a href="' . $this->get_link($next) . '" class="pag_right">' . $this->next_link . '</a>' . $this->next_tag_close;
+			}
+			else
+			{
+				$output .= '<span class="pag_right">' . $this->next_link . '</span>';
 			}
 			/*
 			else

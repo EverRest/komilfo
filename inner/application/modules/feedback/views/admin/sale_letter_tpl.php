@@ -13,7 +13,7 @@
 <table align="center" width="900" cellpadding="10" cellspacing="0" border="0" style="border-collapse: collapse;">
 	<tr>
 		<td align="left" colspan="2">
-			<span style="font-size: 14px">Замовлення дзвінка</span>
+			<span style="font-size: 14px">Отримати знижку</span>
 		</td>
 	</tr>
 	<tr>
@@ -21,18 +21,16 @@
 			<table align="left" width="100%" cellpadding="5" cellspacing="5" border="0" style="border-collapse: collapse;">
 				<tr>
 					<td align="left" width="170">Ім’я:</td>
-					<td align="left"><?=$name;?></td>
+					<td align="left"><?php echo $name; ?></td>
 				</tr>
 				<tr>
 					<td align="left" width="170" style="border-top: 1px solid #f4f4f4;">Телефон:</td>
-					<td align="left" style="border-top: 1px solid #f4f4f4;"><?=$phone;?></td>
+					<td align="left" style="border-top: 1px solid #f4f4f4;"><?php echo $phone; ?></td>
 				</tr>
-				<?php if ($email !== ''): ?>
-					<tr>
-						<td align="left" width="170" style="border-top: 1px solid #f4f4f4;">Email:</td>
-						<td align="left" style="border-top: 1px solid #f4f4f4;"><?=$email;?></td>
-					</tr>
-				<?php endif; ?>
+				<tr>
+					<td align="left" width="170" style="border-top: 1px solid #f4f4f4;">Email:</td>
+					<td align="left" style="border-top: 1px solid #f4f4f4;"><?php echo $email; ?></td>
+				</tr>
 			</table>
 		</td>
 	</tr>

@@ -10,7 +10,7 @@
 		 */
 		public function get_article($component_id)
 		{
-			return $this->db->select('title_' . LANG . ' as title, text_' . LANG . ' as text, wide')->get_where('component_article', array('component_id' => $component_id))->row_array();
+			return $this->db->select('title_' . LANG . ' as title, btn_active, text_' . LANG . ' as text, wide, background_fone')->get_where('component_article', array('component_id' => $component_id))->row_array();
 		}
 
 	}

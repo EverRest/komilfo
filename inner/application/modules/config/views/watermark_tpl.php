@@ -1,7 +1,8 @@
-<?php defined('ROOT_PATH') OR exit('No direct script access allowed');
-	$this->template_lib
-		->set_css('js/admin/fineuploader/fineuploader-3.5.0.css', true)
-		->set_js('admin/fineuploader/jquery.fineuploader-3.5.0.min.js');
+<?php
+	if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+	$this->template_lib->set_css('js/admin/fineuploader/fineuploader-3.5.0.css', TRUE);
+	$this->template_lib->set_js('admin/fineuploader/jquery.fineuploader-3.5.0.min.js');
 ?>
 <div class="fm admin_component">
 	<div class="component_loader"></div>
@@ -16,30 +17,30 @@
 	<div class="fm common_settings">
 		<div class="evry_title">
 			<label class="block_label">Зображення водяного знаку:</label>
-			<div class="fm" id="watermark_uploader_box"<?php if ($config['watermark'] !== ''): ?> style="display: none"<?php endif; ?>><div id="watermark_uploader"></div></div>
-			<div class="fm for_photo_cut" id="watermark_box" style="<?php if ($config['watermark'] === ''): ?> display: none<?php endif; ?>">
+			<div class="fm" id="watermark_uploader_box"<?php if ($config['watermark'] != '') echo ' style="display: none"'; ?>><div id="watermark_uploader"></div></div>
+			<div class="fm for_photo_cut" id="watermark_box" style="<?php if ($config['watermark'] == '') echo ' display: none'; ?>">
 				<div class="fm photo_cut" id="big_photo">
 					<div class="fm photo_holder" style="width:200px; height:200px;">
 						<div style="width:200px; height:200px;">
-							<?php if ($config['watermark'] !== ''): ?>
+							<?php if ($config['watermark'] != ''): ?>
 								<?php $sizes = getimagesize(ROOT_PATH . 'upload/watermarks/' . $config['watermark']); ?>
 								<img src="/upload/watermarks/<?php echo $config['watermark']; ?>" alt="" style="max-width: 200px; max-height: 200px;">
 							<?php endif; ?>
 						</div>
 					</div>
 					<div class="links">
-						<a href="#" id="delete_image" class="fm fpc_delete"><b></b></a>
+						<a href="#" id="delete_image" class="fm fpc_delete"><b></b>Видалити</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="evry_title">
 			<label class="block_label">Відступ від краю зображення:</label>
-			<input type="text" name="watermark_padding" value="<?=$config['watermark_padding'];?>" class="short">
+			<input type="text" name="watermark_padding" value="<?php echo $config['watermark_padding']; ?>" class="short">
 		</div>
 		<div class="evry_title">
-			<label class="block_label">Прозорість(1-10):</label>
-			<input type="text" name="watermark_opacity" value="<?=$config['watermark_opacity'];?>" class="short">
+			<label class="block_label">Прозорість(0-1):</label>
+			<input type="text" name="watermark_opacity" value="<?php echo $config['watermark_opacity']; ?>" class="short">
 		</div>
 		<div class="fm for_sucsess short">
 			<div class="sucsess" style="display: none">Збережено</div>
@@ -77,21 +78,23 @@
 			.on('complete', function (event, id, fileName, response) {
 				if (response.success) {
 					$('.qq-upload-success').remove();
+
 					$('#watermark_uploader_box').hide();
-					$('#big_photo').html('<div style="width: 200px; height: 200px;" class="fm photo_holder"><div style="width: 200px; height: 200px;"><img src="/upload/watermarks/' + response.file_name + '" style="max-width: 200px; max-height: 200px;" alt=""></div></div><div class="links"><a href="#" id="delete_image" class="fm fpc_delete"><b></b></a></div>');
+					$('#big_photo').html('<div style="width: 200px; height: 200px;" class="fm photo_holder"><div style="width: 200px; height: 200px;"><img src="/upload/watermarks/' + response.file_name + '" style="max-width: 200px; max-height: 200px;" alt=""></div></div><div class="links"><a href="#" id="delete_image" class="fm fpc_delete"><b></b>Видалити</a></div>');
 					$('#watermark_box').show();
 				}
 			});
+
 		$('#watermark_box')
 			.on('click', '#delete_image', function (e) {
 				e.preventDefault();
-				global_helper.confirmation('Видалити водяний знак?', function () {
-					global_helper.loader($('.component_loader'), '');
+				confirmation('Видалити водяний знак?', function () {
+					component_loader_show($('.component_loader'), '');
 					$.post(
 						'<?php echo $this->uri->full_url('admin/config/delete_watermark'); ?>',
 						function (response) {
 							if (response.success) {
-								global_helper.loader($('.component_loader'), '');
+								component_loader_hide($('.component_loader'), '');
 								$('#watermark_box')
 									.hide('')
 									.find('#big_image').html('');
@@ -102,24 +105,26 @@
 					);
 				});
 			});
+
 		/**
 		 * Збереження змін
 		 */
 		$('.for_sucsess .save_adm, .component_edit_links .save').on('click', function (e) {
 			e.preventDefault();
-			global_helper.loader($('.component_loader'), '');
+
+			component_loader_show($('.component_loader'), '');
+
 			var uri = '<?php echo $this->uri->full_url('admin/config/save_watermark'); ?>',
 				request = {
-					config: {
-						watermark_padding: $('input[name="watermark_padding"]').val(),
-						watermark_opacity: $('input[name="watermark_opacity"]').val()
-					}
+					watermark_padding: $('input[name="watermark_padding"]').val(),
+					watermark_opacity: $('input[name="watermark_opacity"]').val()
 				};
+
 			$.post(
 				uri,
 				request,
 				function (response) {
-					if (response.success) global_helper.loader($('.component_loader'), '');
+					if (response.success) component_loader_hide($('.component_loader'), '');
 				},
 				'json'
 			);

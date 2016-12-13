@@ -1,4 +1,11 @@
-<?php defined('ROOT_PATH') or exit('No direct script access allowed');
+<?php
+
+	defined('ROOT_PATH') OR exit('No direct script access allowed');
+
+	if (!extension_loaded('ímagick'))
+	{
+		require_once ROOT_PATH . 'inner/application/libraries/Image_moo.php';
+	}
 
 	/**
 	 * Class Image_lib
@@ -7,326 +14,250 @@
 	 */
 	class Image_lib
 	{
-		protected $imagick_load = false;
-		protected $image;
+		protected $imagick_load = FALSE;
+		protected $image = NULL;
 
 		public function __construct()
 		{
 			$this->imagick_load = extension_loaded('imagick');
 
-			if ($this->imagick_load) {
+			if ($this->imagick_load)
+			{
 				$this->image = new Imagick();
-			} else {
-				require_once ROOT_PATH . 'inner/application/libraries/Image_moo.php';
+			}
+			else
+			{
 				$this->image = new Image_moo();
 			}
 		}
 
-		/**
-		 * Обрізка та зміна розмірів зображення
-		 *
-		 * @param string $source_image
-		 * @param string $new_image
-		 * @param int $width
-		 * @param int $height
-		 * @param bool|true $padding
-		 * @return bool
-		 */
-		public function resize_crop($source_image, $new_image, $width, $height, $padding = true)
+		public function resize_crop($source_image, $new_image, $width, $height, $padding = FALSE)
 		{
-			if ($this->imagick_load) {
-				$this->image->readImage($source_image);
+                    
+			if ($this->imagick_load)
+			{
+                          
+				$this->image->readimage($source_image);
 
-				$sizes = $this->image->getImageGeometry();
+				$sizes = $this->image->getimagegeometry();
 
-				if ($sizes['width'] > $width or $sizes['height'] > $height) {
-					$ext = pathinfo($new_image, PATHINFO_EXTENSION);
+				$ext = pathinfo($new_image, PATHINFO_EXTENSION);
 
-					if ($ext === 'jpg') {
-						$this->image->stripImage();
-						$this->image->setImageCompression(imagick::COMPRESSION_JPEG);
-						$this->image->setImageCompressionQuality(0);
+					if ($ext == 'jpg')
+					{
+						$this->image->setimagecompression(imagick::COMPRESSION_JPEG);
+						$this->image->setimagecompressionQuality(0);
 					}
 
-					if ($ext === 'png') {
-						$this->image->setBackgroundColor(new ImagickPixel('transparent'));
+					if ($padding)
+					{
+						$this->image->scaleImage($width, $height, TRUE);
 					}
-
-					if ($padding) {
-						$this->image->scaleImage($width, $height, true);
-					} else {
-						$this->image->cropThumbnailImage($width, $height);
+					else
+					{
+						$this->image->cropthumbnailimage($width, $height);
 					}
-
 					return $this->save($new_image);
-				} else {
-					if ($source_image === $new_image) {
-						return true;
-					}
+                                
+                                /*
+                                        if ($sizes['width'] > $width OR $sizes['height'] > $height) 
+				{
+					
+				}
+				else
+				{
+					//if ($source_image == $new_image) return TRUE;
 
-					if (file_exists($new_image)) {
-						unlink($new_image);
-					}
-
+					if (file_exists($new_image)) unlink($new_image);
 					return copy($source_image, $new_image);
 				}
-			} else {
-				$this->image
-					->set_jpeg_quality(100)
-					->load($source_image)
-					->resize_crop($width, $height)
-					->save($new_image, true);
-
-				return true;
+                                 
+                                 */
+			}
+			else
+			{
+				$this->image->set_jpeg_quality(100)->load($source_image)->resize_crop($width, $height)->save($new_image, TRUE);
+				return TRUE;
 			}
 		}
 
-		/**
-		 * Зміна розмірів зображення
-		 *
-		 * @param string $source_image
-		 * @param string $new_image
-		 * @param int $width
-		 * @param int $height
-		 * @param bool|false $strip
-		 * @return bool
-		 */
-		public function resize($source_image, $new_image, $width, $height, $strip = false)
+
+		public function resize($source_image, $new_image, $width, $height)
 		{
-			if ($this->imagick_load) {
-				$this->image->readImage($source_image);
+			if ($this->imagick_load)
+			{
+				$this->image->readimage($source_image);
 
-				$sizes = $this->image->getImageGeometry();
+				$sizes = $this->image->getimagegeometry();
 
-				if ($sizes['width'] > $width or $sizes['height'] > $height) {
+				if ($sizes['width'] > $width OR $sizes['height'] > $height)
+				{
 					$ext = pathinfo($new_image, PATHINFO_EXTENSION);
 
-					if ($ext === 'jpg') {
-						$this->image->stripImage();
-						$this->image->setImageCompression(imagick::COMPRESSION_JPEG);
-						$this->image->setImageCompressionQuality(0);
+					if ($ext == 'jpg')
+					{
+						$this->image->setimagecompression(imagick::COMPRESSION_JPEG);
+						$this->image->setimagecompressionQuality(0);
 					}
 
-					if ($ext === 'png') {
-						$this->image->setBackgroundColor(new ImagickPixel('transparent'));
-					}
-
-					$this->image->thumbnailImage($width, $height, true);
-
+					$this->image->thumbnailimage($width, $height, TRUE);
 					return $this->save($new_image);
-				} else {
-					if ($source_image === $new_image) {
-						return true;
-					}
-
-					if (file_exists($new_image)) {
-						unlink($new_image);
-					}
-
-					return copy($source_image, $new_image);
 				}
-			} else {
-				$this->image
-					->set_jpeg_quality(100)
-					->load($source_image)
-					->resize($width, $height)
-					->save($new_image, true);
-
-				return true;
-			}
-		}
-
-		/**
-		 * Обрізка зображення
-		 *
-		 * @param string $source_image
-		 * @param string $new_image
-		 * @param int $width
-		 * @param int $height
-		 * @param int $x
-		 * @param int $y
-		 * @param null|int $need_width
-		 * @param null|int $need_height
-		 * @return bool
-		 */
-		public function crop($source_image, $new_image, $width, $height, $x, $y, $need_width = null, $need_height = null)
-		{
-			if ($this->imagick_load) {
-				$this->image->readImage($source_image);
-
-				$sizes = $this->image->getImageGeometry();
-
-				if ($sizes['width'] > $width OR $sizes['height'] > $height) {
-					$ext = pathinfo($source_image, PATHINFO_EXTENSION);
-
-					if ($ext === 'jpg') {
-						$this->image->stripImage();
-						$this->image->setImageCompression(imagick::COMPRESSION_JPEG);
-						$this->image->setImageCompressionQuality(0);
-					}
-
-					if ($ext === 'png') {
-						$this->image->setBackgroundColor(new ImagickPixel('transparent'));
-					}
-
-					$this->image->cropImage($width, $height, $x, $y);
-
-					if (($need_width !== null and $need_height !== null) and ($width > $need_width or $height > $need_height)) {
-						$this->image->thumbnailImage($need_width, $need_height, true);
-					}
-
-					return $this->save($new_image);
-				} else {
-					if ($source_image === $new_image) {
-						return true;
-					}
-
-					if (file_exists($new_image)) {
-						unlink($new_image);
-					}
-
+				else
+				{
+					if (file_exists($new_image) AND $source_image != $new_image) unlink($new_image);
 					return copy($source_image, $new_image);
 				}
 			}
 			else
 			{
-				$this->image
-					->set_jpeg_quality(100)
-					->load($source_image)
-					->crop($x, $y, $x + $width, $y + $height)
-					->save($new_image, true);
-
-				if (($need_width !== null and $need_height !== null) and ($width > $need_width or $height > $need_height)) {
-					$this->image
-						->set_jpeg_quality(100)
-						->load($new_image)
-						->resize_crop($need_width, $need_height)
-						->save($new_image, true);
-				}
-
-				return true;
+				$this->image->set_jpeg_quality(100)->load($source_image)->resize($width, $height)->save($new_image, TRUE);
+				return TRUE;
 			}
 		}
 
-		/**
-		 * Накладання водяного знаку
-		 *
-		 * @param string $source_image
-		 * @param string $new_image
-		 * @param string $watermark_image
-		 * @param int $position
-		 * @param int $padding
-		 * @param float $opacity
-		 * @return bool
-		 */
+		public function crop($source_image, $new_image, $width, $height, $x, $y, $need_width = NULL, $need_height = NULL)
+		{
+			if ($this->imagick_load)
+			{
+				$this->image->readimage($source_image);
+
+				$sizes = $this->image->getimagegeometry();
+
+				if ($sizes['width'] > $width OR $sizes['height'] > $height)
+				{
+					$ext = pathinfo($source_image, PATHINFO_EXTENSION);
+
+					if ($ext == 'jpg')
+					{
+						$this->image->setimagecompression(imagick::COMPRESSION_JPEG);
+						$this->image->setimagecompressionQuality(0);
+					}
+
+					$this->image->cropimage($width, $height, $x, $y);
+					if ($need_width !== NULL AND $need_height !== NULL) $this->image->thumbnailimage($need_width, $need_height, TRUE);
+					
+					return $this->save($new_image);
+				}
+				else
+				{
+					if (file_exists($new_image) AND $source_image != $new_image) unlink($new_image);
+					
+					if (copy($source_image, $new_image))
+					{
+						if ($need_width !== NULL AND $need_height !== NULL) $this->image->thumbnailimage($need_width, $need_height, TRUE);
+						return $this->save($new_image);
+					}
+					else
+					{
+						return FALSE;
+					}
+				}
+			}
+			else
+			{
+				$this->image->set_jpeg_quality(100)->load($source_image)->crop($x, $y, $x + $width, $y + $height)->save($new_image, TRUE);
+				//  AND ($width > $need_width OR $height > $need_height)
+				if (($need_width !== NULL AND $need_height !== NULL)) $this->image->set_jpeg_quality(100)->load($new_image)->resize_crop($need_width, $need_height)->save($new_image, TRUE);
+				return TRUE;
+			}
+		}
+
 		public function watermark($source_image, $new_image, $watermark_image, $position = 5, $padding = 20, $opacity = 0.5)
 		{
-			if ($this->imagick_load) {
-				$this->image->readImage($source_image);
-				$source_sizes = $this->image->getImageGeometry();
+			if ($this->imagick_load)
+			{
+
+				$this->image->readimage($source_image);
+				$source_sizes = $this->image->getimagegeometry();
 
 				$watermark = new Imagick($watermark_image);
-				$watermark->evaluateImage(Imagick::EVALUATE_DIVIDE, $opacity, Imagick::CHANNEL_ALPHA);
-
-				$watermark_sizes = $watermark->getImageGeometry();
+				$watermark->setimageopacity($opacity > 1 ? $opacity / 100 : $opacity);
+				$watermark_sizes = $watermark->getimagegeometry();
 
 				$ext = pathinfo($new_image, PATHINFO_EXTENSION);
 
-				if ($ext === 'jpg') {
-					$this->image->stripImage();
-					$this->image->setImageCompression(imagick::COMPRESSION_JPEG);
-					$this->image->setImageCompressionQuality(0);
+				if ($ext == 'jpg')
+				{
+					$this->image->setimagecompression(imagick::COMPRESSION_JPEG);
+					$this->image->setimagecompressionQuality(0);
 				}
 
-				if ($ext === 'png') {
-					$this->image->setBackgroundColor(new ImagickPixel('transparent'));
-				}
-
-				switch ($position) {
-					case 7:
-					case 4:
-					case 1:
+				switch ($position)
+				{
+					case "7":
+					case "4":
+					case "1":
 						$x = $padding;
 						break;
 
-					case 8:
-					case 5:
-					case 2:
+					case "8":
+					case "5":
+					case "2":
 						$x = ($source_sizes['width'] - $watermark_sizes['width']) / 2;
 						break;
-
-					case 9:
-					case 6:
-					case 3:
+					// x right
+					case "9":
+					case "6":
+					case "3":
 						$x = $source_sizes['width'] - $padding - $watermark_sizes['width'];
 						break;
-
 					default:
 						$x = $padding;
 				}
 
-				switch ($position) {
-					case 7:
-					case 8:
-					case 9:
+				switch ($position)
+				{
+					case "7":
+					case "8":
+					case "9":
 						$y = $padding;
 						break;
-
-					case 4:
-					case 5:
-					case 6:
+					case "4":
+					case "5":
+					case "6":
 						$y = ($source_sizes['height'] - $watermark_sizes['height']) / 2;
 						break;
-
-					case 1:
-					case 2:
-					case 3:
+					case "1":
+					case "2":
+					case "3":
 						$y = $source_sizes['height'] - $padding - $watermark_sizes['height'];
 						break;
-
 					default:
 						$y = $padding;
 				}
 
-				$this->image->compositeImage($watermark, imagick::COMPOSITE_OVER, $x, $y);
+				$this->image->compositeimage($watermark, imagick::COMPOSITE_OVER, $x, $y);
 
 				return $this->save($new_image);
 			}
 			else
 			{
-				$this->image
-					->set_jpeg_quality(100)
-					->load($source_image)
-					->load_watermark($watermark_image)
-					->watermark($position, $padding)
-					->save($new_image, true);
-
-				return true;
+				$this->image->set_jpeg_quality(100)->load($source_image)->load_watermark($watermark_image)->watermark($position, $padding)->save($new_image, TRUE);
+				return TRUE;
 			}
 		}
 
-		/**
-		 * Збереження зображення
-		 *
-		 * @param string $file_name
-		 * @param bool|true $overwrite
-		 * @return bool
-		 */
-		public function save($file_name, $overwrite = true)
+		public function save($file_name, $overwrite = TRUE)
 		{
-			if ($this->imagick_load) {
-				if (file_exists($file_name)) {
-					if ($overwrite and is_writable($file_name)) {
+			if ($this->imagick_load)
+			{
+				if (file_exists($file_name))
+				{
+					if ($overwrite AND is_writable($file_name))
+					{
 						unlink($file_name);
-					} else {
-						return false;
+					}
+					else
+					{
+						return FALSE;
 					}
 				}
 
-				$this->image->writeImage($file_name);
+				$this->image->writeimage($file_name);
 				$this->image->clear();
 			}
 
-			return true;
+			return TRUE;
 		}
 	}

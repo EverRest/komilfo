@@ -685,10 +685,10 @@ class CI_Input {
 		$_SERVER['PHP_SELF'] = strip_tags($_SERVER['PHP_SELF']);
 
 		// CSRF Protection check
-		//if ($this->_enable_csrf === TRUE && ! $this->is_cli_request())
-		//{
-		//	$this->security->csrf_verify();
-		//}
+		if ($this->_enable_csrf === TRUE && ! $this->is_cli_request())
+		{
+			$this->security->csrf_verify();
+		}
 
 		log_message('debug', 'Global POST and COOKIE data sanitized');
 	}

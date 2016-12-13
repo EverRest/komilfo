@@ -33,6 +33,10 @@
 						<td align="left" style="border-top: 1px solid #f4f4f4;"><?php echo $name; ?></td>
 					</tr>
 					<tr>
+						<td align="left" width="170" style="border-top: 1px solid #f4f4f4;">Телефон:</td>
+						<td align="left" style="border-top: 1px solid #f4f4f4;"><?php echo $phone; ?></td>
+					</tr>
+					<tr>
 						<td align="left" width="170" style="border-top: 1px solid #f4f4f4;">E-mail:</td>
 						<td align="left" style="border-top: 1px solid #f4f4f4;"><?php echo $email; ?></td>
 					</tr>

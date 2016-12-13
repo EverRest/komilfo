@@ -11,39 +11,27 @@
 		 */
 		public function get_components($menu_id = 0)
 		{
-			$menu_id = (int)$menu_id;
-
-			if ($menu_id === 0) {
-				show_404();
-			}
+			$menu_id = intval($menu_id);
+			if ($menu_id == 0) show_404();
 
 			$this->load->model('components_model');
 
-			$page = (int)$this->input->get('page');
-			$url_filters = $this->uri->get_url_filters();
+			$components = $this->components_model->get_components($menu_id);
 
-			$components = $this->components_model->get_components($menu_id, $page, $url_filters);
+			if ($components !== NULL)
+			{
+				$mode = intval($this->input->get('mode'));
 
-			if (count($components) > 0) {
-				foreach ($components as $component) {
-					if ($component['config'] !== '') {
-						$component['config'] = json_decode($component['config'], true);
-					} else {
-						$component['config'] = array();
-					}
-
-					$result = Modules::run(
-						$component['module'] . '/' . $component['method'],
-						$menu_id,
-						$component['component_id'],
-						$component['hidden'],
-						$component['config']
-					);
-
-					if ($result !== null and $result !== '') {
-						$this->template_lib->set_content($result, 'append');
+				foreach ($components as $component)
+				{
+					if ($component['module'] != 'catalog' OR ($component['module'] == 'catalog' AND $mode == 0))
+					{
+						if ($component['config'] != '') $component['config'] = unserialize($component['config']);
+						$result = Modules::run($component['module'] . '/' . $component['method'], $menu_id, $component['component_id'], $component['hidden'], $component['config']);
+                                                $this->template_lib->set_content($result, 'append');            
 					}
 				}
 			}
 		}
+
 	}

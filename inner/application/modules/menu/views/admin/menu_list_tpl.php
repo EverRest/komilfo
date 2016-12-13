@@ -1,17 +1,16 @@
 <?php defined('ROOT_PATH') OR exit('No direct script access allowed');
-	function build_menu($menu_index, $menu_id, $items, $item, $last, $open_menus)
+
+	function build_menu($menu_index, $menu_id, $items, $item, $last)
 	{
 		foreach ($item as $val)
-		{
+		{ if($val['id'] == 1) continue;
 			echo '<li id="menu_' . $val['id'] . '" data-menu-id="' . $val['id'] . '">';
-			echo '<div class="holder">';
+			echo '<div class="holder' . (($val['hidden'] == 1) ? ' hidden' : '') . '">';
 			echo '<div class="cell last_edit' . (($val['id'] == $last) ? ' active' : '') . '"></div>';
-			echo '<div class="cell w_20 icon constrols"><label class="check_label"><i><input type="checkbox" name="del_menu" value="' . $val['id'] . '"></i></label></div>';
 			echo '<div class="cell w_20 icon"><a href="#" class="hide-show ' . (($val['hidden'] == 0) ? ' active' : '') . '"></a></div>';
 			echo '<div class="cell w_30 number_cell"><div class="number">' . $val['position'] . '</div><div class="add_items"><a href="#" class="up_add"></a><a href="#" class="child_add"></a><a href="#" class="down_add"></a></div></div>';
-			echo '<div class="cell w_20 icon "><a class="picture' . ($val['image'] != '' ? ' active' : '') . '" href="' . base_url((LANG == DEF_LANG ? '' : LANG . '/') . 'admin/menu/edit/?menu_index=' . $menu_index . '&menu_id=' . $menu_id . '&item_id=' . $val['id']) . '"></a></div>';
+			echo '<div class="cell w_20 icon"><a class="picture' . ($val['image'] != '' ? ' active' : '') . '" href="' . base_url((LANG == DEF_LANG ? '' : LANG . '/') . 'admin/menu/edit/?menu_index=' . $menu_index . '&menu_id=' . $menu_id . '&item_id=' . $val['id']) . '"></a></div>';
 			echo '<div class="cell w_20 icon"><a class="edit"></a></div>';
-			echo '<div class="cell w_20 icon"><a href="#" class="' . (in_array($val['id'], $open_menus) ? 'adm_minus' : 'adm_plus') . '">' . (in_array($val['id'], $open_menus) ? '-' : '+') . '</a></div>';
 			echo '<div class="cell auto">';
 			echo '<span class="menu_item"><a href="' . ($val['static_url'] != '' ? $val['static_url'] : base_url((LANG == DEF_LANG ? '' : LANG . '/') . $val['url'])) . '/" target="_blank">' . (($val['name'] != '') ? stripslashes($val['name']) : (($val['def_name'] != '') ? '<i>' . $val['def_name'] . '</i>' : 'Новий пункт меню')) . '</a></span>';
 			echo '<div class="fm for_link_set">';
@@ -29,21 +28,16 @@
 			echo '<div class="cell w_20 icon adm_hidden main_page_cell"><a href="#" class="main_page' . (($val['main'] == 1) ? ' active' : '') . '"></a></div>';
 			echo '<div class="cell w_20 icon"><a href="#" class="delete"></a></div>';
 			echo '</div>';
+
 			if (isset($items['children'][$val['id']]))
 			{
-				echo '<ul style="display: ' . (in_array($val['id'], $open_menus) ? 'block' : 'none') . '">';
-				build_menu($menu_index, $menu_id, $items, $items['children'][$val['id']], $last, $open_menus);
+				echo '<ul>';
+				build_menu($menu_index, $menu_id, $items, $items['children'][$val['id']], $last);
 				echo '</ul>';
 			}
+
 			echo '</li>';
 		}
 	}
-	if (is_array($menu['root']) > 0)
-	{
-		$open_menus = $this->session->userdata('open_menus');
-		if (!is_array($open_menus))
-		{
-			$open_menus = array();
-		}
-		build_menu($menu_index, $menu_id, $menu, $menu['root'], $last_menu, $open_menus);
-	}
+
+	if (is_array($menu['root']) > 0) build_menu($menu_index, $menu_id, $menu, $menu['root'], $last_menu);

@@ -4,6 +4,7 @@
 
 	class Admin_menu extends MX_Controller
 	{
+
 		public function __construct()
 		{
 			parent::__construct();
@@ -15,7 +16,7 @@
 		 */
 		public function _clean_cache()
 		{
-			$this->cache->clean('menu/');
+			$this->cache->clean();
 		}
 
 		/**
@@ -23,152 +24,64 @@
 		 */
 		public function index()
 		{
-			$menu_id = (int)$this->input->get('menu_id');
-			$menu_index = (int)$this->input->get('menu_index');
+			$menu_id = intval($this->input->get('menu_id'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index, $menu_id)
-			) {
-				$this->init_model->set_menu_id($menu_id, true);
-
-				$this->template_lib
-					->set_title('Управління меню сайту')
-					->set_admin_menu_active('menu', 'top_level')
-					->set_admin_menu_active($menu_index, 'sub_level');
-
-				$this->load->model('admin_menu_model');
-
-				$this->template_lib->set_content(
-					$this->load->view(
-						'admin/menu_tpl',
-						array(
-							'menu' =>
-								$this->load->view(
-									'admin/menu_list_tpl',
-									array(
-										'menu' => $this->admin_menu_model->get_menu($menu_index),
-										'menu_id' => $menu_id,
-										'menu_index' => $menu_index,
-										'last_menu' => (int)$this->session->userdata('last_menu'),
-									),
-									true
-								),
-							'menu_id' => $menu_id,
-							'menu_index' => $menu_index,
-							'languages' => $this->config->item('languages')
-						),
-						true
-					)
-				);
-			} else {
+			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('menu'))
+			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
 			}
+
+			$this->init_model->set_menu_id($menu_id, TRUE);
+
+			$menu_index = intval($this->input->get('menu_index'));
+
+			$this->template_lib->set_title('Управління меню сайту');
+			$this->template_lib->set_admin_menu_active('menu', 'top_level');
+			$this->template_lib->set_admin_menu_active($menu_index, 'sub_level');
+
+			$this->load->model('admin_menu_model');
+
+			$template_vars = array(
+				'menu' => $this->admin_menu_model->get_menu($menu_index),
+				'menu_id' => $menu_id,
+				'menu_index' => $menu_index,
+				'last_menu' => intval($this->session->userdata('last_menu')),
+			);
+			$menu = $this->load->view('admin/menu_list_tpl', $template_vars, TRUE);
+
+			$template_vars = array(
+				'menu' => $menu,
+				'menu_id' => $menu_id,
+				'menu_index' => $menu_index,
+				'languages' => $this->config->item('languages')
+			);
+			$this->template_lib->set_content($this->load->view('admin/menu_tpl', $template_vars, TRUE));
 		}
 
 		/**
 		 * Завантаження меню через ajax запит
 		 */
-		public function menu_load()
+		public function load()
 		{
 			$response = array(
-				'success' => false,
+				'error' => 1,
 				'menu' => '',
 			);
 
-			$menu_index = (int)$this->input->post('menu_index');
-			$menu_id = (int)$this->input->post('menu_id');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$menu_index = intval($this->input->post('menu_index'));
+				$menu_id = intval($this->input->post('menu_id'));
+				$language = $this->input->post('language');
+				$languages = $this->config->item('languages');
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index)
-			) {
-				$this->load->model('admin_menu_model');
+				if ($menu_index > 0 AND isset($languages[$language]))
+				{
+					$this->load->model('admin_menu_model');
 
-				$response['menu'] = $this->load->view(
-					'admin/menu_list_tpl',
-					array(
-						'menu' => $this->admin_menu_model->get_menu($menu_index),
-						'menu_index' => $menu_index,
-						'menu_id' => $menu_id,
-						'last_menu' => (int)$this->session->userdata('last_menu'),
-					),
-					true
-				);
-				$response['success'] = true;
-			}
-
-			return json_encode($response);
-		}
-
-		/**
-		 * Збереження стану відкритого меню
-		 */
-		public function menu_open()
-		{
-			$response = array('success' => false);
-
-			$menu_id = (int)$this->input->post('menu_id');
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_index')
-				and
-				$menu_id > 0
-			) {
-				$open_menus = $this->session->userdata('open_menus');
-
-				if (!is_array($open_menus)) {
-					$open_menus = array();
+					$response['error'] = 0;
+					$response['menu'] = $this->load->view('admin/menu_list_tpl', array('menu' => $this->admin_menu_model->get_menu($menu_index, $language), 'menu_index' => $menu_index, 'menu_id' => $menu_id, 'last_menu' => intval($this->session->userdata('last_menu'))), TRUE);
 				}
-
-				if (!in_array($menu_id, $open_menus, true)) {
-					$open_menus[] = $menu_id;
-				}
-
-				$this->session->set_userdata('open_menus', $open_menus);
-
-				$response['success'] = true;
-			}
-
-			return json_encode($response);
-		}
-
-		/**
-		 * Збереження стану закритого меню
-		 */
-		public function menu_close()
-		{
-			$response = array('success' => false);
-
-			$menu_id = (int)$this->input->post('menu_id');
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_index')
-				and
-				$menu_id > 0
-			) {
-				$open_menus = $this->session->userdata('open_menus');
-
-				if (!is_array($open_menus)) {
-					$open_menus = array();
-				}
-
-				$key = array_search($menu_id, $open_menus, true);
-
-				if ($key !== false) {
-					unset($open_menus[$key]);
-					$open_menus = array_values($open_menus);
-
-					$this->session->set_userdata('open_menus', $open_menus);
-				}
-
-				$response['success'] = true;
 			}
 
 			return json_encode($response);
@@ -179,69 +92,64 @@
 		 *
 		 * @return string
 		 */
-		public function insert_item()
+		public function insert()
 		{
 			$response = array(
-				'success' => false,
+				'error' => 1,
 				'menu_id' => 0,
 			);
-
-			$menu_index = (int)$this->input->post('menu_index');
-			$parent_id = (int)$this->input->post('parent_id');
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index)
-				and
-				$parent_id >= 0
-			) {
+                        
+		 if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+		 {		
+				
+			$menu_index = intval($this->input->post('menu_index'));
+			$parent_id = intval($this->input->post('parent_id'));
+  			if ($menu_index > 0 AND $parent_id >= 0)
+			{
 				$this->load->model('admin_menu_model');
 
+				$response['error'] = 0;
 				$id = $this->admin_menu_model->menu_add($menu_index, $parent_id);
-
 				$this->session->set_userdata('last_menu', $id);
 				$response['menu_id'] = $id;
-
-				$response['success'] = true;
 				$this->_clean_cache();
 			}
 
+
+		 }
 			return json_encode($response);
 		}
 
 		/**
 		 * Збереження пункту меню
 		 */
-		public function update_item()
+		public function update()
 		{
-			$response = array('success' => false);
+			$response = array('error' => 1);
 
-			$id = (int)$this->input->post('id');
-			$name = $this->db->escape_str(strip_tags($this->input->post('name', true)));
-			$menu_index = (int)$this->input->post('menu_index');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$id = intval($this->input->post('id'));
+				$name = $this->db->escape_str(strip_tags($this->input->post('name', TRUE)));
+				$menu_index = intval($this->input->post('menu_index'));
+				$language = $this->input->post('language');
+				$languages = $this->config->item('languages');
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index)
-				and
-				$id >= 0
-			) {
-				$this->load->model('admin_menu_model');
-				$this->load->helpers(array('translit', 'form'));
+				if ($id > 0 AND $menu_index > 0 AND isset($languages[$language]))
+				{
+					$this->load->model('admin_menu_model');
+					$this->load->helpers(array('translit', 'form'));
 
-				$this->admin_menu_model->menu_update(
-					$id,
-					array(
-						'name_' . LANG => form_prep($name),
-						'url_' . LANG => translit($name),
-					),
-					true
-				);
+					$set = array(
+						'name_' . $language => form_prep($name),
+						'url_' . $language => translit($name)
+					);
+					$this->admin_menu_model->menu_update($id, $set);
+					$this->admin_menu_model->update_paths($id, array($language => ''));
 
-				$response['link'] = $this->init_model->get_link($id, '{URL}');
-				$response['success'] = true;
+					$response['error'] = 0;
+					$response['link'] = $this->init_model->get_link($id, '{URL}');
+				}
 
 				$this->_clean_cache();
 			}
@@ -254,34 +162,35 @@
 		 *
 		 * @return string
 		 */
-		public function update_item_link()
+		public function update_link()
 		{
-			$response = array('success' => false);
+			$response = array('error' => 1);
 
-			$id = (int)$this->input->post('id');
-			$target = (int)$this->input->post('target');
-			$url = $this->db->escape_str(strip_tags($this->input->post('url', true)));
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$id = intval($this->input->post('id'));
+				$target = intval($this->input->post('target'));
+				$url = $this->db->escape_str(strip_tags($this->input->post('url', TRUE)));
+				$language = $this->input->post('language');
+				$languages = $this->config->item('languages');
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu')
-				and
-				$id >= 0
-			) {
-				$this->load->model('admin_menu_model');
-				$this->load->helpers(array('translit', 'form'));
+				if ($id > 0 AND isset($languages[$language]))
+				{
+					$this->load->model('admin_menu_model');
+					$this->load->helpers(array('translit', 'form'));
 
-				$set = array(
-					'target' => $target,
-					'static_url_' . LANG => $url,
-				);
-				$this->admin_menu_model->menu_update($id, $set, true);
+					$set = array(
+						'target' => $target,
+						'static_url_' . $language => $url,
+					);
+					$this->admin_menu_model->menu_update($id, $set);
+					$this->admin_menu_model->update_paths($id, array($language => ''));
 
-				$response['link'] = $this->init_model->get_link($id, '{URL}');
-				$response['success'] = true;
+					$response['error'] = 0;
+					$response['link'] = $url != '' ? $url : $this->init_model->get_link($id, '{URL}');
 
-				$this->_clean_cache();
+					$this->_clean_cache();
+				}
 			}
 
 			return json_encode($response);
@@ -290,31 +199,25 @@
 		/**
 		 * Збереження порядку сортування меню
 		 */
-		public function update_items_position()
+		public function update_position()
 		{
-			$response = array('success' => false);
+			$response = array('error' => 1);
 
-			$menu_id = (int)$this->input->post('menu_id');
-			$items = $this->input->post('items');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$items = $this->input->post('items');
+				$menu_id = intval($this->input->post('menu_id'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu')
-				and
-				$menu_id >= 0
-				and
-				is_array($items)
-			) {
-				$this->load->model('admin_menu_model');
+				if (is_array($items) AND $menu_id > 0)
+				{
+					$this->load->model('admin_menu_model');
+					$this->admin_menu_model->update_position($items);
 
-				$this->admin_menu_model->update_position($items);
-				$this->admin_menu_model->update_paths($menu_id);
+					$this->session->set_userdata('last_menu', $menu_id);
 
-				$this->session->set_userdata('last_menu', $menu_id);
-				$response['success'] = true;
-
-				$this->_clean_cache();
+					$this->_clean_cache();
+					$response['error'] = 0;
+				}
 			}
 
 			return json_encode($response);
@@ -325,24 +228,23 @@
 		 */
 		public function set_main()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			$id = (int)$this->input->post('id');
-			$menu_index = (int)$this->input->post('menu_index');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$id = intval($this->input->post('id'));
+				$menu_index = intval($this->input->post('menu_index'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index)
-				and
-				$id >= 0
-			) {
-				$this->load->model('admin_menu_model');
+				if ($id > 0 AND $menu_index > 0)
+				{
+					$this->session->set_userdata('last_menu', $id);
 
-				$this->admin_menu_model->set_main($id);
+					$this->load->model('admin_menu_model');
+					$this->admin_menu_model->set_main($id);
+					$this->admin_menu_model->update_paths($menu_index, $this->config->item('languages'));
 
-				$this->session->set_userdata('last_menu', $id);
-				$response['success'] = true;
+					$response['success'] = TRUE;
+				}
 
 				$this->_clean_cache();
 			}
@@ -353,62 +255,50 @@
 		/**
 		 * Приховування/відображення пункту меню
 		 */
-		public function item_visibility()
+		public function hidden()
 		{
-			$response = array('success' => false);
+			$response = array('error' => 1);
 
-			$id = (int)$this->input->post('id');
-			$menu_index = (int)$this->input->post('menu_index');
-			$status = (int)$this->input->post('status');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$id = intval($this->input->post('id'));
+				$status = intval($this->input->post('status'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index)
-				and
-				$id > 0
-				and
-				in_array($status, array(0, 1), true)
-			) {
-				$this->session->set_userdata('last_menu', $id);
+				if ($id > 0 AND in_array($status, array(0, 1)))
+				{
+					$this->session->set_userdata('last_menu', $id);
 
-				$this->load->model('admin_menu_model');
-				$this->admin_menu_model->menu_update($id, array('hidden' => $status));
+					$this->load->model('admin_menu_model');
+					$this->admin_menu_model->menu_update($id, array('hidden' => $status));
+
+					$response['error'] = 0;
+				}
 
 				$this->_clean_cache();
-				$response['success'] = true;
 			}
 
 			return json_encode($response);
 		}
 
-		# Зображення до понктів меню
-
 		/**
 		 * Видалення пункту меню
 		 */
-		public function delete_item()
+		public function delete()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			$id = (int)$this->input->post('id');
-			$menu_index = (int)$this->input->post('menu_index');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$id = intval($this->input->post('id'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('menu_' . $menu_index)
-				and
-				$id > 0
-			) {
-				$this->load->model('admin_menu_model');
-				$this->load->helper('directory');
-				$this->load->helper('file');
+				if ($id > 0)
+				{
+					$this->load->model('admin_menu_model');
+					$this->admin_menu_model->menu_delete($id);
 
-				$this->admin_menu_model->menu_delete($id);
-
-				$this->_clean_cache();
-				$response['success'] = true;
+					$this->_clean_cache();
+					$response['success'] = TRUE;
+				}
 			}
 
 			return json_encode($response);
@@ -419,47 +309,38 @@
 		 */
 		public function edit()
 		{
-			$menu_index = (int)$this->input->get('menu_index');
-			$menu_id = (int)$this->input->get('menu_id');
-			$item_id = (int)$this->input->get('item_id');
-			$catalog = (int)$this->input->get('catalog');
+			$menu_id = intval($this->input->get('menu_id'));
 
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('menu_' . $menu_index, $menu_id)
-				and $item_id > 0
-			) {
-				$this->init_model->set_menu_id($menu_id, true);
-				$this->session->set_userdata('last_menu', $item_id);
-
-				$this->template_lib
-					->set_title('Редагування пункту меню')
-					->set_admin_menu_active('menu', 'top_level')
-					->set_admin_menu_active($menu_index, 'sub_level');
-
-				$this->load->model('admin_menu_model');
-
-				$item = $this->admin_menu_model->get_item($item_id);
-
-				if (count($item) > 0) {
-					$this->template_lib->set_content(
-						$this->load->view(
-							'admin/edit_tpl',
-							array(
-								'menu_index' => $menu_index,
-								'menu_id' => $menu_id,
-								'item_id' => $item_id,
-								'item' => $item,
-								'catalog' => $catalog,
-								'thumb' => array(718, 510),
-								'languages' => $this->config->item('languages'),
-							),
-							true
-						)
-					);
-				}
-			} else {
+			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('menu'))
+			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
+			}
+
+			$menu_index = intval($this->input->get('menu_index'));
+			$item_id = intval($this->input->get('item_id'));
+			$catalog = intval($this->input->get('catalog'));
+
+			$this->template_lib->set_title('Редагування пункту меню');
+			$this->template_lib->set_admin_menu_active('menu', 'top_level');
+			$this->template_lib->set_admin_menu_active($menu_index, 'sub_level');
+
+			$this->init_model->set_menu_id($menu_id, TRUE);
+			$this->session->set_userdata('last_menu', $item_id);
+
+			$this->load->model('admin_menu_model');
+			$result = $this->db->where('id', $item_id)->get('menu')->row_array();
+
+			if (count($result) > 0)
+			{
+				$template_data = array(
+					'menu_index' => $menu_index,
+					'menu_id' => $menu_id,
+					'item_id' => $item_id,
+					'menu' => $result,
+					'catalog' => $catalog,
+					'languages' => $this->config->item('languages'),
+				);
+				$this->template_lib->set_content($this->load->view('admin/edit_tpl', $template_data, TRUE));
 			}
 		}
 
@@ -468,30 +349,27 @@
 		 */
 		public function update_info()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			$id = (int)$this->input->post('id');
-			$menu_index = (int)$this->input->post('menu_index');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$id = intval($this->input->post('id'));
 
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('menu_' . $menu_index)
-				and $id > 0
-			) {
-				$this->load->model('admin_menu_model');
-				$this->load->helper('form');
+				if ($id > 0)
+				{
+					$this->load->model('admin_menu_model');
+					$this->load->helper('form');
 
-				$this->admin_menu_model->menu_update(
-					$id,
-					array(
-						'email' => form_prep($this->input->post('email', true))
-					),
-					false,
-					null
-				);
+					$set = array();
 
-				$this->_clean_cache();
-				$response['success'] = true;
+					$title = $this->input->post('title');
+					foreach ($title as $k => $v) $set['title_' . $k] = form_prep($v);
+
+					$this->admin_menu_model->menu_update($id, $set);
+
+					$this->_clean_cache();
+					$response['success'] = TRUE;
+				}
 			}
 
 			return json_encode($response);
@@ -504,60 +382,120 @@
 		 */
 		public function upload_image()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE, 'width' => '', 'height' => '');
 
-			$menu_id = (int)$this->input->post('menu_id');
-			$menu_index = (int)$this->input->post('menu_index');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$menu_id = intval($this->input->post('menu_id'));
+				$menu_index = intval($this->input->post('menu_index'));
 
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('menu_' . $menu_index)
-				and $menu_id > 0
-			) {
-				$this->load->helper('directory');
-				$this->load->helper('translit');
+				if ($menu_id > 0 AND $menu_index > 0)
+				{
+					$dir = ROOT_PATH . 'upload/menu/';
+					if (!file_exists($dir)) mkdir($dir);
 
-				$dir = get_dir_path('upload/menu/' . $menu_id);
-				$file_name = translit_filename($_FILES['image']['name']);
+					$dir .= $menu_id . '/';
+					if (!file_exists($dir)) mkdir($dir);
 
-				$upload_config = array(
-					'upload_path' => $dir,
-					'overwrite' => false,
-					'file_name' => $file_name,
-					'allowed_types' => 'gif|jpg|jpeg|png',
-				);
+					$this->load->helper('translit');
+					$file_name = translit_filename($_FILES['image']['name']);
 
-				$this->load->library('upload', $upload_config);
+					$upload_config = array(
+						'upload_path' => $dir,
+						'overwrite' => FALSE,
+						'file_name' => $file_name,
+						'allowed_types' => 'gif|jpg|jpeg|png',
+					);
 
-				$this->load->library('Image_lib');
+					$this->load->library('upload', $upload_config);
 
-				if ($this->upload->do_upload('image')) {
-					$file_name = $this->upload->data('file_name');
+					if ($this->upload->do_upload('image'))
+					{
+						$file_name = $this->upload->data('file_name');
 
-					$this->image_lib->resize_crop($dir . $file_name, $dir . "s_" . $file_name, 718, 510, FALSE);
-					$result = $this->db->select('image')->where('id', $menu_id)->get('menu')->row_array();
+						$sizes = getimagesize($dir . $file_name);
 
-					if ($result['image'] !== '' and $result['image'] !== $file_name) {
-						if (file_exists($dir . $result['image'])) {
-							unlink($dir . $result['image']);
+						$width = ($sizes[0] < 1000) ? $sizes[0] : 1000;
+						$height = ($width * $sizes[1]) / $sizes[0];
+
+						$this->load->library('Image_lib');
+
+						$this->image_lib->resize($dir . $file_name, $dir . 's_' . $file_name, $width, $height);
+						if ($menu_index == 1) $this->image_lib->resize_crop($dir . $file_name, $dir . $file_name, 180, 180);
+						if ($menu_index == 4) $this->image_lib->resize($dir . $file_name, $dir . $file_name, 133, 31);
+
+						$result = $this->db->select('image')->where('id', $menu_id)->get('menu')->row_array();
+						if ($result['image'] != '' AND $result['image'] != $file_name)
+						{
+							if (file_exists($dir . $result['image'])) unlink($dir . $result['image']);
+							if (file_exists($dir . 's_' . $result['image'])) unlink($dir . 's_' . $result['image']);
 						}
 
-						if (file_exists($dir . 's_' . $result['image'])) {
-							unlink($dir . 's_' . $result['image']);
-						}
+						$set = array('image' => $file_name);
+						$where = array('id' => $menu_id);
+						$this->db->update('menu', $set, $where);
+
+						$response['success'] = TRUE;
+						$response['width'] = $width;
+						$response['height'] = $height;
+						$response['file_name'] = $file_name . '?t=' . time() . rand(100000, 1000000);
+
+						$this->config->set_item('is_ajax_request', TRUE);
+						$this->_clean_cache();
 					}
-
-					$set = array('image' => $file_name);
-					$where = array('id' => $menu_id);
-					$this->db->update('menu', $set, $where);
-
-					$response['success'] = true;
-					$response['file_name'] = $file_name . '?t=' . time() . mt_rand(100000, 1000000);
 				}
 			}
 
-			$this->config->set_item('is_ajax_request', true);
-			$this->_clean_cache();
+			return json_encode($response);
+		}
+
+		/**
+		 * Обрізка зображення
+		 *
+		 * @return string
+		 */
+		public function crop_image()
+		{
+			$response = array('success' => FALSE);
+
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu'))
+			{
+				$menu_id = intval($this->input->post('menu_id'));
+				$menu_index = intval($this->input->post('menu_index'));
+				$width = floatval($this->input->post('width'));
+				$coords = $this->input->post('coords');
+				$coords = array_map('floatval', $coords);
+
+				if (is_numeric($coords['x']) AND is_numeric($coords['y']) AND $coords['w'] >= 0 AND $coords['h'] >= 0 AND $menu_id >= 0 AND $menu_index > 0 AND $width > 0)
+				{
+					$result = $this->db->select('image')->where('id', $menu_id)->get('menu')->row_array();
+
+					if (count($result) > 0)
+					{
+						$dir = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/upload/menu/' . $menu_id . '/';
+
+						if (file_exists($dir . 's_' . $result['image']))
+						{
+							$sizes = getimagesize($dir . 's_' . $result['image']);
+
+							$w_index = $sizes[0] / $width;
+							$h_index = $sizes[1] / round(($width * $sizes[1]) / $sizes[0]);
+
+							$x = $coords['x'] * $w_index;
+							$y = $coords['y'] * $h_index;
+							$x2 = $coords['x2'] * $w_index;
+							$y2 = $coords['y2'] * $h_index;
+
+							$this->load->library('Image_lib');
+							if ($menu_index == 1) $this->image_lib->crop($dir . 's_' . $result['image'], $dir . $result['image'], $x2 - $x, $y2 - $y, $x, $y, 180, 180);
+							if ($menu_index == 4) $this->image_lib->crop($dir . 's_' . $result['image'], $dir . $result['image'], $x2 - $x, $y2 - $y, $x, $y, 133, 31);
+
+							$response['image'] = '/upload/menu/' . $menu_id . '/' . $result['image'] . '?t=' . time() . rand(10000, 1000000);
+							$response['success'] = TRUE;
+						}
+					}
+				}
+			}
 
 			return json_encode($response);
 		}
@@ -567,33 +505,24 @@
 		 *
 		 * @return string
 		 */
-		public function remove_image()
+		public function delete_image()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
+			$menu_id = intval($this->input->post('menu_id'));
 
-			$menu_id = (int)$this->input->post('menu_id');
-			$menu_index = (int)$this->input->post('menu_index');
-
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('menu_' . $menu_index)
-				and $menu_id > 0
-			) {
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('menu') AND $menu_id > 0)
+			{
 				$result = $this->db->select('image')->where('id', $menu_id)->get('menu')->row_array();
 
-				if (count($result) > 0) {
-					$this->load->helper('directory');
+				if (count($result) > 0)
+				{
+					$dir = ROOT_PATH . 'upload/menu/' . $menu_id . '/';
 
-					$dir = get_dir_path('/upload/menu/' . $menu_id);
-
-					if ($result['image'] !== '') {
-						if (file_exists($dir . $result['image'])) {
-							unlink($dir . $result['image']);
-						}
-
-						if (file_exists($dir . 's_' . $result['image'])) {
-							unlink($dir . 's_' . $result['image']);
-						}
+					if ($result['image'] != '')
+					{
+						if (file_exists($dir . $result['image'])) unlink($dir . $result['image']);
+						if (file_exists($dir . 's_' . $result['image'])) unlink($dir . 's_' . $result['image']);
+						if (file_exists($dir . 'g_' . $result['image'])) unlink($dir . 'g_' . $result['image']);
 
 						$set = array('image' => '');
 						$where = array('id' => $menu_id);
@@ -601,113 +530,9 @@
 					}
 				}
 
-				$response['success'] = true;
+				$this->_clean_cache();
+				$response['success'] = TRUE;
 			}
-
-			$this->_clean_cache();
-
-			return json_encode($response);
-		}
-
-		/**
-		 * Завантаження іконки
-		 *
-		 * @return string
-		 */
-		public function upload_icon()
-		{
-			$response = array('success' => false);
-
-			$menu_id = (int)$this->input->post('menu_id');
-			$menu_index = (int)$this->input->post('menu_index');
-
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('menu_' . $menu_index)
-				and $menu_id > 0
-			) {
-				$this->load->helper('directory');
-				$this->load->helper('translit');
-
-				$dir = get_dir_path('upload/menu/' . $menu_id);
-				$file_name = translit_filename($_FILES['icon']['name']);
-
-				$upload_config = array(
-					'upload_path' => $dir,
-					'overwrite' => false,
-					'file_name' => $file_name,
-					'allowed_types' => 'gif|jpg|jpeg|png',
-				);
-
-				$this->load->library('upload', $upload_config);
-
-				if ($this->upload->do_upload('icon')) {
-					$file_name = $this->upload->data('file_name');
-
-					$result = $this->db->select('icon')->where('id', $menu_id)->get('menu')->row_array();
-
-					if (
-						$result['icon'] !== ''
-						and $result['icon'] !== $file_name
-						and file_exists($dir . $result['icon'])
-					) {
-						unlink($dir . $result['icon']);
-					}
-
-					$set = array('icon' => $file_name);
-					$where = array('id' => $menu_id);
-					$this->db->update('menu', $set, $where);
-
-					$response['success'] = true;
-					$response['file_name'] = $file_name . '?t=' . time() . mt_rand(100000, 1000000);
-				}
-			}
-
-			$this->config->set_item('is_ajax_request', true);
-			$this->_clean_cache();
-
-			return json_encode($response);
-		}
-
-		/**
-		 * Видалення іконки
-		 *
-		 * @return string
-		 */
-		public function remove_icon()
-		{
-			$response = array('success' => false);
-
-			$menu_id = (int)$this->input->post('menu_id');
-			$menu_index = (int)$this->input->post('menu_index');
-
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('menu_' . $menu_index)
-				and $menu_id > 0
-			) {
-				$result = $this->db->select('icon')->where('id', $menu_id)->get('menu')->row_array();
-
-				if (count($result) > 0) {
-					$this->load->helper('directory');
-
-					$dir = get_dir_path('/upload/menu/' . $menu_id);
-
-					if ($result['icon'] !== '') {
-						if (file_exists($dir . $result['icon'])) {
-							unlink($dir . $result['icon']);
-						}
-
-						$set = array('icon' => '');
-						$where = array('id' => $menu_id);
-						$this->db->update('menu', $set, $where);
-					}
-				}
-
-				$response['success'] = true;
-			}
-
-			$this->_clean_cache();
 
 			return json_encode($response);
 		}

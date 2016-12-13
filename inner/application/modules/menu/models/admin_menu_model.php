@@ -25,46 +25,41 @@
 		 * @param int $menu_index
 		 * @param null $language
 		 *
-		 * @return array
+		 * @return array|null
 		 */
 		public function get_menu($menu_index, $language = NULL)
 		{
-			if ($language === null) {
-				$language = LANG;
-			}
+			if (is_null($language)) $language = LANG;
 
-			$menu = array(
-				'root' => array(),
-				'children' => array(),
-			);
+			$this->db->select('id, parent_id, position, hidden, main, target, name_' . $this->config->item('language') . ' as def_name, name_' . $language . ' as name, url_path_' . $language . ' as url, static_url_' . $language . ' as static_url, image');
+			$this->db->where('id !=', 196);
+			$this->db->where('menu_index', $menu_index);
+			$this->db->order_by('parent_id, position');
+			$result = $this->db->get('menu')->result_array();
 
-			$result = $this->db
-				->select('id, parent_id, position, hidden, main, target, name_' . $this->config->item('language') . ' as def_name, name_' . $language . ' as name, url_' . $language . ' as url, static_url_' . $language . ' as static_url, image')
-				//->where('id !=', 572)
-				->where('menu_index', $menu_index)
-				->order_by('parent_id, position')
-				->get('menu')
-				->result_array();
+			if (count($result) > 0)
+			{
+				$menu = array(
+					'root' => array(),
+					'children' => array()
+				);
 
-			if (count($result) > 0) {
-				foreach ($result as $row) {
-					if ((int)$row['parent_id'] === 0) {
+				foreach ($result as $row)
+				{
+					if ($row['parent_id'] == 0)
+					{
 						$menu['root'][] = $row;
-					} else {
+					}
+					else
+					{
 						$menu['children'][$row['parent_id']][] = $row;
 					}
 				}
+
+				return $menu;
 			}
 
-			return $menu;
-		}
-
-		public function get_item($item_id)
-		{
-			return $this->db
-				->where('id', $item_id)
-				->get('menu')
-				->row_array();
+			return NULL;
 		}
 
 		/**
@@ -88,7 +83,6 @@
 
 			$set = array(
 				'item_id' => $menu_id,
-				'component_id' => 0,
 				'menu_id' => $menu_id,
 				'module' => 'components',
 				'method' => 'get_components'
@@ -103,91 +97,11 @@
 		 *
 		 * @param int $id
 		 * @param array $set
-		 * @param bool $update_uri
-		 * @param null|string $language
 		 * @return object
 		 */
-		public function menu_update($id, array $set, $update_uri = false, $language = null)
+		public function menu_update($id, $set = array())
 		{
 			$this->db->update('menu', $set, array('id' => $id));
-			$item_not_found = false;
-			if ($update_uri) {
-				if ($language === null) {
-					$language = LANG;
-				}
-
-				$menu = $this->db
-					->select('main, url_' . $language . ' as url, static_url_' . $language . ' as static_url')
-					->where('id', $id)
-					->get('menu')
-					->row_array();
-
-				if ((int)$menu['main'] === 1) {
-					$uri = '';
-				} else {
-					$uri = $menu['url'];
-					
-					if(in_array($uri, $this->config->item('frontend_modules'))) {
-						$uri .= '-'.$id;
-						$this->db->update(
-							'menu',
-							array('url_' . $language => $uri),
-							array('id' => $id)
-						);
-					}
-
-					$link = $this->db
-						->select('item_id, menu_id, module')
-						->where('item_id !=', $id)
-						->where('menu_id !=', $id)
-						->where('hash_' . $language, md5($uri))
-						->get('site_links')
-						->row_array();
-
-					if (isset($link['item_id'])) {
-						$uri .= '-' . $id;
-						$this->db->update(
-							'menu',
-							array('url_' . $language => $uri),
-							array('id' => $id)
-						);
-					}
-					
-					$search = $this->db
-						->select('*')
-						->where('item_id', $id)
-						->where('menu_id', $id)
-						->where('hash_' . $language, md5($uri))
-						->get('site_links')
-						->row_array();
-
-					if(!empty($search))
-						$item_not_found = false;
-					else{
-						$item_not_found = true;
-					}
-				}
-
-				if($item_not_found){
-					$this->db->insert(
-						'site_links',
-						array(
-							'hash_'.$language => md5($uri),
-							'item_id' => $id,
-							'menu_id' => $id,
-							'module' => 'components',
-							'method' => 'get_components',
-						)
-					);
-				}else{
-					$this->db
-						->set('hash_' . $language, md5($uri))
-						->where('item_id', $id)
-						->where('menu_id', $id)
-						->where('module', 'components')
-						->update('site_links');
-				}
-			}
 		}
 
 		/**
@@ -197,30 +111,31 @@
 		 */
 		public function update_position($items)
 		{
-			if (is_array($items)) {
+			if (is_array($items))
+			{
 				$set = array();
 
-				foreach ($items as $val) {
-					if (isset($val['id']) AND $val['id'] > 0) {
+				foreach ($items as $val)
+				{
+					if (isset($val['id']) AND $val['id'] > 0)
+					{
 						$set[] = array(
 							'id' => $val['id'],
-							'parent_id' => (int)$val['parent_id'],
-							'level' => (int)$val['level'],
-							'position' => (int)$val['position'],
+							'parent_id' => intval($val['parent_id']),
+							'level' => intval($val['level']),
+							'position' => intval($val['position'])
 						);
 
 						//$this->menu_update($val['id'], $set);
 					}
 
-					if (count($set) === 50) {
+					if (count($set) == 50) {
 						$this->db->update_batch('menu', $set, 'id');
 						$set = array();
 					}
 				}
 
-				if (count($set) > 0) {
-					$this->db->update_batch('menu', $set, 'id');
-				}
+				if (count($set) > 0) $this->db->update_batch('menu', $set, 'id');
 			}
 		}
 
@@ -231,14 +146,8 @@
 		 */
 		public function set_main($id)
 		{
-			$menu_id = (int)$this->db
-				->select('id')
-				->where('main', 1)
-				->get('menu')
-				->row('id');
-
-			$this->menu_update($menu_id, array('main' => 0), true);
-			$this->menu_update($id, array('main' => 1), true);
+			$this->db->update('menu', array('main' => 0), array('main' => 1));
+			$this->db->update('menu', array('main' => 1), array('id' => $id));
 		}
 
 		/**
@@ -250,92 +159,191 @@
 		{
 			// Видалення компонентів пункту меню
 
-			$this->db->delete('site_links', array('menu_id' => $id));
+			$this->db->delete('site_links', array('item_id' => $id, 'component_id' => 0));
 			$this->db->delete('components', array('menu_id' => $id));
 			$this->db->delete('component_article', array('menu_id' => $id));
-			//$this->db->delete('google_map', array('menu_id' => $id));
+			$this->db->delete('google_map', array('menu_id' => $id));
 			$this->db->delete('feedback', array('menu_id' => $id));
-			$this->db->delete('seo_tags', array('menu_id' => $id));
+			$this->db->delete('seo_tags', array('component_id' => 0, 'menu_id' => $id));
+			$this->db->delete('seo_link', array('menu_id' => $id));
 
-			// Видалення блоку "Новини"
-			$result = $this->db
-				->select('component_id')
-				->where('menu_id', $id)
-				->get('news')
-				->result_array();
+			// Видалення новин
+			$result = $this->db->select('news_id')->where('menu_id', $id)->get('news');
 
-			if (count($result) > 0) {
-				foreach ($result as $row) {
-					$dir = get_dir_path('upload/news/' . get_dir_code($row['news_id']).'/'.$row['news_id'], false);
-					delete_files($dir, true, true, 1);
+			if ($result->num_rows() > 0)
+			{
+				$result_array = $result->result_array();
+				foreach ($result_array as $row)
+				{
+					$dir = ROOT_PATH . 'upload/news/' . $this->init_model->dir_by_id($row['news_id']) . '/';
+					if (file_exists($dir)) delete_files($dir, TRUE, FALSE, 1);
+
+					$this->db->delete('site_links', array('item_id' => $row['news_id'], 'module' => 'news'));
+					$this->db->delete('seo_tags', array('item_id' => $row['news_id'], 'module' => 'news'));
+					$this->db->delete('comments', array('item_id' => $row['news_id'], 'component' => 'news'));
 				}
 			}
 
 			$this->db->delete('news', array('menu_id' => $id));
+			$this->db->delete('news_images', array('menu_id' => $id));
+
+			// Видалення галерей
+			$result = $this->db->select('gallery_id')->where('menu_id', $id)->get('galleries');
+
+			if ($result->num_rows() > 0)
+			{
+				$result_array = $result->result_array();
+
+				foreach ($result_array as $row)
+				{
+					$dir = ROOT_PATH . 'upload/gallery/' . $this->init_model->dir_by_id($row['gallery_id']) . '/';
+					if (file_exists($dir)) delete_files($dir, TRUE, FALSE, 1);
+				}
+			}
+
+			$this->db->delete('galleries', array('menu_id' => $id));
+			$this->db->delete('gallery_images', array('menu_id' => $id));
 
 			// Видалення пункту меню
 			$this->db->delete('menu', array('id' => $id));
 
-			$dir = get_dir_path('upload/menu/' . $id);
-			delete_files($dir, true, false, 1);
+			$dir = ROOT_PATH . 'upload/menu/' . $id . '/';
+			if (file_exists($dir)) delete_files($dir, TRUE, FALSE, 1);
 
 			// Видалення дочірніх пунктів меню
-			$result = $this->db
-				->select('id')
-				->where('parent_id', $id)
-				->get('menu')
-				->result_array();
-
-			if (count($result) > 0) {
-				foreach ($result as $row) {
+			$result = $this->db->select('id')->where('parent_id', $id)->get('menu');
+			if ($result->num_rows() > 0)
+			{
+				$result_array = $result->result_array();
+				foreach ($result_array as $row)
+				{
 					$this->menu_delete($row['id']);
 				}
 			}
 		}
 
 		/**
-		 * Оновлення шляхів пунктів меню
+		 * Оновлення посилань пунктів меню
 		 *
 		 * @param int $menu_id
+		 * @param array $languages
+		 * @param bool $current
 		 */
-		public function update_paths($menu_id)
+		public function update_paths($menu_id = NULL, $languages = array(), $current = TRUE)
 		{
-			$this->url_path_id = array();
-			$this->set_paths($menu_id);
+			$_languages = array_keys($languages);
 
-			$this->db->update(
-				'menu',
-				array('url_path_id' => count($this->url_path_id) > 0 ? '.' . implode('.', $this->url_path_id) . '.' : ''),
-				array('id' => $menu_id)
-			);
-
-			$menu = $this->db
-				->select('id')
-				->where('parent_id', $menu_id)
-				->get('menu')
-				->result_array();
-
-			foreach ($menu as $v) {
-				$this->update_paths($v['id']);
+			$this->db->select('id, parent_id, main');
+			foreach ($_languages as $language)
+			{
+				$this->db->select('url_' . $language);
 			}
+
+			if ($current)
+			{
+				$this->db->where('id', $menu_id);
+				$this->db->or_where('parent_id', $menu_id);
+			}
+			else
+			{
+				$this->db->where('parent_id', $menu_id);
+			}
+
+			$r = $this->db->get('menu');
+
+			$menu_set = array();
+
+			foreach ($r->result_array() as $key => $row)
+			{
+				if ($row['main'] != 1)
+				{
+					$this->url_path = array();
+					$this->url_path_id = array();
+					$urls = array();
+					foreach ($_languages as $language)
+					{
+						$urls[$language] = $row['url_' . $language];
+					}
+					$paths = $this->get_paths($row['parent_id'], $urls, $_languages);
+
+					$links_set = array();
+					$menu_set[$key] = array(
+						'id' => $row['id'],
+						'url_path_id' => $paths['id']
+					);
+					foreach ($_languages as $language)
+					{
+						$md_5 = md5($paths[$language]);
+
+						$menu_set[$key]['url_path_' . $language] = $paths[$language];
+						$menu_set[$key]['url_hash_' . $language] = $md_5;
+
+						$links_set['hash_' . $language] = $md_5;
+					}
+
+					$where = array('item_id' => $row['id'], 'component_id' => 0);
+					$this->db->update('site_links', $links_set, $where);
+
+					// Оновлення посилань новин
+					$this->db->select('news_id');
+					foreach ($_languages as $language) $this->db->select('url_' . $language);
+					$this->db->where('menu_id', $row['id']);
+
+					$result = $this->db->get('news');
+
+					if ($result->num_rows() > 0)
+					{
+						$result_array = $result->result_array();
+
+						foreach ($result_array as $_row)
+						{
+							$set = array();
+							foreach ($_languages as $language) $set['hash_' . $language] = md5($paths[$language] . '/' . $_row['url_' . $language]);
+							$where = array('item_id' => $_row['news_id'], 'module' => 'news');
+							$this->db->update('site_links', $set, $where);
+						}
+					}
+				}
+
+				$this->update_paths($row['id'], $languages, FALSE);
+			}
+
+			if (count($menu_set) > 0) $this->db->update_batch('menu', $menu_set, 'id');
 		}
 
 		/**
 		 * Рекурсивне отримання посилань
 		 *
 		 * @param int $id
+		 * @param array $languages
 		 */
-		private function set_paths($id)
+		private function set_paths($id, $languages)
 		{
-			$r = $this->db
-				->select('parent_id')
-				->where('id', $id)
-				->get('menu')
-				->row_array();
+			$this->db->select('parent_id, main');
+			foreach ($languages as $language)
+			{
+				$this->db->select('url_' . $language);
+			}
+			$this->db->where('id', $id);
 
-			if (count($r) > 0 and $r['parent_id'] > 0) {
-				array_unshift($this->url_path_id, $r['parent_id']);
-				$this->set_paths($r['parent_id']);
+			$r = $this->db->get('menu');
+
+			if ($r->num_rows() > 0)
+			{
+				$row = $r->row_array();
+
+				array_unshift($this->url_path_id, $id);
+
+				if ($row['main'] != 1)
+				{
+					foreach ($languages as $language)
+					{
+						if (!isset($this->url_path[$language])) $this->url_path[$language] = array();
+						array_unshift($this->url_path[$language], $row['url_' . $language]);
+					}
+				}
+
+				if ($row['parent_id'] > 0) $this->set_paths($row['parent_id'], $languages);
 			}
 		}
 

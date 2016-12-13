@@ -24,8 +24,8 @@
 			<li data-id="<?=$row['admin_id'];?>">
 				<div class="holder">
 					<div class="cell w_30 number"></div>
-					<div class="cell w_20 icon"><?php if ($row['root'] == 0): ?><a href="#" class="hide-show<?php if ($row['status'] == 0) echo ' active'; ?>"></a><?php endif; ?></div>
-					<div class="cell w_20 icon"><?php if ($this->session->userdata('admin_root') == 1 OR ($row['admin_id'] == $this->session->userdata('admin_id'))): ?><a href="<?=$this->uri->full_url('admin/administrators/edit?menu_id=' . $menu_id . '&admin_id=' . $row['admin_id']);?>" class="edit"></a><?php endif; ?></div>
+					<div class="cell w_20 icon"><a href="#" class="hide-show<?php if ($row['status'] == 0) echo ' active'; ?>"></a></div>
+					<div class="cell w_20 icon"><?php if ($row['root'] == 1 OR ($row['admin_id'] == $this->session->userdata('admin_id'))): ?><a href="<?=$this->uri->full_url('admin/administrators/edit?menu_id=' . $menu_id . '&admin_id=' . $row['admin_id']);?>" class="edit"></a><?php endif; ?></div>
 					<div class="cell auto"><?=(($row['name'] != '') ? $row['name'] : 'Новий адміністратор');?></div>
 					<div class="cell w_120" style="text-align: center"><?=date('d.m.Y H:i', $row['create_date']);?></div>
 					<div class="cell w_120" style="text-align: center"><?=($row['login_date'] > 0 ? date('d.m.Y H:i', $row['login_date']) : '-');?></div>
@@ -48,12 +48,12 @@
 				.each(function () {
 					var index = $(this).index();
 					$(this).find('.number').eq(0).text(index + 1);
-					if (index % 2 == 1) $(this).addClass('grey');
+					if (index % 2 == 0) $(this).addClass('grey');
 				});
 		}
 
 		row_decor();
-		
+
 		$component.on('click', '#administrator_add', function (e) {
 			e.preventDefault();
 
@@ -64,7 +64,7 @@
 				function (response) {
 					if (response.success) {
 						var row = $('<li data-id="' + response.admin_id + '"><div class="holder"><div class="cell w_30 number"></div><div class="cell w_20 icon"><a href="#" class="hide-show active"></a></div><div class="cell w_20 icon"><a href="<?=$this->uri->full_url('admin/administrators/edit?menu_id=' . $menu_id . '&admin_id=');?>' + response.admin_id + '" class="edit"></a></div><div class="cell auto">Новий адміністратор</div><div class="cell w_120" style="text-align: center">' + response.date + '</div><div class="cell w_120" style="text-align: center">-</div><div class="cell w_20 icon"><a href="#" class="delete"></a></div></div></li>');
-						$component.find('.admin_administrators').append(row);
+						$component.find('.admin_administrators').prepend(row);
 
 						row_decor();
 						component_loader_hide($('.component_loader'), '');

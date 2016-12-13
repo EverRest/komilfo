@@ -2,120 +2,117 @@
 
 	class Admin_config_model extends CI_Model
 	{
-		/**
-		 * Отримання налаштувань
-		 *
-		 * @param array $config
-		 * @return array
-		 */
-		public function get_config(array $config)
+		public function config_get($keys = array())
 		{
-			$result = $this->db
-				->select('key, val')
-				->where_in('key', array_keys($config))
-				->get('config')
-				->result_array();
+			$result = $this->db->select('key, val')->where_in('key', array_keys($keys))->get('config')->result_array();
+			foreach ($result as $v) $keys[$v['key']] = $v['val'];
 
-			foreach ($result as $v) {
-				$config[$v['key']] = $v['val'];
-			}
-
-			return $config;
+			return $keys;
 		}
 
-		/**
-		 * Збереження налаштування
-		 *
-		 * @param string $key
-		 * @param string $val
-		 * @param bool $escape_key
-		 * @param bool $escape_val
-		 */
-		public function save_config($key, $val, $escape_key = true, $escape_val = true)
+		public function config_set($vars)
 		{
-			$c = (int)$this->db
-				->where('key', $escape_key ? $this->db->escape_str($key) : $key)
-				->count_all_results('config');
-
-			if ($c === 0) {
-				$this->db->insert(
-					'config',
-					array(
-						'key' => $escape_key ? $this->db->escape_str($key) : $key,
-						'val' => $escape_val ? $this->db->escape_str($val) : $val,
-					)
-				);
-			} else {
-				$this->db->update(
-					'config',
-					array('val' => $escape_val ? $this->db->escape_str($val) : $val),
-					array('key' => $escape_key ? $this->db->escape_str($key) : $key)
-				);
-			}
-		}
-
-		/**
-		 * Отримання налаштувань заглушки
-		 *
-		 * @return array
-		 */
-		public function get_gag()
-		{
-			$config = $this->get_config(array('is_gag' => 0));
-
-			$result = $this->db
-				->select('lang, text')
-				->get('gag')
-				->result_array();
-
-			foreach ($result as $v) {
-				$config[$v['lang']] = $v['text'];
-			}
-
-			return $config;
-		}
-
-		/**
-		 * Збереження налаштувань заглушки
-		 *
-		 * @param $is_gag
-		 * @param $gag
-		 */
-		public function save_gag($is_gag, $gag)
-		{
-			$this->save_config('is_gag', $is_gag);
-
-			foreach ($gag as $k => $v) {
-				$this->db->set('text', $this->db->escape_str($v));
-				$this->db->where('lang', $k);
-				$this->db->update('gag');
-			}
-		}
-
-		/**
-		 * Отримання статичної інформації
-		 *
-		 * @param $type
-		 * @return array
-		 */
-
-		public function get_static_information($type)
-		{
-			if ($this->db->where('id', 1)->count_all_results($type) == 0)
+			foreach ($vars as $k => $v)
 			{
-				$this->db->insert($type, array('id' => 1));
+				if ($this->db->where('key', $k)->count_all_results('config') > 0)
+				{
+					$this->db->set('val', $v)->where('key', $k)->update('config');
+				}
+				else
+				{
+					$set = array(
+						'key' => $k,
+						'val' => $v,
+					);
+					$this->db->insert('config', $set);
+				}
 			}
-			return $this->db->select(" *, floor_".LANG." as floor, slogan_".LANG." as slogan, address_".LANG." as address")->get_where($type, array('id' => 1))->row_array();
 		}
 
-		/**
-		 *
-		 * Збереження статичної інформації
-		 * @param $set
-		 */
-
-		public function save_static_information($set)
+		public function get_admin()
 		{
-			$this->db->update('component_static_information', $set, array('id'=>1));
+			return $this->db->select('login')->where('id', 1)->get('admin')->row_array();
+		}
+
+		public function save_admin($set, $where)
+		{
+			$this->db->update('admin', $set, $where);
+		}
+
+		public function check_password($where)
+		{
+			$r = $this->db->where($where)->count_all_results('admin');
+			return ($r > 0) ? TRUE : FALSE;
+		}
+
+		public function save_password($set, $where)
+		{
+			$this->db->update('admin', $set, $where);
+		}
+
+		public function change_prices($usd, $eur, $rur)
+		{
+			if ($usd > 0 OR $eur > 0 OR $rur > 0)
+			{
+				$result = $this->db->select('product_id, price_usd, price_eur, price_rur')->where('price_usd >', 0)->or_where('price_eur >', 0)->or_where('price_rur >', 0)->get('catalog')->result_array();
+
+				foreach ($result as $row)
+				{
+					$price = 0;
+
+					if ($row['price_usd'] > 0)
+					{
+						$price = round($row['price_usd'] * $usd);
+					}
+					else
+					{
+						if ($row['price_eur'] > 0)
+						{
+							$price = round($row['price_eur'] * $eur);
+						}
+						else
+						{
+							if ($row['price_rur'] > 0)
+							{
+								$price = round($row['price_rur'] * $eur);
+							}
+						}
+					}
+
+					if ($price > 0)
+					{
+						$this->db->update('catalog', array('price' => $price), array('product_id' => $row['product_id']));
+					}
+				}
+			}
+		}
+
+		public function get_header()
+		{
+			$result = $this->db->get('component_header')->row_array();
+			return $result;
+		}
+
+		public function save_header($set)
+		{
+			$where = array('id'=>1);
+			$this->db->update('component_header', $set, $where);
+		}
+
+
+		public function get_map()
+		{
+			if ($this->db->count_all_results('component_footer') == 0)
+			{
+				$this->db->insert('component_footer', array('id'=>1));
+			}
+
+			return $this->db->get('component_footer')->row_array();
+		}
+
+
+		public function update( $set)
+		{
+			$this->db->update('component_footer', $set, array('id'=>1));
 		}
 	}

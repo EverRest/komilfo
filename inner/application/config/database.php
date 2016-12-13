@@ -1,16 +1,16 @@
-<?php defined('ROOT_PATH') or exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 	$active_group = 'default';
 	$query_builder = TRUE;
- 
+
 	$db['default'] = array(
 		'dsn' => '',
 		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'admin_komilfo',
+		'username' => 'chistaos_user',
+		'password' => '1z[XZS~8,A3*',
+		'database' => 'chistaos_db',
 		'dbdriver' => 'mysqli',
-		'dbprefix' => 'ko_',
+		'dbprefix' => 'ch_',
 		'pconnect' => TRUE,
 		'db_debug' => TRUE,
 		'cache_on' => FALSE,

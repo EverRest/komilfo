@@ -20,7 +20,7 @@
 		public function get()
 		{
 			$response = array('success' => FALSE);
-			$menu_id = intval($this->input->post('menu_id'));
+			$menu_id = intval($this->input->get('menu_id'));
 
 			if ($this->init_model->is_admin() AND $this->init_model->check_access('feedback_index', $menu_id) AND $menu_id > 0)
 			{
@@ -44,7 +44,7 @@
 		public function delete()
 		{
 			$response = array('success' => FALSE);
-			$menu_id = intval($this->input->post('menu_id'));
+			$menu_id = intval($this->input->get('menu_id'));
 			$message_id = $this->input->post('message_id');
 
 			if ($this->init_model->is_admin() AND $this->init_model->check_access('feedback_index', $menu_id) AND $menu_id > 0 AND $message_id > 0)
@@ -64,7 +64,7 @@
 		public function delete_component()
 		{
 			$response = array('error' => 1);
-			$menu_id = intval($this->input->post('menu_id'));
+                        $menu_id = intval($this->input->get('menu_id'));
 			$component_id = $this->input->post('component_id');
 
 			if ($this->init_model->is_admin() AND $this->init_model->check_access('feedback_index', $menu_id) AND $menu_id > 0 AND $component_id > 0)
@@ -73,7 +73,6 @@
 				$this->admin_feedback_model->delete_component($component_id);
 
 				$response['error'] = 0;
-				$response['success'] = true;
 			}
 
 			return json_encode($response);

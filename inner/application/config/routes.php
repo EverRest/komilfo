@@ -67,7 +67,7 @@
 	$route = array(
 		'default_controller' => 'init',
 		'404_override' => '',
-		'([a-zA-z0-9\-\_\/\.]+)' => 'init',
+		'([a-zA-z0-9\-\_\/]+)' => 'init',
 	);
 
 	/* End of file routes.php */

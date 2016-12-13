@@ -89,7 +89,6 @@
 	 * @property Menu_model $menu_model
 	 * @property Admin_components_model $admin_components_model
 	 * @property Components_model $components_model
-	 * @property Profile_model $profile_model
 	 */
 
 	class MX_Controller {

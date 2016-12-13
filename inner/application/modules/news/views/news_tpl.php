@@ -1,30 +1,25 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?
-// echo "<pre>";
-// print_r($news);
-// echo "</pre>";exit();
-?>
 <?php if (count($news) > 0): ?>
-<div class="news pbs">
-    <div class="container">
-        <div class="title-main row"><?=lang('news')?></div>
-        <div class="list-news row">
-            <?php foreach ($news as $key => $val): ?>
-                <?php $url = $this->uri->full_url($val['url']); ?>
-                <div class="item-news col-sm-12 col-xs-24">
-                    <div class="inner-news row">
-                        <figure class="photo-it-nw bg-box col-sm-12 col-xs-24">
-                            <a href="<?=$url?>">
-                                <img src="<?=base_url('upload/news/'.get_dir_code($val['news_id']).'/'.$val['news_id'].'/t_'.$val['image'])?>" alt="">
-                                <figcaption><span><?=lang("deatils")?></span></figcaption>
-                            </a>
-                        </figure>
-                        <div class="description-it-nw col-sm-12 col-xs-24"><div><a href="<?=$url?>"><?=$val['title'];?></a></div></div>
-                    </div>
-                </div>
-            <?endforeach;?>
-        </div>
-        <?=(!empty($pagination))? $pagination : '';?>
+<!-------------- товари -------------->
+<section class="fm services pd_tp_46 pd_bt_33" id="services">
+	<div class="centre">
+	    <div class="fm blue_title mr_bt_48">НАШІ ПОСЛУГИ</div>
+	    <div class="fm services_place">
+			<?php foreach ($news as $v): ?>
+				<?php $url = $this->uri->full_url((($v['main'] == 0) ? $v['menu_url'] . '/' : '') . $v['url']); ?>
+				<div class="fm services_item">
+					<?php if($v['image'] != ''):?>
+		                <div class="fm image_services">
+		                    <a href="<?=$url?>" class="open_form" data-component="services" data-text='<?=$v['news_id'];?>' data-title="<?=$v['title'];?>" data-subject="Форма наші послуги - <?=$v['title'];?>" data-type="services"><div class="image_inner"><div><img src="/upload/news/<?=$this->init_model->dir_by_id($v['news_id']);?>/<?=$v['news_id'];?>/t_<?=$v['image'];?>" alt="<?=$v['title'];?>" alt=""></div></div></a>
+		                </div>
+		                <a href="<?=$url?>" class="open_form" data-component="services" data-text="<?=$v['news_id'];?>" data-title="<?=$v['title'];?>" data-subject="Форма наші послуги - <?=$v['title'];?>" data-type="services"><div class="fm small_title"><?=$v['title'];?></div></a>
+		                <div class="fm descriptio_services"><?=$v['anons_'.LANG];?></div>
+		                <div class="fm detail_btn"><a href="<?=$url?>" class="open_form" data-component="services" data-text="<?=$v['news_id'];?>" data-title="<?=$v['title'];?>" data-subject="Форма наші послуги - <?=$v['title'];?>" data-type="services">ДЕТАЛЬНІШЕ</a></div>
+		            <?endif;?>
+	            </div>
+			<?php endforeach;?>
+		</div>
     </div>
-</div>
+	<?php if ($pagination != '') echo $pagination; ?>
+</section>
 <?php endif; ?>

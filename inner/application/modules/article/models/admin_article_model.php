@@ -2,10 +2,6 @@
 
 	class Admin_article_model extends CI_Model
 	{
-		public function menu_index($menu_id)
-		{
-			return $this->db->select('menu_index')->where('id', $menu_id)->get('menu')->row('menu_index');
-		}
 
 		/**
 		 * Отримання статті компоненту
@@ -33,16 +29,9 @@
 		 * @param string $text
 		 * @param int $wide
 		 */
-		public function update($component_id, $title, $text, $wide, $lat, $lng, $zoom, $title_shop, $address, $address_2, $phone, $facebook)
+		public function update($component_id, $title, $text, $wide, $background_fone, $btn_active)
 		{
-			$set = array(
-				'lat' => $lat,
-				'lng' => $lng,
-				'zoom' => $zoom,
-				'wide' => $wide,
-				'phone' => $phone,
-				'facebook' => $facebook
-			);
+			$set = array('wide' => $wide);
 
 			foreach ($title as $language => $val)
 			{
@@ -50,20 +39,11 @@
 
 				$_text = str_replace(array("\r", "\n", "\t"), '', $text[$language]);
 				$set['text_' . $language] = $this->db->escape_str($_text);
-
-				$_sign = nl2br($sign[$language]);
-				$_sign = str_replace(array("\r", "\n", "\t"), '', $_sign);
-				// $set['sign_' . $language] = $this->db->escape_str($_sign);
 			}
 
-			foreach ($title_shop as $language => $val)
-			{
-				$set['title_shop_' . $language] = form_prep(strip_tags($val));
+			$set['background_fone'] = $background_fone;
+			$set['btn_active'] = $btn_active;
 
-				$set['address_' . $language] = form_prep(strip_tags($address[$language]));
-				$set['address_2_' . $language] = form_prep(strip_tags($address_2[$language]));
-
-			}
 
 			$this->db->update('component_article', $set, array('component_id' => $component_id));
 		}

@@ -22,7 +22,7 @@
 		 * @internal param string $text
 		 * @return mixed
 		 */
-		function get_image($module, $width = 126, $height = 36, $count = 4)
+		function get_image($module, $width = 180, $height = 40, $count = 4)
 		{
 			$font_size_min = 24; /* минимальная высота символа */
 			$font_size_max = 26; /* максимальная высота символа */
@@ -33,7 +33,7 @@
 			$char_align = 30; /* выравнивание символа по-вертикали */
 
 			/* позиция первого символа по-горизонтали */
-			$start = 15;
+			$start = 18;
 
 			/* интервал между началами символов */
 			$interval = 25;
@@ -43,8 +43,8 @@
 
 			$image = imagecreatetruecolor($width, $height);
 			$background_color = imagecolorallocate($image, 255, 255, 255); /* rbg-колір фону */
-			$font_color = imagecolorallocate($image, 119,41, 119); /* rbg-колір 1 */
-			$font_color2 = imagecolorallocate($image, 162, 39, 162); /* rbg-колір 2 */
+			$font_color = imagecolorallocate($image, 31, 63, 124); /* rbg-колір 1 */
+			$font_color2 = imagecolorallocate($image, 220, 144, 38); /* rbg-колір 2 */
 
 			imagefill($image, 0, 0, $background_color);
 

@@ -27,7 +27,7 @@
 
 	session_name($config['cookie_prefix'] . $config['sess_cookie_name'] . '_id');
 	session_start();
-	if (!isset($_SESSION['admin_id']) OR !isset($_SESSION['admin_key'])) exit;
+	if (!isset($_SESSION['is_admin']) OR !isset($_SESSION['key_admin'])) exit;
 
 	// PHP VERSION CHECK
 	if (substr(PHP_VERSION, 0, strpos(PHP_VERSION, '.')) < 5)

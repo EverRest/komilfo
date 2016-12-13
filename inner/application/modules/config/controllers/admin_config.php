@@ -3,7 +3,6 @@
 	/**
 	 * @property Admin_config_model $admin_config_model
 	 */
-
 	class Admin_config extends MX_Controller
 	{
 		/**
@@ -11,49 +10,36 @@
 		 */
 		public function common()
 		{
-			$menu_id = (int)$this->input->get('menu_id');
+			$menu_id = intval($this->input->get('menu_id'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_common', $menu_id)
-			) {
-				$this->init_model->set_menu_id($menu_id, true);
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_common'))
+			{
+				$this->init_model->set_menu_id($menu_id, TRUE);
 
-				$this->template_lib
-					->set_title('Загальні налаштування сайту')
-					->set_admin_menu_active('config')
-					->set_admin_menu_active('common', 'sub_level');
+				$this->template_lib->set_title('Загальні налаштування сайту');
+				$this->template_lib->set_js('admin/checkboxes.js');
+
+				$this->template_lib->set_admin_menu_active('config');
+				$this->template_lib->set_admin_menu_active('common', 'sub_level');
 
 				$this->load->model('admin_config_model');
-				$this->load->helper('form');
-				$languages = $this->config->item('languages');
 
-				$config_array = array(
+				$vars = array(
 					'site_email' => '',
-					'print_icon' => 0,
-					'delete_alert' => 1,
-					'facebook_uri' => '',
-					'vk_uri' => '',
+					'print_icon' => '',
+					'delete_alert' => '',
+					'percent' => '',
 				);
-				
-				foreach ($languages as $key => $val){
-					$config_array['site_name_' . $key] = '';	
-				}
 
-				$this->template_lib->set_content(
-					$this->load->view(
-						'common_tpl',
-						array(
-							'languages' => $languages,
-							'config' => $this->admin_config_model->get_config(
-								$config_array
-							)
-						),
-						true
-					)
+				$template_data = array(
+					'menu_id' => $menu_id,
+					'config' => $this->admin_config_model->config_get($vars),
 				);
-			} else {
+
+				$this->template_lib->set_content($this->load->view('common_tpl', $template_data, TRUE));
+			}
+			else
+			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
 			}
 		}
@@ -65,36 +51,31 @@
 		 */
 		public function save_common()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			$config = $this->input->post('config');
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('config_common')
-				and is_array($config)
-			) {
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_common'))
+			{
 				$this->load->model('admin_config_model');
 
-				foreach ($config as $key => $val) {
-					$this->admin_config_model->save_config(
-						$key,
-						is_array($val) ? serialize($val) : $val,
-						!($key === 'address_' . LANG)
-					);
-				}
+				$vars = array(
+					'site_email' => $this->input->post('site_email'),
+					'print_icon' => $this->input->post('print_icon'),
+					'delete_alert' => $this->input->post('delete_alert')
+				);
+				$this->admin_config_model->config_set($vars);
 
-				$this->cache->delete('config/db');
-				$response['success'] = true;
+				$this->cache->delete('db_config');
+				$response['success'] = TRUE;
 			}
 
 			return json_encode($response);
 		}
 
 		/**
-		 * Статична інформація
+		 * Хедер сайту
 		 */
 
-		public function static_information()
+		public function header()
 		{
 			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_header'))
 			{
@@ -104,84 +85,113 @@
 
 				$this->template_lib->set_title('Налаштування шапки сайту');
 				$this->template_lib->set_admin_menu_active('config');
-				$this->template_lib->set_admin_menu_active('static_information', 'sub_level');
+				$this->template_lib->set_admin_menu_active('header', 'sub_level');
 				$this->load->model('admin_config_model');
 
 				$template_data = array(
 					'languages' => $this->config->item('languages'),
-					'data' => $this->admin_config_model->get_static_information('component_static_information')
+					'data' => $this->admin_config_model->get_header()
 				);
 
-				$this->template_lib->set_content($this->load->view('static_information_tpl', $template_data, TRUE));
+				$this->template_lib->set_content($this->load->view('header_tpl', $template_data, TRUE));
 			}
 		}
 
 		/**
-		 * Збереження налаштувань статичної інформації
+		 * Збереження налаштувань хедера
 		 */
-		public function save_static_information()
+		public function save_header()
 		{
 			$response = array('success' => FALSE);
 
 			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_header'))
 			{
-				//map data
-				
-				
 				$this->load->model('admin_config_model');
 				$this->load->helper('form');
 
-				$set = array(
-					'center_lat' => $this->input->post('center_lat', TRUE),
-					'center_lng' => $this->input->post('center_lng', TRUE),
-					'zoom' => $this->input->post('zoom'),
-					'marker_lat' => $this->input->post('marker_lat', TRUE),
-					'marker_lng' => $this->input->post('marker_lng', TRUE),
-				);
+				$slogan = $this->input->post('slogan');
+				$phone1 = $this->input->post('kyivstar');
+				$phone2 = $this->input->post('life');
+				$phone3 = $this->input->post('mts');
 
-				$title = $this->input->post('title', TRUE);
-				$description = $this->input->post('description', TRUE);
-				// $languages = $this->config->item('languages');
+				$off_timer = $this->input->post('off_timer') == 'on' ? 1 : 0;
 
-				foreach ($title as $language => $val)
+				foreach ($slogan as $key => $val)
 				{
-					$set['title_' . $language] = form_prep($val);
-					$set['description_' . $language] = form_prep($description[$language]);
-				}
+					$data['slogan_' . $key] = form_prep($val);
+					$data['kyivstar_' . $key] = form_prep($phone1[$key]);
+					$data['life_' . $key] = form_prep($phone2[$key]);
+					$data['mts_' . $key] = form_prep($phone3[$key]);
 
-				//static data
-
-
-				$floor = $this->input->post('floor', true);
-				$address = $this->input->post('address',true);
-				$slogan = $this->input->post('slogan',true);
-
-
-
-				$set['vk'] = form_prep($this->input->post('vk',true));
-				$set['fb'] = form_prep($this->input->post('fb',true));
-				$set['tw'] = form_prep($this->input->post('tw',true));
-				$set['yt'] = form_prep($this->input->post('yt',true));
-				$set['gp'] = form_prep($this->input->post('gp',true));
-				$set['ig'] = form_prep($this->input->post('ig',true));
-				$set['code'] = form_prep($this->input->post('code', true));
-				$set['phone_1'] = form_prep($this->input->post('phone1',true));
-				$set['phone_2'] = form_prep($this->input->post('phone2',true));
-				$set['phone_3'] = form_prep($this->input->post('phone3',true));
-				$set['email'] = form_prep($this->input->post('email',true));
-				$set['form_view'] = form_prep($this->input->post('form_view',true));
-	
-				foreach ($address as $key => $value) {
-					$set['address_'.$key] = form_prep($value);
-					$set['floor_'.$key] = form_prep($floor[$key]);
-					$set['slogan_'.$key] = form_prep($slogan[$key]);
+					if ($date[$key] != '')
+					{
+						$date[$key] = ($time[$key] != '') ? strtotime($date[$key] . ' ' . $time[$key]) : strtotime($date[$key]);
+					}
+					else
+					{
+						$date[$key] = time();
+					}
 				}
 
 				
-				$this->admin_config_model->save_static_information($set);
+
+				$this->admin_config_model->save_header($data);
 
 				$response['success'] = TRUE;
 			}
+
+			return json_encode($response);
+		}
+
+		/**
+		 * Підвал сайту (мапа)
+		 */
+
+		public function main_footer()
+		{
+			$menu_id = intval($this->input->get('menu_id'));
+
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_languages'))
+			{
+
+				$this->init_model->set_menu_id($menu_id, TRUE);
+				$this->template_lib->set_title('Налаштування футера сайту');
+				$this->template_lib->set_admin_menu_active('config');
+				$this->template_lib->set_admin_menu_active('footer', 'sub_level');
+				$this->load->model('admin_config_model');
+
+				$template_data = array(
+					'menu_id' => $menu_id,
+					'data' => $this->admin_config_model->get_map(),
+					'languages' => $this->config->item('languages'), 
+				);
+				$this->template_lib->set_content($this->load->view('footer_tpl', $template_data, TRUE));
+
+				$this->init_model->set_menu_id($menu_id, TRUE);
+
+			}
+		}
+
+		/**
+		 * Збереження інформації футера (мапа)
+		 */
+		public function update_footer()
+		{
+			$response = array('error' => 1);
+
+			$this->load->model('admin_config_model');
+			$this->load->helper('form');
+
+			$set = array(
+				'vk' => $this->input->post('vk', TRUE),
+				'fb' => $this->input->post('fb', TRUE),
+				'gplus' => $this->input->post('gplus')
+			);
+
+			$this->admin_config_model->update($set);
+
+			$response['error'] = 0;
+
 			return json_encode($response);
 		}
 
@@ -190,37 +200,33 @@
 		 */
 		public function languages()
 		{
-			$menu_id = (int)$this->input->get('menu_id');
+			$menu_id = intval($this->input->get('menu_id'));
 
-			if (
-				$this->init_model->is_admin()
-				and $this->init_model->check_access('config_languages', $menu_id)
-			) {
-				$this->init_model->set_menu_id($menu_id, true);
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_languages'))
+			{
+				$this->init_model->set_menu_id($menu_id, TRUE);
 
-				$this->template_lib
-					->set_title('Налаштування мов сайту')
-					->set_admin_menu_active('config')
-					->set_admin_menu_active('languages', 'sub_level');
+				$this->template_lib->set_title('Налаштування мов сайту');
+				$this->template_lib->set_admin_menu_active('config');
+				$this->template_lib->set_admin_menu_active('languages', 'sub_level');
 
 				$this->load->model('admin_config_model');
 
-				$this->template_lib->set_content(
-					$this->load->view(
-						'languages_tpl',
-						array(
-							'config' => $this->admin_config_model->get_config(
-								array(
-									'def_lang' => LANG,
-									'languages' => '',
-								)
-							),
-							'languages' => $this->config->item('languages'),
-						),
-						true
-					)
+				$vars = array(
+					'def_lang' => '',
+					'languages' => '',
 				);
-			} else {
+
+				$template_data = array(
+					'menu_id' => $menu_id,
+					'config' => $this->admin_config_model->config_get($vars),
+					'languages' => $this->config->item('languages'),
+				);
+
+				$this->template_lib->set_content($this->load->view('languages_tpl', $template_data, TRUE));
+			}
+			else
+			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
 			}
 		}
@@ -232,25 +238,19 @@
 		 */
 		public function save_languages()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			$config = $this->input->post('config');
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_languages')
-				and
-				is_array($config)
-			) {
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_languages'))
+			{
 				$this->load->model('admin_config_model');
 
-				foreach ($config as $key => $val) {
-					$this->admin_config_model->save_config($key, is_array($val) ? serialize($val) : $val);
-				}
-
-				$this->cache->delete('config/db');
-				$response['success'] = true;
+				$vars = array(
+					'def_lang' => $this->input->post('def_lang'),
+					'languages' => serialize($this->input->post('languages')),
+				);
+				$this->admin_config_model->config_set($vars);
+                                $response['success']=TRUE;
+				$this->cache->delete('db_config');
 			}
 
 			return json_encode($response);
@@ -261,229 +261,143 @@
 		 */
 		public function watermark()
 		{
-			$menu_id = (int)$this->input->get('menu_id');
+			$menu_id = intval($this->input->get('menu_id'));
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_watermark', $menu_id)
-			) {
-				$this->init_model->set_menu_id($menu_id, true);
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_watermark'))
+			{
+				$this->init_model->set_menu_id($menu_id, TRUE);
 
-				$this->template_lib
-					->set_title('Водяний знак')
-					->set_admin_menu_active('config')
-					->set_admin_menu_active('watermark', 'sub_level');
+				$this->template_lib->set_title('Водяний знак');
+
+				$this->template_lib->set_admin_menu_active('config');
+				$this->template_lib->set_admin_menu_active('watermark', 'sub_level');
+
+				$menu_id = intval($this->input->get('menu_id'));
+				$this->init_model->set_menu_id($menu_id, TRUE);
 
 				$this->load->model('admin_config_model');
 
-				$this->template_lib->set_content(
-					$this->load->view(
-						'watermark_tpl',
-						array(
-							'config' => $this->admin_config_model->get_config(
-								array(
-									'watermark' => '',
-									'watermark_padding' => 0,
-									'watermark_opacity' => 0
-								)
-							)
-						),
-						true
-					)
+				$vars = array(
+					'watermark' => '',
+					'watermark_padding' => '',
+					'watermark_opacity' => '',
 				);
-			} else {
+
+				$template_data = array(
+					'menu_id' => $menu_id,
+					'config' => $this->admin_config_model->config_get($vars),
+				);
+
+				$this->template_lib->set_content($this->load->view('watermark_tpl', $template_data, TRUE));
+			}
+			else
+			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
 			}
 		}
 
 		/**
-		 * Збереження водяного знаку
+		 * Збереження параметрів водяного знаку
 		 *
 		 * @return string
 		 */
 		public function save_watermark()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			$config = $this->input->post('config');
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_watermark')
-				and
-				is_array($config)
-			) {
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_exchange'))
+			{
 				$this->load->model('admin_config_model');
 
-				foreach ($config as $key => $val) {
-					$this->admin_config_model->save_config($key, $val);
-				}
+				$vars = array(
+					'watermark_padding' => $this->input->post('watermark_padding'),
+					'watermark_opacity' => $this->input->post('watermark_opacity')
+				);
+				$this->admin_config_model->config_set($vars);
 
-				$this->cache->delete('config/db');
-				$response['success'] = true;
+				$this->cache->delete('db_config');
+				$response['success'] = TRUE;
 			}
 
 			return json_encode($response);
 		}
 
 		/**
-		 * Завантаження водяного знаку
+		 * Завантаження зображення водяного знаку
 		 *
 		 * @return string
 		 */
 		public function upload_watermark()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_watermark')
-			) {
-				$this->load->helper('directory');
-				$dir = get_dir_path('upload/watermarks');
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_exchange'))
+			{
+				$dir = ROOT_PATH . 'upload/watermarks/';
+				if (!file_exists($dir)) mkdir($dir);
 
 				$this->load->helper('translit');
 				$file_name = translit_filename($_FILES['watermark_image']['name']);
 
 				$upload_config = array(
 					'upload_path' => $dir,
-					'overwrite' => false,
+					'overwrite' => FALSE,
 					'file_name' => $file_name,
-					'allowed_types' => 'gif|jpg|jpeg|png',
+					'allowed_types' => 'gif|jpg|jpeg|png'
 				);
 
 				$this->load->library('upload', $upload_config);
 
-				if ($this->upload->do_upload('watermark_image')) {
+				if ($this->upload->do_upload('watermark_image'))
+				{
 					$file_name = $this->upload->data('file_name');
 
 					$this->load->model('admin_config_model');
-					$config = $this->admin_config_model->get_config(array('watermark' => ''));
+					$config = $this->admin_config_model->config_get(array('watermark' => ''));
 
-					if (
-						$config['watermark'] !== ''
-						and
-						$config['watermark'] !== $file_name
-						and
-						file_exists($dir . $config['watermark'])
-					) {
+					if ($config['watermark'] != '' AND $config['watermark'] != $file_name AND file_exists($dir . $config['watermark']))
+					{
 						unlink($dir . $config['watermark']);
 					}
 
-					$this->admin_config_model->save_config('watermark', $file_name);
+					$set = array('watermark' => $file_name);
+					$this->admin_config_model->config_set($set);
 
-					$response['success'] = true;
-					$response['file_name'] = $file_name . '?t=' . time() . mt_rand(100000, 1000000);
-
-					$this->cache->delete('config/db');
+					$response['success'] = TRUE;
+					$response['file_name'] = $file_name . '?t=' . time() . rand(100000, 1000000);
 				}
+
+				$this->config->set_item('is_ajax_request', TRUE);
+				$this->cache->delete('db_config');
 			}
 
-			$this->config->set_item('is_ajax_request', TRUE);
 			return json_encode($response);
 		}
 
 		/**
-		 * Видалення водяного знаку
+		 * Видалення зображення водяного знаку
 		 *
 		 * @return string
 		 */
 		public function delete_watermark()
 		{
-			$response = array('success' => false);
+			$response = array('success' => FALSE);
 
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_watermark')
-			) {
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_exchange'))
+			{
 				$this->load->model('admin_config_model');
 
-				$config = $this->admin_config_model->get_config(array('watermark' => ''));
+				$config = $this->admin_config_model->config_get(array('watermark' => ''));
 
-				if ($config['watermark'] !== '') {
-					$this->load->helper('directory');
-					$dir = get_dir_path('upload/watermarks', false);
+				if ($config['watermark'] != '')
+				{
+					$file = ROOT_PATH . 'upload/watermarks/' . $config['watermark'];
+					if (file_exists($file)) unlink($file);
 
-					if (file_exists($dir. $config['watermark'])) {
-						unlink($dir. $config['watermark']);
-					}
-
-					$this->admin_config_model->save_config('watermark', '');
+					$this->admin_config_model->config_set(array('watermark' => ''));
 				}
 
-				$response['success'] = true;
-			}
-
-			return json_encode($response);
-		}
-
-		/**
-		 * Заглушка
-		 */
-		public function gag()
-		{
-			$menu_id = (int)$this->input->get('menu_id');
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_gag', $menu_id)
-			) {
-				$this->init_model->set_menu_id($menu_id, true);
-
-				$this->template_lib
-					->set_title('Заглушка')
-					->set_admin_menu_active('config')
-					->set_admin_menu_active('gag', 'sub_level');
-
-				$this->load->model('admin_config_model');
-
-				$this->template_lib->set_content(
-					$this->load->view(
-						'gag_tpl',
-						array(
-							'config' => $this->admin_config_model->get_gag(),
-							'languages' => $this->config->item('languages')
-						),
-						true
-					)
-				);
-			} else {
-				redirect($this->init_model->get_link($menu_id, '{URL}'));
-			}
-		}
-
-		/**
-		 * Збереження заглушки
-		 *
-		 * @return string
-		 */
-		public function save_gag()
-		{
-			$response = array('success' => false);
-
-			if (
-				$this->init_model->is_admin()
-				and
-				$this->init_model->check_access('config_gag')
-			) {
-				$this->load->model('admin_config_model');
-
-				$this->admin_config_model->save_gag(
-					(int)$this->input->post('is_gag'),
-					array(
-						'ua' => str_replace(array("\r", "\n", "\t"), '', $this->input->post('ua')),
-						'ru' => str_replace(array("\r", "\n", "\t"), '', $this->input->post('ru')),
-						'en' => str_replace(array("\r", "\n", "\t"), '', $this->input->post('en')),
-					)
-				);
-
-				$this->cache->delete('config/db');
-				$response['success'] = true;
+				$response['success'] = TRUE;
 			}
 
 			return json_encode($response);

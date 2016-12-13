@@ -88,15 +88,13 @@ class CI_Cache_file extends CI_Driver {
 	/**
 	 * Save into cache
 	 *
-	 * @param $id
-	 * @param $data
-	 * @param int $ttl length of time (in seconds) the cache is valid
-	 *                - Default is 60 seconds
-	 * @param string $dir unique key
-	 * @return bool true on success/false on failure
-	 * @internal param data $mixed to store
+	 * @param	string	unique key
+	 * @param	mixed	data to store
+	 * @param	int	length of time (in seconds) the cache is valid
+	 *				- Default is 60 seconds
+	 * @return	bool	true on success/false on failure
 	 */
-	public function save($id, $data, $ttl = 60, $dir = '')
+	public function save($id, $data, $ttl = 60)
 	{
 		$contents = array(
 			'time'		=> time(),
@@ -104,14 +102,9 @@ class CI_Cache_file extends CI_Driver {
 			'data'		=> $data
 		);
 
-		if ($dir !== '' and !file_exists($this->_cache_path . $dir))
+		if (write_file($this->_cache_path.$id, serialize($contents)))
 		{
-			mkdir($this->_cache_path . $dir);
-		}
-
-		if (write_file($this->_cache_path.$dir.$id, serialize($contents)))
-		{
-			@chmod($this->_cache_path.$dir.$id, 0660);
+			@chmod($this->_cache_path.$id, 0660);
 			return TRUE;
 		}
 
@@ -136,12 +129,11 @@ class CI_Cache_file extends CI_Driver {
 	/**
 	 * Clean the Cache
 	 *
-	 * @param string $dir
-	 * @return bool false on failure/true on success
+	 * @return	bool	false on failure/true on success
 	 */
-	public function clean($dir = '')
+	public function clean()
 	{
-		return delete_files($this->_cache_path . $dir, FALSE, TRUE);
+		return delete_files($this->_cache_path, FALSE, TRUE);
 	}
 
 	// ------------------------------------------------------------------------

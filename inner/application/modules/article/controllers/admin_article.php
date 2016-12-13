@@ -30,7 +30,6 @@
 					'component_id' => $component_id,
 					'article' => $this->admin_article_model->get_article($component_id, $menu_id),
 					'languages' => $this->config->item('languages'),
-					'menu_index' => $this->admin_article_model->menu_index($menu_id)
 				);
 				$this->template_lib->set_content($this->load->view('admin/edit_tpl', $template_data, TRUE));
 			}
@@ -45,34 +44,29 @@
 		 */
 		public function update_article()
 		{
-			$response = array('success' => FALSE);
+			$response = array('error' => 1);
 			$component_id = intval($this->input->post('component_id'));
 			$menu_id = intval($this->input->post('menu_id'));
 
-			if ($this->init_model->is_admin() AND $this->init_model->check_access('article_index', $menu_id) AND $component_id > 0)
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('article_index', $menu_id) AND $menu_id > 0 AND $component_id > 0)
 			{
 				$title = $this->input->post('title');
 				$text = $this->input->post('text');
-				$lat = strval($this->input->post('lat'));
-				$lng = strval($this->input->post('lng'));
-				$zoom = intval($this->input->post('zoom'));
 				$wide = intval($this->input->post('wide'));
 
-				$title_shop = $this->input->post('title_shop');
-				$address = $this->input->post('address');
-				$address_2 = $this->input->post('address_2');
-				$phone = $this->input->post('phone');
-				$facebook = $this->input->post('facebook');
+				$background_fone = $this->input->post('background_fone');
+
+				$btn_active = $this->input->post('btn_active');
 
 				$this->load->model('admin_article_model');
 				$this->load->helper('form');
 
-				$this->admin_article_model->update($component_id, $title, $text, $wide, $lat, $lng, $zoom, $title_shop, $address, $address_2, $phone, $facebook);
+				$this->admin_article_model->update($component_id, $title, $text, $wide, $background_fone, $btn_active);
 
 				$this->init_model->set_menu_id($menu_id);
 				$this->init_model->set_metatags();
 
-				$response['success'] = TRUE;
+				$response['error'] = 0;
 			}
 
 			return json_encode($response);
@@ -83,11 +77,11 @@
 		 */
 		public function delete_component()
 		{
-			$response = array('success' => FALSE);
+			$response = array('error' => 1);
 			$component_id = intval($this->input->post('component_id'));
 			$menu_id = intval($this->input->post('menu_id'));
 
-			if ($this->init_model->is_admin() AND $this->init_model->check_access('article_index', $menu_id) AND $component_id > 0)
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('article_index', $menu_id) AND $menu_id > 0 AND $component_id > 0)
 			{
 				$this->load->model('admin_article_model');
 
@@ -96,7 +90,7 @@
 				$this->init_model->set_menu_id($menu_id);
 				$this->init_model->set_metatags();
 
-				$response['success'] = TRUE;
+				$response['error'] = 0;
 			}
 
 			return json_encode($response);

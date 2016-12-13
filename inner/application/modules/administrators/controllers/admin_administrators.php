@@ -16,14 +16,9 @@
 		{
 			$menu_id = intval($this->input->get('menu_id'));
 
-			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('config_administrators', NULL))
+			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('config_administrators', NULL, TRUE))
 			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
-			}
-			
-			if ($this->session->userdata('admin_root') == 0)
-			{
-				redirect($this->uri->full_url('admin/administrators/edit/?menu_id=' . $menu_id));
 			}
 
 			$this->init_model->set_menu_id($menu_id, TRUE);
@@ -41,8 +36,6 @@
 			);
 			$c = $this->load->view('admin/administrators_tpl', $template_data, TRUE);
 			$this->template_lib->set_content($c);
-
-			define('HR', 1);
 		}
 
 		/**
@@ -105,22 +98,15 @@
 		{
 			$menu_id = intval($this->input->get('menu_id'));
 
-			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('config_administrators', NULL))
+			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('config_administrators', NULL, TRUE))
 			{
 				redirect($this->init_model->get_link($menu_id, '{URL}'));
 			}
 
 			$this->init_model->set_menu_id($menu_id, TRUE);
 
-			if ($this->session->userdata('admin_root') == 0)
-			{
-				$admin_id = $this->session->userdata('admin_id');
-			}
-			else
-			{
-				$admin_id = intval($this->input->get('admin_id'));
-			}
-			
+			$admin_id = intval($this->input->get('admin_id'));
+
 			if ($menu_id > 0 AND $admin_id > 0)
 			{
 				$this->init_model->set_menu_id($menu_id, TRUE);
@@ -145,8 +131,6 @@
 				$this->template_lib->set_admin_menu_active('config');
 				$this->template_lib->set_admin_menu_active('administrators', 'sub_level');
 			}
-
-			define('HR', 1);
 		}
 
 		/**
@@ -156,7 +140,7 @@
 		{
 			$response = array('success' => FALSE);
 
-			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_administrators', NULL))
+			if ($this->init_model->is_admin() AND $this->init_model->check_access('config_administrators', NULL, TRUE))
 			{
 				$this->load->model('admin_administrators_model');
 				$this->load->helper('form');
@@ -177,16 +161,13 @@
 						$set['edited'] = 1;
 					}
 				}
-				
-				if ($this->session->userdata('admin_root') == 1)
-				{
-					$site_menu = $this->input->post('site_menu');
-					$set['site_menu'] = is_array($site_menu) ? implode(',', array_map('intval', $site_menu)) : '';
 
-					$admin_menu = $this->input->post('admin_menu');
-					$set['admin_menu'] = is_array($admin_menu) ? implode(',', array_map('form_prep', $admin_menu)) : '';
-				}
-				
+				$site_menu = $this->input->post('site_menu');
+				$set['site_menu'] = is_array($site_menu) ? implode(',', array_map('intval', $site_menu)) : '';
+
+				$admin_menu = $this->input->post('admin_menu');
+				$set['admin_menu'] = is_array($admin_menu) ? implode(',', array_map('form_prep', $admin_menu)) : '';
+
 				$this->admin_administrators_model->update($admin_id, $set);
 
 				$response['success'] = TRUE;

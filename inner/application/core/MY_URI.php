@@ -50,19 +50,7 @@
 						{
 							$segments = $this->segment_array();
 							if (isset($segments[1])) unset($segments[1]);
-
-							$url = implode('/', $segments);
-
-							if (mb_substr($url, mb_strlen($url) - 5) == '.html')
-							{
-								$url = rtrim($this->config->site_url(), '/') . '/' . $url;
-							}
-							else
-							{
-								$url = $this->full_url($url);
-							}
-
-							header('Location: ' . $url);
+							header('Location: ' . $this->full_url(implode($segments)));
 							exit;
 						}
 						else
@@ -113,30 +101,19 @@
 		 */
 		public function full_url($uri = '', $lang = NULL)
 		{
-			if (preg_match('!^\w+://! i', $uri) == 1)
+			if ($this->config->item('multi_languages'))
 			{
-				return $uri;
-			}
-			elseif (mb_substr($uri, 0, 1) === '#')
-			{
-				return $this->config->site_url($uri);
-			}
-			else
-			{
-				if ($this->config->item('multi_languages'))
+				if ($lang != '')
 				{
-					if ($lang != '')
-					{
-						$uri = $lang . '/' . trim($uri, '/');
-					}
-					else
-					{
-						if (defined('LANG_SEGMENT') AND $lang === NULL) $uri = LANG_SEGMENT . '/' . trim($uri, '/');
-					}
+					$uri = $lang . '/' . trim($uri, '/');
 				}
-
-				return $this->config->site_url($uri);
+				else
+				{
+					if (defined('LANG_SEGMENT') AND $lang === NULL) $uri = LANG_SEGMENT . '/' . trim($uri, '/');
+				}
 			}
+
+			return $this->config->site_url($uri);
 		}
 
 		/**
@@ -182,19 +159,10 @@
 			if (count($url) > 0 AND count($clean_segments) > 0)
 			{
 				$delete_next = FALSE;
-				$delete_all_next = FALSE;
 
 				foreach ($url as $key => $val)
 				{
-					if ($val == 'f')
-					{
-						unset($url[$key]);
-						$delete_all_next = TRUE;
-
-						continue;
-					}
-
-					if ($delete_next OR $delete_all_next)
+					if ($delete_next)
 					{
 						unset($url[$key]);
 						$delete_next = FALSE;
@@ -205,59 +173,12 @@
 					if (isset($clean_segments[$val]))
 					{
 						unset($url[$key]);
-
-						if ($clean_segments[$val] == 1)
-						{
-							$delete_next = TRUE;
-						}
+						if ($clean_segments[$val] == 1) $delete_next = TRUE;
 					}
 				}
 
 			}
 
 			return implode('/', $url);
-		}
-
-		/**
-		 * Отримання фільтрів з посилання
-		 *
-		 * @return array
-		 */
-		public function get_url_filters()
-		{
-			$filters = array();
-
-			$url = $this->uri_string();
-			$url = explode('/', $url);
-
-			if (count($url) > 0)
-			{
-				$next_filter = FALSE;
-
-				foreach ($url as $key => $val)
-				{
-					if ($val === 'f')
-					{
-						$next_filter = TRUE;
-						continue;
-					}
-
-					if ($next_filter)
-					{
-						$val = explode('-', $val);
-
-						if (count($val) > 1)
-						{
-							$filters[array_shift($val)] = array_values($val);
-						}
-						else
-						{
-							show_404();
-						}
-					}
-				}
-			}
-
-			return $filters;
 		}
 	}

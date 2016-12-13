@@ -1,6 +1,7 @@
 @charset "utf-8";
 /*--------------------------------------------------     Admin CSS Document of SUFIX © 2013. All rights reserved     ------------------------------------------------------*/
 /*-------------------------------------------------------------------     Вигляд панелі управління     --------------------------------------------------------------------*/
+
 /* панель управління сайтом
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .main_panel {position:relative; float:left; width:100%; background:#fff; box-shadow:0 0 5px #ccc; margin:20px 0; transition:box-shadow 0.2s linear 0s;}
@@ -18,7 +19,7 @@
 	.middle_buttons_part {width:100%; height:50px; background:#e4e4e4; transition:background 0.2s linear 0s;}
 	.main_panel:hover .middle_buttons_part {background:#d7d7d7; transition:background 0.2s linear 0s;}
 		.mbp_width {width:100%; height:50px; display:table;}
-			.mbp_width A {display:table-cell; text-align:center; color:#474747; font:16px/22px Arial; text-decoration:none; padding:12px 12px 0 12px; height:38px;
+			.mbp_width A {display:table-cell; text-align:center; color:#474747; font:18px/22px Arial; text-decoration:none; padding:12px 12px 0 12px; height:38px;
 			              width:auto; transition:all 0.2s linear 0s;}
 			.mbp_width A.active,.mbp_width A:hover {background:#fff; color:#a32d2d; transition:all 0.2s linear 0s;}
 	/* нижня частина адмін панелі (лінки)
@@ -32,16 +33,12 @@
 			.bottom_links_part A.com_article:hover B {background-position:-61px -45px;}
 			.bottom_links_part A.com_catalog B {background-position:-60px -15px;}
 			.bottom_links_part A.com_catalog:hover B,.bottom_links_part A.com_catalog.active B {background-position:-74px -45px;}
-			.bottom_links_part A.com_catalog_last B,.bottom_links_part A.items_set B {background-position:-60px -15px;}
-			.bottom_links_part A.com_catalog_last:hover B,.bottom_links_part A.com_catalog_last.active B,.bottom_links_part A.items_set:hover B,.bottom_links_part A.items_set.active B {background-position:-74px -45px;}
 			.bottom_links_part A.google B {background-position:-15px -15px;}
 			.bottom_links_part A.google:hover B {background-position:-104px -45px;}
 			.bottom_links_part A.feedback B {background-position:0px -15px;}
 			.bottom_links_part A.feedback:hover B,.bottom_links_part A.feedback.active B {background-position:-119px -45px;}
 			.bottom_links_part A.main_menu B,.bottom_links_part A.com_catalog_menu B {background-position:-45px -30px;}
 			.bottom_links_part A.main_menu:hover B,.bottom_links_part A.main_menu.active B,.bottom_links_part A.com_catalog_menu:hover B,.bottom_links_part A.com_catalog_menu.active B {background-position:-120px -15px;}
-			.bottom_links_part A.com_slide_menu B {background-position:-45px -30px;}
-			.bottom_links_part A.com_slide_menu:hover B,.bottom_links_part A.com_slide_menu.active B {background-position:-120px -15px;}
 			.bottom_links_part A.com_bottom_menu B {background-position:-135px -15px;}
 			.bottom_links_part A.com_bottom_menu:hover B,.bottom_links_part A.com_bottom_menu.active B {background-position:-60px -30px;}
 			.bottom_links_part A.com_top_menu B {background-position:-150px -15px;}
@@ -73,10 +70,15 @@
 			.bottom_links_part A.exchange_set:hover B,.bottom_links_part A.exchange_set.active B {background-position:-45px -75px;}
 			.bottom_links_part A.watermark_set B {background-position:-90px -75px;}
 			.bottom_links_part A.watermark_set:hover B,.bottom_links_part A.watermark_set.active B {background-position:-105px -75px;}
-			.bottom_links_part A.com_comments B,.bottom_links_part A.com_reviews B,.bottom_links_part A.com_last_reviews B {background-position:-120px -75px;}
-			.bottom_links_part A.com_comments:hover B,.bottom_links_part A.com_comments.active B,.bottom_links_part A.com_reviews:hover B,.bottom_links_part A.com_reviews.active B,.bottom_links_part A.com_last_reviews:hover B,.bottom_links_part A.com_last_reviews.active B {background-position:-135px -75px;}
-			.bottom_links_part A.gallery B,.bottom_links_part A.slider B {background-position:-75px -15px;}
-			.bottom_links_part A.gallery:hover B,.bottom_links_part A.gallery.active B,.bottom_links_part A.slider:hover B,.bottom_links_part A.slider.active B
+			.bottom_links_part A.com_comments B,.bottom_links_part A.com_reviews B,.bottom_links_part A.com_last_reviews B,.bottom_links_part A.comments B
+			{background-position:-120px -75px;}
+			.bottom_links_part A.com_comments:hover B,.bottom_links_part A.com_comments.active B,.bottom_links_part A.com_reviews:hover B,
+			.bottom_links_part A.com_reviews.active B,.bottom_links_part A.com_last_reviews:hover B,.bottom_links_part A.com_last_reviews.active B,
+			.bottom_links_part A.comments:hover B,.bottom_links_part A.comments.active B
+			{background-position:-135px -75px;}
+			.bottom_links_part A.gallery B,.bottom_links_part A.slider B,.bottom_links_part A.banners B,.bottom_links_part A.com_gallery B {background-position:-75px -15px;}
+			.bottom_links_part A.gallery:hover B,.bottom_links_part A.gallery.active B,.bottom_links_part A.slider:hover B,.bottom_links_part A.slider.active B,
+			.bottom_links_part A.banners:hover B,.bottom_links_part A.banners.active B,.bottom_links_part A.com_gallery:hover B,.bottom_links_part A.com_gallery.active B
 			{background-position:-134px -45px;}
 			.bottom_links_part A.adm_users B,.bottom_links_part A.users_set B {background-position:-149px -60px;}
 			.bottom_links_part A.adm_users:hover B,.bottom_links_part A.adm_users.active B,.bottom_links_part A.users_set:hover B,.bottom_links_part A.users_set.active B
@@ -86,8 +88,9 @@
 			.bottom_links_part A.adm_information B,.bottom_links_part A.delivery B {background-position:0 0;}
 			.bottom_links_part A.adm_information:hover B,.bottom_links_part A.adm_information.active B,.bottom_links_part A.delivery:hover B,
 			.bottom_links_part A.delivery.active B {background-position:-15px 0;}
-			.bottom_links_part A.subscribe B {background-position:-30px 0;}
-			.bottom_links_part A.subscribe:hover B,.bottom_links_part A.subscribe.active B {background-position:-45px 0;}
+			.bottom_links_part A.subscribe B,.bottom_links_part A.letters B {background-position:-30px 0;}
+			.bottom_links_part A.subscribe:hover B,.bottom_links_part A.subscribe.active B,.bottom_links_part A.letters:hover B,.bottom_links_part A.letters.active B
+			{background-position:-45px 0;}
 			.bottom_links_part A.subscribers B {background-position:-119px -60px;}
 			.bottom_links_part A.subscribers:hover B,.bottom_links_part A.subscribers.active B {background-position:-134px -60px;}
 			.bottom_links_part A.com_articles B {background-position:-60px -60px;}
@@ -112,49 +115,19 @@
 			.bottom_links_part A.filters:hover B,.bottom_links_part A.filters.active B {background-position:-105px 0px;}
 			.bottom_links_part A.options B {background-position:-30px -132px;}
 			.bottom_links_part A.options:hover B,.bottom_links_part A.options.active B {background-position:-45px -132px;}
-			.bottom_links_part A.gag B {background-position:-120px -30px;}
-			.bottom_links_part A.gag:hover B,.bottom_links_part A.gag.active B {background-position:-45px -45px;}
-			.bottom_links_part A.sales B {background-position:-90px -117px;}
-			.bottom_links_part A.sales:hover B,.bottom_links_part A.sales.active B {background-position:-105px -117px;}
-			.bottom_links_part A.statistic B {background-position:-60px -132px;}
-			.bottom_links_part A.statistic:hover B,.bottom_links_part A.statistic.active B {background-position:-75px -132px;}
-			.bottom_links_part A.archive B {background-position:-120px -132px;}
-			.bottom_links_part A.archive:hover B,.bottom_links_part A.archive.active B {background-position:-135px -132px;}
-			.bottom_links_part A.add_to B {background-position:-150px -132px;}
-			.bottom_links_part A.add_to:hover B,.bottom_links_part A.add_to.active B {background-position:-165px -132px;}
-			.bottom_links_part A.for_send B {background-position:0 -147px;}
-			.bottom_links_part A.for_send:hover B,.bottom_links_part A.for_send.active B {background-position:-15px -147px;}
-			.bottom_links_part A.all_goods B {background-position:-60px -15px;}
-			.bottom_links_part A.all_goods:hover B,.bottom_links_part A.all_goods.active B {background-position:-74px -45px;}
-			.bottom_links_part A.shop_window B {background-position:-30px -147px;}
-			.bottom_links_part A.shop_window:hover B,.bottom_links_part A.shop_window.active B {background-position:-45px -147px;}
-			.bottom_links_part A.members B {background-position:-119px -60px;}
-			.bottom_links_part A.members:hover B,.bottom_links_part A.members.active B {background-position:-134px -60px;}
-			.bottom_links_part A.static_information B {background-position:-60px -147px;}
-			.bottom_links_part A.static_information:hover B,.bottom_links_part A.static_information.active B {background-position:-75px -147px;}
-			.bottom_links_part A.com_events B {background-position:-90px -147px;}
-			.bottom_links_part A.com_events:hover B,.bottom_links_part A.com_events.active B {background-position:-105px -147px;}
-			.bottom_links_part A.publications_set B {background-position:-150px -147px;}
-			.bottom_links_part A.publications_set:hover B,.bottom_links_part A.publications_set.active B {background-position:-165px -147px;}
-			.bottom_links_part A.works_set B {background-position:-180px -132px;}
-			.bottom_links_part A.works_set:hover B,.bottom_links_part A.works_set.active B {background-position:-180px -147px;}
-			.bottom_links_part A.works_cat_set B {background-position:-120px -147px;}
-			.bottom_links_part A.works_cat_set:hover B,.bottom_links_part A.works_cat_set.active B {background-position:-135px -147px;}
-			.bottom_links_part A.com_catalog_recommended B {background-position:0 -162px;}
-			.bottom_links_part A.com_catalog_recommended:hover B,.bottom_links_part A.com_catalog_recommended.active B {background-position:-15px -162px;}
-			.bottom_links_part A.com_club B,.bottom_links_part A.com_club_last B {background-position:-30px -162px;}
-			.bottom_links_part A.com_club:hover B,.bottom_links_part A.com_club.active B,.bottom_links_part A.com_club_last:hover B,.bottom_links_part A.com_club_last.active B {background-position:-45px -162px;}
-			.bottom_links_part A.services_set B {background-position:-60px -60px;}
-			.bottom_links_part A.services_set:hover B,.bottom_links_part A.services_set.active B {background-position:-75px -60px;}
-			.bottom_links_part A.themes_set B {background-position:-30px -162px;}
-			.bottom_links_part A.themes_set:hover B,.bottom_links_part A.themes_set.active B {background-position:-45px -162px;}
-			.bottom_links_part A.com_about_us B {background-position:-120px -30px;}
-			.bottom_links_part A.com_about_us:hover B,.bottom_links_part A.com_about_us.active B {background-position:-45px -45px;}
+			.bottom_links_part A.emails B {background-position:-60px -132px;}
+			.bottom_links_part A.emails:hover B,.bottom_links_part A.emails.active B {background-position:-75px -132px;}
+			.bottom_links_part A.timer B {background-position:-90px -132px;}
+			.bottom_links_part A.timer:hover B,.bottom_links_part A.timer.active B {background-position:-105px -132px;}
+			.bottom_links_part A.header_set B {background-position:-150px -15px;}
+			.bottom_links_part A.header_set:hover B,.bottom_links_part A.header_set.active B {background-position:-75px -30px;}
+			.bottom_links_part A.footer_set B {background-position:-135px -15px;}
+			.bottom_links_part A.footer_set:hover B,.bottom_links_part A.footer_set.active B {background-position:-60px -30px;}
 	/* модальне вікно
 	---------------------------------*/
 	.confirm_overlay {display:none; position:fixed; left:0; top:0; right:0; bottom:0; z-index:500; width:100%; background:#000;}
-	.confirm_modal * {box-sizing:content-box;}
-	.confirm_modal {display:none; position:fixed; left:50%; top:50%; z-index:999; width:520px; height:190px; margin:-95px 0 0 -260px; background:#fff;
+	.confirm_modal * {box-sizing: content-box;}
+	.confirm_modal {display:none; position:fixed; left:50%; top:50%; z-index:1999; width:520px; height:190px; margin:-95px 0 0 -260px; background:#fff;
 	                border-radius:5px; box-shadow:0 0 20px #000;}
 		.cm_panel {width:100%; height:50px; background:#e9e9e9; border-radius:5px 5px 0 0;}
 			.cm_icon_place {width:60px; height:50px; background:#fff; border-radius:5px 0 0 0;}

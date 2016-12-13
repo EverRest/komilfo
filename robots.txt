@@ -1,4 +1,4 @@
-Host: tanyagrig.com
+Host: mastersswim.com.ua
 User-agent: *
 Disallow:
-Sitemap: http://komilfo.sufix.com/sitemap.xml
+Sitemap: http://mastersswim.com.ua/sitemap.xml

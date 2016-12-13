@@ -1,6 +1,8 @@
-<?php defined('ROOT_PATH') or exit('No direct script access allowed');
+<?php
 
-	$config['base_url'] = 'http://komilfo.sufix.com/';
+	defined('BASEPATH') OR exit('No direct script access allowed');
+
+	$config['base_url'] = 'http://chystaoselya.com/';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +57,7 @@
 	| than english.
 	|
 	*/
-	$config['language'] = 'en';
+	$config['language'] = 'ua';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -63,7 +65,7 @@
 	|--------------------------------------------------------------------------
 	|
 	*/
-	$config['multi_languages'] = TRUE;
+	$config['multi_languages'] = FALSE;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -72,9 +74,7 @@
 	|
 	*/
 	$config['languages'] = array(
-		'en' => 'English',
 		'ua' => 'Українська',
-		'ru' => 'Русский',
 	);
 
 	/*
@@ -133,7 +133,7 @@
 	| DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 	|
 	*/
-	$config['permitted_uri_chars'] = 'a-z0-9_\-\.';
+	$config['permitted_uri_chars'] = 'a-z0-9_\-';
 
 
 	/*
@@ -277,7 +277,7 @@
 	*/
 	$config['sess_driver'] = 'native';
 	$config['sess_valid_drivers'] = array();
-	$config['sess_cookie_name'] = 'ses';
+	$config['sess_cookie_name'] = 'session_sw';
 	$config['sess_expiration'] = 7200;
 	$config['sess_expire_on_close'] = FALSE;
 	$config['sess_encrypt_cookie'] = FALSE;
@@ -299,7 +299,7 @@
 	| 'cookie_httponly' = Cookie will only be accessible via HTTP(S) (no javascript)
 	|
 	*/
-	$config['cookie_prefix'] = 'pd_';
+	$config['cookie_prefix'] = 'tien_';
 	$config['cookie_domain'] = '';
 	$config['cookie_path'] = '/';
 	$config['cookie_secure'] = FALSE;
@@ -330,11 +330,11 @@
 	| 'csrf_regenerate' = Regenerate token on every submission
 	| 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 	*/
-	$config['csrf_protection'] = TRUE;
-	$config['csrf_token_name'] = 'csrf_token';
-	$config['csrf_cookie_name'] = 'csrf_token';
+	$config['csrf_protection'] = FALSE;
+	$config['csrf_token_name'] = 'csrf_test_name';
+	$config['csrf_cookie_name'] = 'csrf_cookie_name';
 	$config['csrf_expire'] = 7200;
-	$config['csrf_regenerate'] = FALSE;
+	$config['csrf_regenerate'] = TRUE;
 	$config['csrf_exclude_uris'] = array();
 
 	/*
@@ -420,14 +420,15 @@
 	*/
 
 	$config['frontend_modules'] = array(
-		'feedback',
 		'printing',
-		'cron',
-		'search',
-		'news',
-		'catalog',
-		'where',
 		'call',
+		'benefit_services',
+		'seo',
+		'loyalty_system',
+		'gallery',
+		'guarantee',
+		'questions',
+		'news'
 	);
 
 	/*
@@ -437,19 +438,24 @@
 	*/
 
 	$config['backend_modules'] = array(
-		'administrators',
 		'article',
-		'google_map',
 		'config',
-		'feedback',
-		'menu',
+		'frequent',
+		'benefits',
+		'reviews',
 		'components',
-		'seo',
+		'benefit_services',
 		'login',
-		'news',
 		'call',
-		'catalog',
-		'where',
+		'seo',
+		'news',
+		'loyalty_system',
+		'gallery',
+		'guarantee',
+		'questions',
+		'slider'
+
+
 	);
 
 	/*
@@ -459,10 +465,6 @@
 	*/
 
 	$config['clean_segments'] = array();
-
-	$config['allowed_components'] = array(
-		'where',
-	);
 
 	/* End of file config.php */
 	/* Location: ./application/config/config.php */

@@ -21,11 +21,11 @@
 			<table align="left" width="100%" cellpadding="5" cellspacing="5" border="0" style="border-collapse: collapse;">
 				<tr>
 					<td align="left" width="170">Ім’я:</td>
-					<td align="left"><?=$name;?></td>
+					<td align="left"><?php echo $name; ?></td>
 				</tr>
 				<tr>
 					<td align="left" width="170" style="border-top: 1px solid #f4f4f4;">Телефон:</td>
-					<td align="left" style="border-top: 1px solid #f4f4f4;"><?=$phone;?></td>
+					<td align="left" style="border-top: 1px solid #f4f4f4;"><?php echo $phone; ?></td>
 				</tr>
 			</table>
 		</td>

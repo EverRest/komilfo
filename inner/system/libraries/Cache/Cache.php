@@ -149,15 +149,14 @@ class CI_Cache extends CI_Driver_Library {
 	/**
 	 * Cache Save
 	 *
-	 * @param    string $id Cache ID
-	 * @param    mixed $data Data to store
-	 * @param    int $ttl = 60    Cache TTL (in seconds)
-	 * @param string $dir
-	 * @return bool TRUE on success, FALSE on failure
+	 * @param	string	$id		Cache ID
+	 * @param	mixed	$data		Data to store
+	 * @param	int	$ttl = 60	Cache TTL (in seconds)
+	 * @return	bool	TRUE on success, FALSE on failure
 	 */
-	public function save($id, $data, $ttl = 60, $dir = '')
+	public function save($id, $data, $ttl = 60)
 	{
-		return $this->{$this->_adapter}->save($this->key_prefix.$id, $data, $ttl, $dir);
+		return $this->{$this->_adapter}->save($this->key_prefix.$id, $data, $ttl);
 	}
 
 	// ------------------------------------------------------------------------
@@ -178,12 +177,11 @@ class CI_Cache extends CI_Driver_Library {
 	/**
 	 * Clean the cache
 	 *
-	 * @param string $dir
-	 * @return bool TRUE on success, FALSE on failure
+	 * @return	bool	TRUE on success, FALSE on failure
 	 */
-	public function clean($dir = '')
+	public function clean()
 	{
-		return $this->{$this->_adapter}->clean($dir);
+		return $this->{$this->_adapter}->clean();
 	}
 
 	// ------------------------------------------------------------------------

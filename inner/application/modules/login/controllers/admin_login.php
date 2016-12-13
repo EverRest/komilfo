@@ -16,11 +16,6 @@
 
 		public function login()
 		{
-			if (!$this->input->is_ajax_request())
-			{
-				show_404();
-			}
-
 			$response = array(
 				'error' => 1,
 				'message' => array(1, 2)
@@ -39,8 +34,8 @@
 				$password = $this->input->post('password');
 
 				$admin_data = $this->admin_login_model->get_admin($login);
-
-				if (isset($admin_data['admin_id']))
+                                
+                                if (isset($admin_data['admin_id']))
 				{
 					if (md5($password . $admin_data['salt']) === $admin_data['password'])
 					{
@@ -49,6 +44,8 @@
 						$this->session->set_userdata('admin_id', $admin_data['admin_id']);
 						$this->session->set_userdata('admin_name', $admin_data['name']);
 						$this->session->set_userdata('admin_root', $admin_data['root']);
+						$this->session->set_userdata('key_admin', $admin_key);
+						$this->session->set_userdata('is_admin', $admin_data['admin_id']);
 
 						$this->admin_login_model->change_admin($admin_data['admin_id']);
 
@@ -79,51 +76,5 @@
 			$this->session->unset_userdata('admin_id');
 
 			redirect($this->uri->full_url());
-		}
-
-		/**
-		 * Приховування панелі адміністратора
-		 *
-		 * @return string
-		 */
-		public function hide_panel()
-		{
-			$response = array(
-				'success' => false,
-			);
-
-			$menu_id = (int)$this->input->post('menu_id');
-
-			if ($this->init_model->is_admin()) {
-				$this->session->set_userdata('hide_adm_panel', 1);
-
-				$response['uri'] = $menu_id > 0 ? $this->init_model->get_link($menu_id, '{URL}') : $this->uri->full_url();
-				$response['success'] = true;
-			}
-
-			return json_encode($response);
-		}
-
-		/**
-		 * Відображення панелі адміністратора
-		 *
-		 * @return string
-		 */
-		public function show_panel()
-		{
-			$response = array(
-				'success' => false,
-			);
-
-			$menu_id = (int)$this->input->post('menu_id');
-
-			if ($this->init_model->is_admin()) {
-				$this->session->unset_userdata('hide_adm_panel');
-
-				$response['uri'] = $menu_id > 0 ? $this->init_model->get_link($menu_id, '{URL}') : $this->uri->full_url();
-				$response['success'] = true;
-			}
-
-			return json_encode($response);
 		}
 	}

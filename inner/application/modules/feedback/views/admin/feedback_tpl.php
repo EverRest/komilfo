@@ -1,8 +1,5 @@
-<?php 
-	defined('ROOT_PATH') OR exit('No direct script access allowed'); 
-	$this->template_lib->set_js('pagination.js');
-?>
-<div class="admin_component" id="admin_component_<?=$component_id;?>" data-component-id="<?=$component_id;?>" data-menu-id="<?=$menu_id;?>" data-module="feedback" data-css-class="feedback" data-visibility-url="<?=$this->uri->full_url('admin/components/toggle_visibility');?>" data-delete-url="<?=$this->uri->full_url('admin/feedback/delete_component');?>">
+<?php defined('ROOT_PATH') OR exit('No direct script access allowed'); ?>
+<div class="admin_component" id="admin_component_<?=$component_id;?>" data-component-id="<?=$component_id;?>" data-module="feedback" data-css-class="feedback" data-visibility-url="<?=$this->uri->full_url('admin/components/toggle_visibility');?>" data-delete-url="<?=$this->uri->full_url('admin/feedback/delete_component?menu_id='.$menu_id.'');?>">
 	<div class="component_loader"><span></span></div>
 	<div class="fm adcom_panel">
 		<div class="fm type_of_component">
@@ -27,8 +24,6 @@
 		<div class="fm admin_massage">Повідомлень немає</div>
 	<?php endif; ?>
 	</div>
-	
-	<nav class="fm admin_paginator"></nav>
 </div>
 <script type="text/javascript">
 	$(function () {
@@ -42,7 +37,7 @@
 				.end()
 				.find('li:even[class!="th"]').addClass('grey');
 		}
-
+		
 		$('.checkbox').style_input();
 
 		function pagination(current_page, first_page) {
@@ -63,11 +58,10 @@
 							$.post(
 								'<?php echo $this->uri->full_url('/admin/feedback/get'); ?>',
 								{
-									menu_id: <?=$menu_id?>,
 									page: page
 								},
 								function (response) {
-									if (response.error === 0 || response.success === true) {
+									if (response.error === 0) {
 										$component.find('.admin_menu').html(response.messages);
 										row_decor();
 										$('.checkbox').style_input();
@@ -167,7 +161,7 @@
 											$(this).remove();
 											row_decor();
 											component_loader_hide($component.find('.component_loader'), '');
-
+											
 											total_rows--;
 
 											if ($del_link.closest('ul').find('li').length === 1) {
@@ -197,9 +191,9 @@
 					var $link = $(this);
 
 					confirmation('Видалити повідомлення?', function () {
-
+						
 						component_loader_show($component.find('.component_loader'), '');
-
+						
 						$.post(
 							'<?php echo $this->uri->full_url('admin/feedback/delete'); ?>',
 							{
@@ -211,7 +205,9 @@
 									$(this).remove();
 									row_decor();
 									component_loader_hide($component.find('.component_loader'), '');
+
 									total_rows--;
+
 									if ($messages_list.find('li').length === 1) {
 										if (total_rows === 0) {
 											$messages_list.replaceWith('<div class="fm admin_massage">Повідомлень немає</div>');

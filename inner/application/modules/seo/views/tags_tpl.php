@@ -1,10 +1,11 @@
-<?php defined('ROOT_PATH') OR exit('No direct script access allowed');
+<?php
+	defined('ROOT_PATH') OR exit('No direct script access allowed');
 
 	$this->template_lib->set_js('admin/checkboxes.js');
 	$this->template_lib->set_js('admin/textarea.js');
 	$this->template_lib->set_js('admin/jquery.form.js');
 ?>
-<div class="admin_component">
+<div class="fm admin_base admin_component">
 	<div class="component_loader"></div>
 	<div class="fm adcom_panel">
 		<div class="fm type_of_component">
@@ -104,7 +105,7 @@
 				$('#generation_' + language).on('click', function (e) {
 					e.preventDefault();
 
-					global_helper.loader($('.admin_component'));
+					component_loader_show($('.component_loader'), '');
 
 					$.post(
 						'<?php echo $this->uri->full_url('admin/seo/generate_keywords'); ?>',
@@ -113,10 +114,8 @@
 							language: language
 						},
 						function (response) {
-							if (response.success) {
-								global_helper.loader($('.admin_component'));
-								$('#meta_keywords_' + language).val(response.keywords);
-							}
+							component_loader_hide($('.component_loader'), '');
+							$('#meta_keywords_' + language).val(response.keywords);
 						},
 						'json'
 					);
@@ -128,10 +127,11 @@
 
 			$('#tags_form').ajaxSubmit({
 				beforeSubmit: function () {
-					global_helper.loader($('.admin_component'));
+					component_loader_show($('.component_loader'), '');
 				},
 				success: function (response) {
-					if (response.success) global_helper.loader($('.admin_component'));
+					component_loader_hide($('.component_loader'), '');
+					$('.for_sucsess .sucsess').fadeTo(200, 1).delay(2000).fadeTo(200, 0);
 				},
 				dataType: 'json'
 			});
