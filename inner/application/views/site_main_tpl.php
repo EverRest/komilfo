@@ -144,8 +144,8 @@
         </div>
 
         <div class="logo">
-            <a href="#">
-                <img src="images/logo.png" alt="">
+            <a href="/">
+                <img src="<?=base_url('images/logo.png');?>" alt="">
             </a>
         </div>
 
