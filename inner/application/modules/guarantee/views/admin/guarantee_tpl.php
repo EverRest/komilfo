@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<article>
-		<h1>Компонент - МИ ГАРАНТУЄМО</h1>
+		<h1> Компонент переваги </h1>
 	</article>
 </div>
 <script type="text/javascript">

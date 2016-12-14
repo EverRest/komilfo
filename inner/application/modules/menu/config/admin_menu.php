@@ -28,15 +28,15 @@
 			*/
 		),
 		'components' => array(
-            array(
-                'name' => 'Хедер',
-                'module' => 'gallery',
-                'index' => 'index',
-                'config' => '',
-                'class' => 'fm com_reviews component_add',
-                'on_main' => TRUE,
-                'check' => 'on_page'
-            ),
+//            array(
+//                'name' => 'Хедер',
+//                'module' => 'gallery',
+//                'index' => 'index',
+//                'config' => '',
+//                'class' => 'fm com_reviews component_add',
+//                'on_main' => TRUE,
+//                'check' => 'on_page'
+//            ),
 			array(
 				'name' => 'Стаття',
 				'module' => 'article',
