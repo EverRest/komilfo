@@ -9,3 +9,5 @@
 .crop_source{margin-left: 40px}
 
 .admin_component.login,.admin_base {margin:20px 2%; width:96%;}
+
+.menu ul li a:hover {background-color: transparent;}

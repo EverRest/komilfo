@@ -89,7 +89,7 @@
 			<div class="fm bottom_links_part" id="components_controls">
 				<?php foreach ($admin_menu[$top_level] as $item): ?>
 					<?php if (!$is_main OR ($is_main AND (isset($item['on_main'])) OR $top_level != 'components')): ?>
-						<a href="<?=!isset($item['url']) ? '#' : $this->uri->full_url($item['url'] . 'menu_id=' . $menu_id);?>" class="<?=$item['class'];?><?=($top_level == $item['module'] AND $sub_level == $item['index']) ? ' active' : '';?>" data-module="<?=$item['module'];?>" data-method="<?=$item['index'];?>" data-config="<?=$item['config'];?>"<?php if (isset($item['check'])) if ($this->init_model->check_component(($item['check'] == 'on_page' ? $menu_id : ''), $item['module'], $item['index'])) echo ' style="display: block"'; ?>><b></b><?=$item['name'];?></a>
+						<a href="<?=!isset($item['url']) ? '#' : $this->uri->full_url($item['url'] . 'menu_id=' . $menu_id);?>" class="<?=$item['class'];?><?=($top_level == $item['module'] AND $sub_level == $item['index']) ? ' active' : '';?>" data-module="<?=$item['module'];?>" data-method="<?=$item['index'];?>" data-config="<?=$item['config'];?>"<?php if (isset($item['check'])) if ($this->init_model->check_component(($item['check'] == 'on_page' ? $menu_id : ''), $item['module'], $item['index'])) echo ''; ?>><b></b><?=$item['name'];?></a>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</div>

@@ -428,7 +428,8 @@
 		'gallery',
 		'guarantee',
 		'questions',
-		'news'
+		'news',
+        'google_map'
 	);
 
 	/*
@@ -453,9 +454,8 @@
 		'gallery',
 		'guarantee',
 		'questions',
-		'slider'
-
-
+		'slider',
+        'google_map'
 	);
 
 	/*
