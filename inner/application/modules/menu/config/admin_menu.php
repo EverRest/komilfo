@@ -45,15 +45,15 @@
 			// 	'on_main' => TRUE,
 			// 	'check' => 'on_page'
 			// ),
-			array(
-				'name' => 'Наші виконані роботи',
-				'module' => 'slider',
-				'index' => 'index',
-				'config' => '',
-				'class' => 'fm com_slider component_add',
-				'on_main' => TRUE,
-				'check' => 'on_page'
-			),
+//			array(
+//				'name' => 'Наші виконані роботи',
+//				'module' => 'slider',
+//				'index' => 'index',
+//				'config' => '',
+//				'class' => 'fm com_slider component_add',
+//				'on_main' => TRUE,
+//				'check' => 'on_page'
+//			),
 			// array(
 			// 	'name' => 'Часті запитання',
 			// 	'module' => 'frequent',
@@ -63,15 +63,15 @@
 			// 	'on_main' => TRUE,
 			// 	'check' => 'on_page'
 			// ),
-			array(
-				'name' => 'Як ми працюємо',
-				'module' => 'benefits',
-				'index' => 'index',
-				'config' => '',
-				'class' => 'fm com_benefits component_add',
-				'on_main' => TRUE,
-				'check' => 'on_page'
-			),
+//			array(
+//				'name' => 'Як ми працюємо',
+//				'module' => 'benefits',
+//				'index' => 'index',
+//				'config' => '',
+//				'class' => 'fm com_benefits component_add',
+//				'on_main' => TRUE,
+//				'check' => 'on_page'
+//			),
 			// array(
 			// 	'name' => 'Відгуки',
 			// 	'module' => 'reviews',
@@ -81,42 +81,51 @@
 			// 	'on_main' => TRUE,
 			// 	'check' => 'on_page'
 			// ),
-			array(
-				'name' => 'Наші послуги',
-				'module' => 'news',
-				'index' => 'index',
-				'config' => '',
-				'class' => 'fm com_news component_add',
-				'on_main' => TRUE,
-				'check' => 'on_page'
-			),
-			array(
-				'name' => 'Система лояльності',
-				'module' => 'loyalty_system',
-				'index' => 'index',
-				'config' => '',
-				'class' => 'fm com_loyalty_system component_add',
-				'on_main' => TRUE,
-				'check' => 'on_page'
-			),
-			array(
-				'name' => 'Фотогалерея',
-				'module' => 'gallery',
-				'index' => 'index',
-				'config' => '',
-				'class' => 'fm com_gallery component_add',
-				'on_main' => TRUE,
-				'check' => 'on_page'
-			),
-			array(
-				'name' => 'Ми гарантуємо',
-				'module' => 'guarantee',
-				'index' => 'index',
-				'config' => '',
-				'class' => 'fm com_guarantee component_add',
-				'on_main' => TRUE,
-				'check' => 'on_page'
-			),
+//			array(
+//				'name' => 'Наші послуги',
+//				'module' => 'news',
+//				'index' => 'index',
+//				'config' => '',
+//				'class' => 'fm com_news component_add',
+//				'on_main' => TRUE,
+//				'check' => 'on_page'
+//			),
+//			array(
+//				'name' => 'Система лояльності',
+//				'module' => 'loyalty_system',
+//				'index' => 'index',
+//				'config' => '',
+//				'class' => 'fm com_loyalty_system component_add',
+//				'on_main' => TRUE,
+//				'check' => 'on_page'
+//			),
+//			array(
+//				'name' => 'Фотогалерея',
+//				'module' => 'gallery',
+//				'index' => 'index',
+//				'config' => '',
+//				'class' => 'fm com_gallery component_add',
+//				'on_main' => TRUE,
+//				'check' => 'on_page'
+//			),
+//			array(
+//				'name' => 'Ми гарантуємо',
+//				'module' => 'guarantee',
+//				'index' => 'index',
+//				'config' => '',
+//				'class' => 'fm com_guarantee component_add',
+//				'on_main' => TRUE,
+//				'check' => 'on_page'
+//			),
+            array(
+                'name' => 'Слайдер',
+                'module' => 'slider',
+                'index' => 'index',
+                'config' => '',
+                'class' => 'fm slider component_add',
+                'on_main' => TRUE,
+                'check' => 'on_page'
+            ),
 			array(
 				'name' => 'Телефонуйте нам',
 				'module' => 'questions',
@@ -174,7 +183,7 @@
 			),
 
 			array(
-				'name' => 'Шапка сайту',
+				'name' => 'Номери телефонів',
 				'url' => 'admin/config/header?',
 				'module' => 'config',
 				'index' => 'header',
@@ -182,7 +191,7 @@
 				'class' => 'fm header_set',
 			),
 			array(
-				'name' => 'Підвал сайту',
+				'name' => 'Соціальні мережі',
 				'url' => 'admin/config/main_footer?',
 				'module' => 'config',
 				'index' => 'footer',

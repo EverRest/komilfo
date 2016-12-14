@@ -114,15 +114,15 @@
                     <div class="col-lg-6 col-md-5 col-sm-12">
                         <div class="social-icons">
                             <ul class="social-list">
-                                <li class="social-list-item"><a href="#"><i class="icon icon-facebook"></i>Facebook</a></li>
-                                <li class="social-list-item"><a href="#"><i class="icon icon-vkontakte"></i>VK</a></li>
-                                <li class="social-list-item"><a href="#"><i class="icon icon-instagram"></i>Instagram</a>
+                                <li class="social-list-item"><a href="<?=$footer_data['fb'];?>" class="fb"><i class="icon icon-facebook"></i>Facebook</a></li>
+                                <li class="social-list-item"><a href="<?=$footer_data['vk'];?>" class="vk"><i class="icon icon-vkontakte"></i>VK</a></li>
+                                <li class="social-list-item"><a href="<?=$footer_data['ing'];?>" class="in"><i class="icon icon-instagram"></i>Instagram</a>
                                 </li>
                             </ul>
                         </div>
                         <address class="address">
-                            <span>(097)640-30-50</span>
-                            <span>(097)640-30-50</span>
+                            <span class="kvs"><?=$header_data['kyivstar_'.LANG]?></span>
+                            <span class="life"><?=$header_data['life_'.LANG]?></span>
                         </address>
                     </div>
 

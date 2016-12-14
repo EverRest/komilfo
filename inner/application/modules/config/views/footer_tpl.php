@@ -37,7 +37,7 @@
 				<!-- <div class="fm edit_object">Телефони:</div> -->
 				<div class="fm one_input"><label>Вконтакті: </label><input type="text" name="vk" value="<?= $data['vk']?>"></div>
 				<div class="fm one_input"><label>Facebook: </label><input type="text" name="fb" value="<?= $data['fb']?>"></div>
-				<div class="fm one_input"><label>Google+: </label><input type="text" name="gplus" value="<?= $data['gplus']?>"></div>
+				<div class="fm one_input"><label>Instagram: </label><input type="text" name="gplus" value="<?= $data['ing']?>"></div>
 			</div>
 
 			<div class="fm for_sucsess">
@@ -52,20 +52,20 @@
 </div>
 <script type="text/javascript">
 
-	function save_component_google_map(callback) {
-
-		$('#component_google_map_form').ajaxSubmit({
-			beforeSubmit:function () {
-				component_loader_show($('.component_loader'), '');
-			},
-			success:function (response) {
-				component_loader_hide($('.component_loader'));
-
-				if ($.type(callback) == 'function') callback();
-			},
-			dataType: 'json'
-		});
-	}
+//	function save_component_google_map(callback) {
+//
+//		$('#component_google_map_form').ajaxSubmit({
+//			beforeSubmit:function () {
+//				component_loader_show($('.component_loader'), '');
+//			},
+//			success:function (response) {
+//				component_loader_hide($('.component_loader'));
+//
+//				if ($.type(callback) == 'function') callback();
+//			},
+//			dataType: 'json'
+//		});
+//	}
 
 	function cancel_editing() {
 		window.location.href = '<?=$this->init_model->get_link($menu_id, '{URL}');?>';

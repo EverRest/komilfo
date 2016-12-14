@@ -35,16 +35,16 @@
 		<form id="timer_form" action="<?=$this->uri->full_url('admin/config/save_header');?>" method="post">
 		<?php foreach ($languages as $key => $val): ?>
 			<div id="article_tab_<?=$key;?>" class="article_tab"<?=(($key != LANG) ? ' style="display: none"' : ''); ?>>
-				<div class="fm evry_title">
-					<div class="fm edit_object">Слоган:</div>
-					<div class="fm one_input"><input type="text" name="slogan[<?=$key?>]" value="<?= $data['slogan_'.$key]?>"></div>
-				</div>
+<!--				<div class="fm evry_title">-->
+<!--					<div class="fm edit_object">Слоган:</div>-->
+<!--					<div class="fm one_input"><input type="text" name="slogan[--><?//=$key?><!--]" value="--><?//= $data['slogan_'.$key]?><!--"></div>-->
+<!--				</div>-->
 				
 				<div class="fm evry_title">
 					<div class="fm edit_object">Телефони:</div>
-					<div class="fm one_input input_phone"><label>Київстар: </label><input type="text" name="kyivstar[<?=$key?>]" value="<?= $data['kyivstar_'.$key]?>"></div>
-					<div class="fm one_input input_phone"><label>Лайф: </label><input type="text" name="life[<?=$key?>]" value="<?= $data['life_'.$key]?>"></div>
-					<div class="fm one_input input_phone"><label>МТС: </label><input type="text" name="mts[<?=$key?>]" value="<?= $data['mts_'.$key]?>"></div>
+					<div class="fm one_input input_phone"><label></label><input type="text" name="kyivstar[<?=$key?>]" value="<?= $data['kyivstar_'.$key]?>"></div>
+					<div class="fm one_input input_phone"><label></label><input type="text" name="life[<?=$key?>]" value="<?= $data['life_'.$key]?>"></div>
+<!--					<div class="fm one_input input_phone"><label></label><input type="text" name="mts[--><?//=$key?><!--]" value="--><?//= $data['mts_'.$key]?><!--"></div>-->
 				</div>
 			</div>
 		<?php endforeach; ?>

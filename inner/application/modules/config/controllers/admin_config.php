@@ -185,7 +185,7 @@
 			$set = array(
 				'vk' => $this->input->post('vk', TRUE),
 				'fb' => $this->input->post('fb', TRUE),
-				'gplus' => $this->input->post('gplus')
+				'ing' => $this->input->post('gplus'),
 			);
 
 			$this->admin_config_model->update($set);
