@@ -14,8 +14,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Condensed|Roboto:400,700&amp;subset=cyrillic" rel="stylesheet">
         <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
         <script type="text/javascript" src="<?=base_url('js/jquery/jquery.min.js');?>"></script>
-        <script type="text/javascript" src="<?=base_url('js/libs.min.js');?>"
-        <script type="text/javascript" src="<?=base_url('js/app.js');?>"></script>
         <?php if($this->init_model->is_admin()):?>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
             <link href='https://fonts.googleapis.com/css?family=Roboto:400,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -27,7 +25,7 @@
             <script type="text/javascript" src="<?=base_url('js/components/slider_reviews.js');?>"></script>
             <?php if (isset($page_javascript)) echo $page_javascript; ?>
             <script type="text/javascript" src="<?=base_url('js/jquery.maskedinput.min.js');?>"></script>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<!--            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>-->
             <!--[if IE]>
                 <script src="js/html5.js"></script>
             <![endif]-->
@@ -224,6 +222,8 @@
             </div>
             <div class="fm button button_big"><a href="#" id="send_form"><span>ВІДПРАВИТИ</span></a></div>
         </div>
+    <script type="text/javascript" src="<?=base_url('js/libs.min.js');?>"></script>
+    <script type="text/javascript" src="<?=base_url('js/app.js');?>"></script>
 </body>
 </html>
 

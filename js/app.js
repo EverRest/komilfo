@@ -109,9 +109,9 @@
      * Init Google Map
      * @description  initialization of Google Map and custom styles for it
      */
-    if ($("#map").length) {
-        google.maps.event.addDomListener(window, 'load', init);
-    }
+    // if ($("#map").length) {
+    //     google.maps.event.addDomListener(window, 'load', init);
+    // }
 
     function init() {
         // Basic options for a simple Google Map

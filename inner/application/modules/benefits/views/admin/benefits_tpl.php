@@ -6,7 +6,7 @@
 			<div class="<?=(($hidden == 0) ? 'article' : 'hidden');?>"></div>
 		</div>
 		<div class="fm component_edit_links">
-        	<div class="fm only_text"><div>Наші переваги</div></div>
+        	<div class="fm only_text"><div>Про Нас</div></div>
 			<a href="#" class="fm show_hide"><b></b><?=(($hidden == 0) ? 'Приховати' : 'Показати');?></a>
 		</div>
 		<div class="fmr component_del">
@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<article>
-		<h1>Компонент - ЯК МИ ПРАЦЮЕМО</h1>
+		<h1>Компонент Про Нас</h1>
 	</article>
 </div>
 <script type="text/javascript">

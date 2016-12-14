@@ -1,30 +1,76 @@
- <section class="fm guarantee">
-                <div class="centre">
-                    <div class="fm inner_guarantee">
-                        <!-------------- слоган -------------->
-                        <div class="fm slogan_guarantee">
-                            <div class="fm blue_title white_title">МИ ГАРАНТУЄМО ПРОФЕСІЙНЕ ПРИБИРАННЯ</div>
-                            <div class="fm text_small">Платіть тільки якщо задоволені результатом</div>
-                        </div>
-                        <!-------------- замовлення дзвінка -------------->
-                        <div class="fm call_form">
-                            <div class="fm bg_call_form">
-                                <div class="fm title_form">Залиште Ваш телефон і ми зв’яжемось з вами протягом 2 год, якщо ні, то ви отримаете 5% знижки</div>
-                                <div class="fm form_body">
-                                    <div class="fm input_place" data-subject="Форма замовлення дзвінка">
-                                        <div class="input_item">
-                                            <input type="text" name="name" placeholder="Ім’я">
-                                        </div>
-                                        <div class="input_item phone_inp">
-                                            <input type="text" name="phone" placeholder="Телефон">
-                                        </div>
-                                    </div>
-                                    <div class="fm button button_big">
-                                        <a href="#" id="send_form"><span>ВІДПРАВИТИ</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
+<section id="benefits" class="section section-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-title" data-aos="fade-up">Переваги</h2>
+            </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <article class="info-block">
+                    <figure class="info-block-img">
+                        <img src="images/article-images/clock.png" alt="">
+                    </figure>
+                    <h3 class="info-block-title">Досвід</h3>
+                    <p>
+                        Салон краси "Комільфо" - це один з перших салонів нашого міста, салон Expert Gold
+                        легендарної
+                        французької марки L'Oreal Professionnel, який був
+                        відкритий
+                        29 березня 1996 року.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <article class="info-block">
+                    <figure class="info-block-img">
+                        <img src="images/article-images/scissors.png" alt="">
+                    </figure>
+                    <h3 class="info-block-title">Широкий спектр послуг</h3>
+                    <p>
+                        Салон краси "Комільфо" - це один з перших салонів нашого міста, салон Expert Gold
+                        легендарної
+                        французької марки L'Oreal Professionnel, який був
+                        відкритий
+                        29 березня 1996 року.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <article class="info-block">
+                    <figure class="info-block-img">
+                        <img src="images/article-images/women.png" alt="">
+                    </figure>
+                    <h3 class="info-block-title">Висококваліфіковані стилісти</h3>
+                    <p>
+                        Салон краси "Комільфо" - це один з перших салонів нашого міста, салон Expert Gold
+                        легендарної
+                        французької марки L'Oreal Professionnel, який був
+                        відкритий
+                        29 березня 1996 року.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <article class="info-block">
+                    <figure class="info-block-img">
+                        <img src="images/article-images/drink.png" alt="">
+                    </figure>
+                    <h3 class="info-block-title">якість послуг</h3>
+                    <p>
+                        Салон краси "Комільфо" - це один з перших салонів нашого міста, салон Expert Gold
+                        легендарної
+                        французької марки L'Oreal Professionnel, який був
+                        відкритий
+                        29 березня 1996 року.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

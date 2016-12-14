@@ -6,7 +6,7 @@
 			<div class="<?=(($hidden == 0) ? 'article' : 'hidden');?>"></div>
 		</div>
 		<div class="fm component_edit_links">
-        	<div class="fm only_text"><div>Наші прослуги</div></div>
+        	<div class="fm only_text"><div>Наші послуги</div></div>
 			<a href="<?=$this->uri->full_url('/admin/benefit_services/edit?menu_id=' . $menu_id . '&component_id=' . $component_id);?>" class="fm edit"><b></b>Редагувати</a>
 			<a href="#" class="fm show_hide"><b></b><?=(($hidden == 0) ? 'Приховати' : 'Показати');?></a>
 		</div>
