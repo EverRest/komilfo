@@ -46,7 +46,7 @@
 				'on_main' => TRUE,
 			),
             array(
-                'name' => 'Мапа',
+                'name' => 'Контакти',
                 'module' => 'google_map',
                 'index' => 'index',
                 'config' => '',
@@ -116,15 +116,15 @@
 //				'on_main' => TRUE,
 //				'check' => 'on_page'
 //			),
-            array(
-                'name' => 'Контакти',
-                'module' => 'Contacts',
-                'index' => 'index',
-                'config' => '',
-                'class' => 'fm com_reviews component_add',
-                'on_main' => TRUE,
-                'check' => 'on_page'
-            ),
+//            array(
+//                'name' => 'Контакти',
+//                'module' => 'contacts',
+//                'index' => 'index',
+//                'config' => '',
+//                'class' => 'fm com_reviews component_add',
+//                'on_main' => TRUE,
+//                'check' => 'on_page'
+//            ),
 			array(
 				'name' => 'Переваги',
 				'module' => 'guarantee',

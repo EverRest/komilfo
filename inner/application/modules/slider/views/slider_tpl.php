@@ -1,59 +1,60 @@
 <?php
 	defined('ROOT_PATH') OR exit('No direct script access allowed');
 ?>
- <section id="reviews" class="fm reviews_wrap pd_tp_46 pd_bt_60">
-    <div class="centre">
-        <div class="fm blue_title mr_bt_48">Відгуки</div>
-        <!-------------- слайдер відгуків -------------->
-        <div class="fm sleder_reviews">
-           <a href="" class="fm arrow btn_slider btn_sl_left" id="left"><b class="line_1"></b><b class="line_2"></b></a>
-            <!-------------- контент слайдера -------------->
-            <div class="fm revs_slider_cont">
-                <!-------------- фото клієнта -------------->
-                <div class="fm revs_slide_place">
-                    <div class="fm width_slide_place" style="width:5000px">
-                        <?php
-                            if (count($slides) > 0)
-                            {
-                                $i=0;
-                                foreach ($slides as $key => $row)
-                                {
-                                    if($i==1){$active = 'active';}else{$active = '';}
-                                    echo '<div class="fm revs_box_slid '.$active.'">
-                                    <div class="revs_photo">';
-                                    if ($row['file_name'] != '')
-                                    {
-                                        $dir = 'upload/slider/' . $menu_id . '/' . $row['slide_id'] . '/' . $row['file_name'];
-                                        echo '<img src="'.$dir.'" alt="">';
-                                    }
-                                    echo '</div>
-                                    </div>';
-                                    $i++; 
-                                }
-                            }
-                        ?>
+
+<section id="works" class="section section-works">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-title title-works" data-aos="fade-up">НАШІ РОБОТИ</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Swiper -->
+                <div class="works-slider swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide-full-width">
+                            <img src="images/works/01.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide slide-full-width">
+                            <img src="images/works/01.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide slide-full-width">
+                            <img src="images/works/01.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide slide-full-width">
+                            <img src="images/works/01.jpg" alt="">
+                        </div>
                     </div>
+
+                    <div class="btn-prev"><i class="icon icon-left"></i>Prev</div>
+                    <div class="btn-next"><i class="icon icon-right"></i>Next</div>
                 </div>
-                <!-------------- відгук клієнта -------------->
-                <div class="fm revs_info">
-                <?php
-                    if (count($slides) > 0)
-                    {
-                        $i=0;
-                        foreach ($slides as $key => $row)
-                        {
-                            if($i==1){$active = 'active';}else{$active = '';}
-                            echo '<div class="fm inner_revs visible">
-                                <div class="fm small_title">'.$row["title"].'</div>
-                                <div class="fm text_revs">'.$row["description"].'</div>
-                            </div>';
-                            $i++; 
-                        }
-                    }
-                ?>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row description-wrapper">
+            <div class="col-lg-2 col-sm-2 hidden-xs" data-aos="fade-up">
+                <span class="before-pointer">До</span>
+            </div>
+
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="work-description" data-aos="fade-up">
+                    оПИС пОСЛУГИ. оПИС пОСЛУГИ. Бажаєте навчитись самомакіяжу або<br/>
+                    вдосконалити свій образ? Курси самомакіяжу у Школі "Комільфо" саме для Вас.
                 </div>
             </div>
-            <a href="" class="fmr arrow btn_slider" id="right"><b class="line_1"></b><b class="line_2"></b></a>
+
+            <div class="col-lg-2 col-sm-2 hidden-xs" data-aos="fade-up">
+                <span class="after-pointer">Після</span>
+            </div>
         </div>
     </div>
 </section>

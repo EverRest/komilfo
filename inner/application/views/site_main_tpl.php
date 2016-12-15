@@ -13,6 +13,7 @@
         <title><?php if (isset($page_title)) echo $page_title; ?></title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Condensed|Roboto:400,700&amp;subset=cyrillic" rel="stylesheet">
         <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
+        <link rel="stylesheet" href="<?=base_url('css/unique.css');?>">
         <script type="text/javascript" src="<?=base_url('js/jquery/jquery.min.js');?>"></script>
         <?php if($this->init_model->is_admin()):?>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>

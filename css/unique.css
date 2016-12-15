@@ -11,3 +11,5 @@
 .admin_component.login,.admin_base {margin:20px 2%; width:96%;}
 
 .menu ul li a:hover {background-color: transparent;}
+#map div.gmnoprint,#map div.gmnoscreen,#map .gm-style-cc {display: none;}
+img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"] {display: none;}

@@ -1,54 +1,44 @@
- <section class="fm work_order"  id="how_we_work">
-    <div class="fm inner_work_order pd_tp_46">
-        <div id="elem_1"></div>
-        <div id="elem_3"></div>
-        <div id="elem_2"></div>
-        <div class="centre">
-            <div class="fm blue_title white_title mr_bt_48">ЯК МИ ПРАЦЮЄМО</div>
-            <div class="fm work_place">
-                <!-------------- порядок роботи бокс -------------->
-                <div class="fm work_item">
-                    <div class="fm image_work">
-                        <div class="image_work_inner"><div><img src="images/wrk_1.png" alt=""></div></div>
-                    </div>
-                    <div class="fm descriptio_work">Ви телефонуєте або залишаєте заявку</div>
-                    <div class="fmr arrow"><b class="line_1"></b><b class="line_2"></b></div>
-                </div>
-                <div class="fm work_item">
-                    <div class="fm image_work">
-                        <div class="image_work_inner"><div><img src="images/wrk_2.png" alt=""></div></div>
-                    </div>
-                    <div class="fm descriptio_work">Замовляєте послуги та погоджуєте умови виконання</div>
-                    <div class="fmr arrow"><b class="line_1"></b><b class="line_2"></b></div>
-                </div>
-                <div class="fm work_item">
-                    <div class="fm image_work">
-                        <div class="image_work_inner"><div><img src="images/wrk_3.png" alt=""></div></div>
-                    </div>
-                    <div class="fm descriptio_work">Оформляємо договір</div>
-                    <div class="fmr arrow"><b class="line_1"></b><b class="line_2"></b></div>
-                </div>
-                <div class="fm work_item">
-                    <div class="fm image_work">
-                        <div class="image_work_inner"><div><img src="images/wrk_4.png" alt=""></div></div>
-                    </div>
-                    <div class="fm descriptio_work">Ми виконуємо послугу</div>
-                    <div class="fmr arrow"><b class="line_1"></b><b class="line_2"></b></div>
-                </div>
-                <div class="fm work_item">
-                    <div class="fm image_work">
-                        <div class="image_work_inner"><div><img src="images/wrk_5.png" alt=""></div></div>
-                    </div>
-                    <div class="fm descriptio_work">Ви перевіряєте якість надання послуги</div>
-                    <div class="fmr arrow"><b class="line_1"></b><b class="line_2"></b></div>
-                </div>
-                <div class="fm work_item">
-                    <div class="fm image_work">
-                        <div class="image_work_inner"><div><img src="images/wrk_6.png" alt=""></div></div>
-                    </div>
-                    <div class="fm descriptio_work">Ви розраховуєтесь за надання послуги</div>
-                    <div class="fmr arrow"><b class="line_1"></b><b class="line_2"></b></div>
-                </div>
+<section id="about" class="section section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="section-title" data-aos="fade-up">Про нас</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" data-aos="fade-right">
+                <blockquote class="quote">
+                    <p>
+                        Ніколи не стежте за чоловіком!<br>
+                        Ми навчимо Вас <br>
+                        доглядати за собою - і тоді <br>
+                        чоловіки будуть стежити за Вами!
+                    </p>
+                    <div class="quote-title">Салон «Комільфо»</div>
+
+                </blockquote>
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <article class="article-about">
+                    <p>
+                        Салон краси "Комільфо"у самому центрі м.Львова на вулиці
+                        Гнатюка,16 - це один з перших салонів нашого міста, салон Expert Gold легендарної
+                        французької марки L'Oreal Professionnel, який був відкритий 29 березня 1996 року.
+                    </p>
+                    <p>
+                        Салон краси «Комільфо» у Львові дотримується принципу
+                        надання послуг найвищої якості у всіх її проявах.
+                        Висококваліфіковані майстри, найкраща кометика, вишуканий сервіс — все для Вас у найкращих
+                        формах краси.
+                    </p>
+                    <p>
+                        В салоні краси «Комільфо» надаються пакети послуг для
+                        нареченої, по омолодженню і корекції фігури. Тут також можна придбати професійну косметику і
+                        подарунковий сертифікат на послуги салону «Комільфо». Для постійних клінтів діють знижки від
+                        5 до 15%.
+                    </p>
+                </article>
             </div>
         </div>
     </div>

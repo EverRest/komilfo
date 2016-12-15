@@ -1,91 +1,96 @@
 <?php defined('ROOT_PATH') OR exit('No direct script access allowed'); ?>
-<!--Компонент наші послуги-->
-<div class="fm benefits_services ex2">
-	<b class="benefits_services_shadow"></b>
-	<div class="centre">
-		<!--Вспливайка із описом-->
-		<div class="fm our_benefits">
-			<div class="fm one_benefits" >
-				<div class="fm one_b_title"><?=$article['t1']?></div>
-				<div class="fm one_b_circle">
-					<b class="f1"></b>
-					<i></i>
-				</div>
-			</div>
-			<div class="fm one_benefits" >
-				<div class="fm one_b_title"><?=$article['t2']?></div>
-				<div class="fm one_b_circle">
-					<b class="f2"></b>
-					<i></i>
-				</div>
-			</div>
-			<div class="fm one_benefits" >
-				<div class="fm one_b_title"><?=$article['t3']?></div>
-				<div class="fm one_b_circle">
-					<b class="f3"></b>
-					<i></i>
-				</div>
-			</div>
-			<div class="fm one_benefits" >
-				<div class="fm one_b_title"><?=$article['t4']?></div>
-				<div class="fm one_b_circle">
-					<b class="f4"></b>
-					<i></i>
-				</div>
-			</div>
-		</div>
-		<div class="fm our_service">
-			<span>НАШІ ПОСЛУГИ</span>
-			<div class="fm one_service">
-				<div class="fm one_s_circle">
-					<b class="f1"></b>
-					<i></i>
-				</div>
-				<div class="fm des_service">
-					<b><?=$article['t_1'];?></b>
-					<?=stripslashes($article['m_1']);?>
-				</div>
-			</div>
-			<div class="fm one_service">
-				<div class="fm one_s_circle">
-					<b class="f2"></b>
-					<i></i>
-				</div>
-				<div class="fm des_service">
-					<b><?=$article['t_2'];?></b>
-					<?=stripslashes($article['m_2']);?>
-				</div>
-			</div>
-			<div class="fm one_service">
-				<div class="fm one_s_circle">
-					<b class="f3"></b>
-					<i></i>
-				</div>
-				<div class="fm des_service">
-					<b><?=$article['t_3'];?></b>
-					<?=stripslashes($article['m_3']);?>
-				</div>
-			</div>
-			<div class="fm one_service">
-				<div class="fm one_s_circle">
-					<b class="f4"></b>
-					<i></i>
-				</div>
-				<div class="fm des_service">
-					<b><?=$article['t_4'];?></b>
-					<?=stripslashes($article['m_4']);?>
-				</div>
-			</div>
-			<div class="fm one_service">
-				<div class="fm one_s_circle">
-					<b class="f5"></b>
-					<i></i>
-				</div>
-				<div class="fm des_service">
-					<b><?=$article['t_5'];?></b>
-					<?=stripslashes($article['m_5']);?>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<section id="price" class="section section-price">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-title dark" data-aos="fade-up">ПОСЛУГИ ТА ЦІНИ</h2>
+                <div class="service-type" data-aos="fade-up">
+                    <h3 class="service-title">Перукарські послуги</h3>
+                    <ul class="service-type-list">
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Жіночі, чоловічі і дитячі стрижки, зачіски і вкладки</span>
+                            <span class="service-price">450 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Святкові, вечірні, весільні подіумні, арт-стрижки, зачіски і вкладки</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Ламінування і лікування волосся по всій довжині</span>
+                            <span class="service-price">450 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-type" data-aos="fade-up">
+                    <h3 class="service-title">Послуги манікюру і педикюру</h3>
+                    <ul class="service-type-list">
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-type" data-aos="fade-up">
+                    <h3 class="service-title">Перукарські послуги</h3>
+                    <ul class="service-type-list">
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+
+                        <li class="service-item">
+                            <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
+                            <span class="service-price">980 грн</span>
+                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
