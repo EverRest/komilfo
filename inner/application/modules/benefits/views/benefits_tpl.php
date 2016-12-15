@@ -1,45 +1,26 @@
+<?php defined('ROOT_PATH') OR exit('No direct script access allowed'); ?>
+<? if (isset($benefits) AND !empty($benefits)): ?>
+<!--   --><?// echo '<pre>';print_r($benefits);exit; ?>
 <section id="about" class="section section-about">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h2 class="section-title" data-aos="fade-up">Про нас</h2>
+                <h2 class="section-title" data-aos="fade-up"><?=$benefits['title'];?></h2>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6" data-aos="fade-right">
                 <blockquote class="quote">
-                    <p>
-                        Ніколи не стежте за чоловіком!<br>
-                        Ми навчимо Вас <br>
-                        доглядати за собою - і тоді <br>
-                        чоловіки будуть стежити за Вами!
-                    </p>
-                    <div class="quote-title">Салон «Комільфо»</div>
+                    <p><?=$benefits['quote'];?></p>
+                    <div class="quote-title"><?=$benefits['author'];?></div>
 
                 </blockquote>
             </div>
             <div class="col-md-6" data-aos="fade-left">
-                <article class="article-about">
-                    <p>
-                        Салон краси "Комільфо"у самому центрі м.Львова на вулиці
-                        Гнатюка,16 - це один з перших салонів нашого міста, салон Expert Gold легендарної
-                        французької марки L'Oreal Professionnel, який був відкритий 29 березня 1996 року.
-                    </p>
-                    <p>
-                        Салон краси «Комільфо» у Львові дотримується принципу
-                        надання послуг найвищої якості у всіх її проявах.
-                        Висококваліфіковані майстри, найкраща кометика, вишуканий сервіс — все для Вас у найкращих
-                        формах краси.
-                    </p>
-                    <p>
-                        В салоні краси «Комільфо» надаються пакети послуг для
-                        нареченої, по омолодженню і корекції фігури. Тут також можна придбати професійну косметику і
-                        подарунковий сертифікат на послуги салону «Комільфо». Для постійних клінтів діють знижки від
-                        5 до 15%.
-                    </p>
-                </article>
+                <article class="article-about"><?=$benefits['text'];?></article>
             </div>
         </div>
     </div>
 </section>
+<? endif; ?>

@@ -177,6 +177,7 @@
 				);
 
 				$this->load->library('upload', $upload_config);
+                $this->load->library('Image_lib');
 
 				if ($this->upload->do_upload('slide_image'))
 				{

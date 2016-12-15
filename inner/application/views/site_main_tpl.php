@@ -158,7 +158,7 @@
                             Комільфо - тільки так
                             і не інакше!
                         </div>
-                        <a href="#" class="btn btn-default" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
+                        <a href="#" class="btn btn-default btn-sub" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
                 </div>
 
@@ -168,7 +168,7 @@
                             Комільфо - тільки так
                             і не інакше!
                         </div>
-                        <a href="#" class="btn btn-default" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
+                        <a href="#" class="btn btn-default btn-sub" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                             Комільфо - тільки так
                             і не інакше!
                         </div>
-                        <a href="#" class="btn btn-default" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
+                        <a href="#" class="btn btn-default btn-sub" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
                 </div>
             </div>

@@ -39,16 +39,16 @@
 		?>
 		<div class="lang_tab" id="box_<?=$key;?>"<?php if (LANG != $key) echo ' style="display:none"'; ?>>
 			
-			<div class="evry_title">
-				<label class="block_label">Ім'я:</label>
-				<input type="text" name="title[<?=$key;?>]" value="<?=$slide['title'];?>">
-			</div>
+<!--			<div class="evry_title">-->
+<!--				<label class="block_label">Ім'я:</label>-->
+<!--				<input type="text" name="title[--><?//=$key;?><!--]" value="--><?//=$slide['title'];?><!--">-->
+<!--			</div>-->
            <!--  <div class="evry_title">
                 <label class="block_label">Відгук:</label>
                 <input type="text" name="description[<?=$key;?>]" value="<?=$slide['description'];?>">
             </div> -->
             <div class="evry_title">
-				<label for="ca_text_<?=$key;?>" class="block_label">Текст статті:</label>
+				<label for="ca_text_<?=$key;?>" class="block_label">Текст до слайду:</label>
 				<div class="no_float"><textarea class="component_article" id="ca_text_<?=$key;?>" name="description[<?=$key;?>]" style="height: 400px"><?=stripslashes($slide['description']);?></textarea></div>
 			</div>	
 

@@ -10,25 +10,25 @@
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Жіночі, чоловічі і дитячі стрижки, зачіски і вкладки</span>
                             <span class="service-price">450 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Святкові, вечірні, весільні подіумні, арт-стрижки, зачіски і вкладки</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Ламінування і лікування волосся по всій довжині</span>
                             <span class="service-price">450 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
                     </ul>
                 </div>
@@ -39,25 +39,25 @@
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
                     </ul>
                 </div>
@@ -68,25 +68,25 @@
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
 
                         <li class="service-item">
                             <span class="service-description">Фарбування, хімічна завивка і нарощування волосся («холодне» нарощування на кільця і тресси і гаряче капсульне нарощування)</span>
                             <span class="service-price">980 грн</span>
-                            <button class="btn btn-default">ЗАПИСатись НА ПРИЙОМ</button>
+                            <button class="btn btn-default btn-sub">ЗАПИСатись НА ПРИЙОМ</button>
                         </li>
                     </ul>
                 </div>

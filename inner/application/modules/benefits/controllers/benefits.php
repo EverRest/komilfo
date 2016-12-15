@@ -3,9 +3,9 @@
 	defined('ROOT_PATH') OR exit('No direct script access allowed');
 
 	/**
-	 * Class Article
+	 * Class Benefits
 	 *
-	 * @property Benefit_services_model $article_model
+	 * @property benefits_model $benefits_model
 	 */
 	class Benefits extends MX_Controller {
 
@@ -17,7 +17,6 @@
 		 * @param int $hidden
 		 * @param string $config
 		 */
-
 		public function index($menu_id, $component_id, $hidden, $config = '')
 		{
 			$this->load->model('benefits_model');
@@ -25,7 +24,11 @@
 			$template_data = array(
 				'menu_id' => $menu_id,
 				'component_id' => $component_id,
+				'benefits' => $this->benefits_model->get_benefits($component_id),
+				'h1' => $this->template_lib->get_h1()
 			);
+
+			$this->template_lib->set_h1();
 
 			if ($this->init_model->is_admin())
 			{
@@ -37,5 +40,4 @@
 				return $this->load->view('benefits_tpl', $template_data, TRUE);
 			}
 		}
-
 	}
