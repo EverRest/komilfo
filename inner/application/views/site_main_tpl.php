@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
         <link rel="stylesheet" href="<?=base_url('css/unique.css');?>">
         <script type="text/javascript" src="<?=base_url('js/jquery/jquery.min.js');?>"></script>
+        <script type="text/javascript" src="<?=base_url('js/map.js');?>"></script>
         <?php if($this->init_model->is_admin()):?>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
             <link href='https://fonts.googleapis.com/css?family=Roboto:400,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -40,14 +41,149 @@
         <?php if (isset($page_css)) echo $page_css; ?>
         <link href="<?=base_url('favicon.ico');?>" rel="icon" type="image/x-icon">
         <link href="<?=base_url('favicon.ico');?>" rel="shortcut icon">
-            <!---------------------- -->
+            <script type="text/javascript">
+
+                function init () {
+                    // Basic options for a simple Google Map
+                    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+
+                    //Remove standart google labels
+                    var mapOptions = {
+                        // How zoomed in you want the map to start at (always required)
+                        zoom: 11,
+
+                        // The latitude and longitude to center the map (always required)
+                        center: new google.maps.LatLng(40.6700, -73.9400), // New York
+                        // This is where you would paste any style found on Snazzy Maps.
+                        styles: [{
+                            "featureType": "all",
+                            "elementType": "all",
+                            "stylers": [{"hue": "#ff0000"}, {"saturation": -100}, {"lightness": -30}]
+                        }, {
+                            "featureType": "all",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{"color": "#ffffff"}]
+                        }, {
+                            "featureType": "all",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [{"color": "#353535"}]
+                        }, {
+                            "featureType": "all",
+                            "elementType": "labels.icon",
+                            "stylers": [{"visibility": "off"}]
+                        }, {
+                            "featureType": "administrative",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"visibility": "on"}, {"color": "#ff0000"}]
+                        }, {
+                            "featureType": "landscape",
+                            "elementType": "geometry",
+                            "stylers": [{"color": "#656565"}]
+                        }, {
+                            "featureType": "landscape",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"visibility": "on"}, {"color": "#666666"}, {"lightness": "-14"}]
+                        }, {
+                            "featureType": "landscape.man_made",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"visibility": "off"}, {"color": "#ff0000"}]
+                        }, {
+                            "featureType": "poi",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#505050"}, {"visibility": "off"}]
+                        }, {
+                            "featureType": "poi",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{"color": "#808080"}]
+                        }, {
+                            "featureType": "poi",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{"visibility": "on"}, {"color": "#ffffff"}]
+                        }, {
+                            "featureType": "poi.attraction",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"visibility": "off"}, {"color": "#ef0000"}]
+                        }, {
+                            "featureType": "road",
+                            "elementType": "geometry",
+                            "stylers": [{"color": "#454545"}, {"visibility": "on"}]
+                        }, {
+                            "featureType": "road",
+                            "elementType": "labels.text",
+                            "stylers": [{"visibility": "simplified"}]
+                        }, {
+                            "featureType": "road",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"weight": "0.50"}]
+                        }, {
+                            "featureType": "road",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [{"visibility": "on"}, {"color": "#000000"}, {"weight": "1.00"}, {"gamma": "0"}]
+                        }, {
+                            "featureType": "transit",
+                            "elementType": "labels",
+                            "stylers": [{"hue": "#ff0000"}, {"saturation": 100}, {"lightness": -40}, {"invert_lightness": true}, {"gamma": 1.5}, {"visibility": "simplified"}]
+                        }, {
+                            "featureType": "transit.station",
+                            "elementType": "geometry",
+                            "stylers": [{"visibility": "off"}]
+                        }, {
+                            "featureType": "transit.station",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"visibility": "off"}]
+                        }, {
+                            "featureType": "transit.station",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{"visibility": "off"}]
+                        }, {
+                            "featureType": "transit.station",
+                            "elementType": "labels.text",
+                            "stylers": [{"visibility": "off"}]
+                        }, {
+                            "featureType": "transit.station",
+                            "elementType": "labels.icon",
+                            "stylers": [{"visibility": "off"}]
+                        }, {
+                            "featureType": "water",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"visibility": "on"}, {"color": "#414344"}, {"weight": "1.00"}]
+                        }, {
+                            "featureType": "water",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"gamma": "1.00"}]
+                        }, {
+                            "featureType": "water",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [{"visibility": "on"}, {"color": "#000000"}]
+                        }],
+                        zoomControl: false,
+                        mapTypeControl: false,
+                        scaleControl: false,
+                        streetViewControl: false,
+                        rotateControl: false
+
+                    };
+
+                    var mapElement = document.getElementById('map');
+                    // Create the Google Map using our element and options defined above
+                    var map = new google.maps.Map(mapElement, mapOptions);
+                    // Let's also add a marker while we're at it
+
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(40.6700, -73.9400),
+                        map: map,
+                        title: 'Home!'
+                    });
+
+                }
+            </script>
             <!--[if IE]>
               <script  src="js/html5.js"></script>
             <![endif]-->
             <!--[if IE 8]>
               <html class="ie8">
             <![endif]-->
-            </noscript>
+<!--            </noscript>-->
 <!--                <script type="text/javascript">-->
 <!--                    $('#ask_question').on("click", function(e){-->
 <!--                        e.preventDefault()-->
@@ -225,6 +361,7 @@
         </div>
     <script type="text/javascript" src="<?=base_url('js/libs.min.js');?>"></script>
     <script type="text/javascript" src="<?=base_url('js/app.js');?>"></script>
+<!--    <script type="text/javascript" src="--><?//=base_url('js/map.js');?><!--"></script>-->
 </body>
 </html>
 
@@ -244,70 +381,70 @@
     <![endif]-->
     <?php endif;?>
 
-<script type="text/javascript">
-  $(function () {
-    $('#feedback_name_<?php echo $component_id; ?>,#feedback_email_<?php echo $component_id; ?>,#feedback_message_<?php echo $component_id; ?>').on('keyup blur paste', function () {
-      var $field = $(this).parents('.evry_title:eq(0)');
-      $field.removeClass('wrong');
-    });
-    $('#feedback_code_<?php echo $component_id; ?>').on('keyup blur paste', function () {
-      $(this).closest('.evry_title').removeClass('wrong');
-    });
-    $('#feedback_send_<?php echo $component_id; ?>').on('click', function (event) {
-      event.preventDefault();
-      var request = {
-          component_id: <?php echo $component_id; ?>,
-          menu_id: <?php echo $menu_id; ?>,
-          name:$.trim($('#feedback_name_<?php echo $component_id; ?>').val()),
-          email:$.trim($('#feedback_email_<?php echo $component_id; ?>').val()),
-          phone:$.trim($('#feedback_phone_<?php echo $component_id; ?>').val()),
-          theme:$.trim($('#feedback_theme_<?php echo $component_id; ?>').val()),
-          message:$.trim($('#feedback_message_<?php echo $component_id; ?>').val()),
-          code:$.trim($('#feedback_code_<?php echo $component_id; ?>').val())
-        },
-        $error = $('#feedback_alert_<?php echo $component_id; ?>');
-      if (request.name === '') {
-        var $field = $('#feedback_name_<?php echo $component_id; ?>').closest('.evry_title').addClass('wrong');
-        return false;
-      }
-      var email_test = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i;
-      if (!email_test.test(request.email)) {
-        var $field = $('#feedback_email_<?php echo $component_id; ?>').closest('.evry_title').addClass('wrong');
-        return false;
-      }
-      if (request.message === '') {
-        var $field = $('#feedback_message_<?php echo $component_id; ?>').closest('.evry_title').addClass('wrong');
-        return false;
-      }
-      if (request.code === '') {
-        $('#feedback_code_<?php echo $component_id; ?>').closest('.evry_title').addClass('wrong');
-        return false;
-      }
-      $.post(
-        '<?php echo $this->uri->full_url('feedback/send'); ?>',
-        request,
-        function (response) {
-          if (response.error === 0) {
-            $('#feedback_<?php echo $component_id; ?>').fadeTo(500, 0).slideUp(function () {
-              $(this).remove();
-              $error.stop().fadeTo(50, 0).html('<? if(LANG=='ua')echo'Повідомлення відправлено';if(LANG=='ru')echo'Cообщение отправлено';if(LANG=='en')echo'Message sent';?>!').fadeTo(500, 1);
-            });
-          }
-          if (response.error === 1) {
-            $('#feedback_code_<?php echo $component_id; ?>').closest('.evry_title').addClass('wrong');
-            $('#feedback_recaptcha_<?php echo $component_id; ?>').click();
-          }
-        },
-        'json'
-      );
-    });
-    $('#feedback_recaptcha_<?php echo $component_id; ?>').on('click', function (event) {
-      event.preventDefault();
-      $('#feedback_captcha_<?php echo $component_id; ?>').find('img').fadeTo(200, 0, function () {
-        $(this).attr('src', '<?php echo $this->uri->full_url('feedback/captcha'); ?>#' + Math.random()).ready(function () {
-          $('#feedback_captcha_<?php echo $component_id; ?>').find('img').fadeTo(1000, 1);
-        });
-      });
-    });
-  });
-</script>
+<!--<script type="text/javascript">-->
+<!--//<!--  $(function () {-->
+<!--//<!--    $('#feedback_name_--><?php //////echo $component_id; ?><!--////,#feedback_email_--><?php //////echo $component_id; ?><!--////,#feedback_message_--><?php //////echo $component_id; ?><!--////').on('keyup blur paste', function () {-->
+<!--      var $field = $(this).parents('.evry_title:eq(0)');-->
+<!--      $field.removeClass('wrong');-->
+<!--    });-->
+<!--    $('#feedback_code_--><?php //echo $component_id; ?><!--').on('keyup blur paste', function () {-->
+<!--      $(this).closest('.evry_title').removeClass('wrong');-->
+<!--    });-->
+<!--    $('#feedback_send_--><?php //echo $component_id; ?><!--').on('click', function (event) {-->
+<!--      event.preventDefault();-->
+<!--      var request = {-->
+<!--          component_id: --><?php //echo $component_id; ?><!--,-->
+<!--          menu_id: --><?php //echo $menu_id; ?><!--,-->
+<!--          name:$.trim($('#feedback_name_--><?php //echo $component_id; ?><!--').val()),-->
+<!--          email:$.trim($('#feedback_email_--><?php //echo $component_id; ?><!--').val()),-->
+<!--          phone:$.trim($('#feedback_phone_--><?php //echo $component_id; ?><!--').val()),-->
+<!--          theme:$.trim($('#feedback_theme_--><?php //echo $component_id; ?><!--').val()),-->
+<!--          message:$.trim($('#feedback_message_--><?php //echo $component_id; ?><!--').val()),-->
+<!--          code:$.trim($('#feedback_code_--><?php //echo $component_id; ?><!--').val())-->
+<!--        },-->
+<!--        $error = $('#feedback_alert_--><?php //echo $component_id; ?><!--');-->
+<!--      if (request.name === '') {-->
+<!--        var $field = $('#feedback_name_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
+<!--        return false;-->
+<!--      }-->
+<!--      var email_test = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i;-->
+<!--      if (!email_test.test(request.email)) {-->
+<!--        var $field = $('#feedback_email_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
+<!--        return false;-->
+<!--      }-->
+<!--      if (request.message === '') {-->
+<!--        var $field = $('#feedback_message_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
+<!--        return false;-->
+<!--      }-->
+<!--      if (request.code === '') {-->
+<!--        $('#feedback_code_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
+<!--        return false;-->
+<!--      }-->
+<!--      $.post(-->
+<!--        '--><?php //echo $this->uri->full_url('feedback/send'); ?><!--',-->
+<!--        request,-->
+<!--        function (response) {-->
+<!--          if (response.error === 0) {-->
+<!--            $('#feedback_--><?php //echo $component_id; ?><!--').fadeTo(500, 0).slideUp(function () {-->
+<!--              $(this).remove();-->
+<!--              $error.stop().fadeTo(50, 0).html('--><?// if(LANG=='ua')echo'Повідомлення відправлено';if(LANG=='ru')echo'Cообщение отправлено';if(LANG=='en')echo'Message sent';?><!--!').fadeTo(500, 1);-->
+<!--            });-->
+<!--          }-->
+<!--          if (response.error === 1) {-->
+<!--            $('#feedback_code_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
+<!--            $('#feedback_recaptcha_--><?php //echo $component_id; ?><!--').click();-->
+<!--          }-->
+<!--        },-->
+<!--        'json'-->
+<!--      );-->
+<!--    });-->
+<!--    $('#feedback_recaptcha_--><?php //echo $component_id; ?><!--').on('click', function (event) {-->
+<!--      event.preventDefault();-->
+<!--      $('#feedback_captcha_--><?php //echo $component_id; ?><!--').find('img').fadeTo(200, 0, function () {-->
+<!--        $(this).attr('src', '--><?php //echo $this->uri->full_url('feedback/captcha'); ?><!--#' + Math.random()).ready(function () {-->
+<!--          $('#feedback_captcha_--><?php //echo $component_id; ?><!--').find('img').fadeTo(1000, 1);-->
+<!--//        });-->
+<!--//      });-->
+<!--//    });-->
+<!--//  });-->
+<!--</script>-->
