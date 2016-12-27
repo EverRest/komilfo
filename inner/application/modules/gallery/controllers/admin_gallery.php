@@ -49,9 +49,6 @@
 		 */
 		public function add()
 		{
-			echo "<pre>";
-			print_r('asdasd');
-			echo "</pre>";
 			$response = array('success' => FALSE);
 			$menu_id = intval($this->input->post('menu_id'));
 
