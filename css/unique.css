@@ -12,4 +12,12 @@
 
 .menu ul li a:hover {background-color: transparent;}
 #map div.gmnoprint,#map div.gmnoscreen,#map .gm-style-cc {display: none;}
-img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"] {display: none;}
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
