@@ -116,22 +116,22 @@
 
 				$off_timer = $this->input->post('off_timer') == 'on' ? 1 : 0;
 
-				foreach ($slogan as $key => $val)
-				{
-					$data['slogan_' . $key] = form_prep($val);
-					$data['kyivstar_' . $key] = form_prep($phone1[$key]);
-					$data['life_' . $key] = form_prep($phone2[$key]);
-					$data['mts_' . $key] = form_prep($phone3[$key]);
+//				foreach ($slogan as $key => $val)
+//				{
+//					$data['slogan_' . $key] = form_prep($val);
+					$data['kyivstar_' . ua] = form_prep($phone1["ua"]);
+					$data['life_' . ua] = form_prep($phone2["ua"]);
+//					$data['mts_' . $key] = form_prep($phone3[$key]);
 
-					if ($date[$key] != '')
-					{
-						$date[$key] = ($time[$key] != '') ? strtotime($date[$key] . ' ' . $time[$key]) : strtotime($date[$key]);
-					}
-					else
-					{
-						$date[$key] = time();
-					}
-				}
+//					if ($date[$key] != '')
+//					{
+//						$date[$key] = ($time[$key] != '') ? strtotime($date[$key] . ' ' . $time[$key]) : strtotime($date[$key]);
+//					}
+//					else
+//					{
+//						$date[$key] = time();
+//					}
+//				}
 
 				
 

@@ -21,3 +21,37 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 .gmnoprint div {
     background:none !important;
 }
+/* Popup
+---------------------------------*/
+.popup {z-index: 9999; position: absolute; background: #0f0f0f; top: -100%; left: 40%;/* transform: translate(-50%, -50%) scale(0);*/ width: 460px; padding: 25px; transition: all .5s linear;}
+.popup.active{top: 50%;/* transform: translate(-50%, -50%) scale(0);*/ transition: all .5s linear;}
+
+.btn.btn-default.button { margin: 0 auto; }
+/*--------------------------------------------------------------------     Basic style     --------------------------------------------------------------------*/
+
+/* black background popup
+-----------------------------------------*/
+.black {position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 900; background: #000; opacity: .7; cursor: pointer;}
+/* 404 page
+--------------
+/*------  common btn  ------*/
+.common-btn{display: inline-block; text-align: center; position: relative; font: 700 14px/20px 'Roboto'; color: #494747; text-transform: uppercase; text-decoration: none;
+    padding: 5px 40px; transition: all .3s linear;}
+.common-btn:before{content: ''; position: absolute; width: 100%; height: 100%; bottom: 0; left: 0; background-color: #969696; transition: all .3s linear;}
+.common-btn span{position: relative;}
+.common-btn:hover{color: #969696; transition: all .3s linear;}
+.common-btn:hover:before{height: 0; opacity: 0; transition: all .3s linear;}
+
+/*---------- input style ----------*/
+input, textarea {width: 100%; height: 34px; padding: 5px 10px; color: #333; background-color: #ccc; border: 1px solid transparent; font: 400 16px/24px 'Calibri';
+    transition: all 0.3s linear 0s;}
+input:focus, textarea:focus {border-color: #fff; transition: all 0.3s linear 0s;}
+input.error, textarea.error {border-color: #ff0000; transition: all 0.3s linear 0s;}
+textarea {height: 70px; position: static;}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #969696;}
+input:-moz-placeholder, textarea:-moz-placeholder {color: #969696; opacity: 1;}
+input::-moz-placeholder, textarea::-moz-placeholder {color: #969696; opacity: 1;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color: #969696;}
+
+.input-place{width: 100%;}
+.input-item{width: 100%; margin: 0 0 15px;}

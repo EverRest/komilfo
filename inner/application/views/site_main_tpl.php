@@ -19,7 +19,6 @@
         <?php if($this->init_model->is_admin()):?>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
             <link href='https://fonts.googleapis.com/css?family=Roboto:400,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-            <link href="<?=base_url('css/base.css');?>" rel="stylesheet">
             <script type="text/javascript" src="<?=base_url('js/html5.js');?>"></script>
             <script type="text/javascript" src="<?=base_url('js/jquery.maskedinput.min.js');?>"></script>
             <script type="text/javascript" src="<?=base_url('js/scripts.js?v=1');?>"></script>
@@ -48,55 +47,6 @@
               <html class="ie8">
             <![endif]-->
 <!--            </noscript>-->
-<!--                <script type="text/javascript">-->
-<!--                    $('#ask_question').on("click", function(e){-->
-<!--                        e.preventDefault()-->
-<!--                        goog_report_conversion();-->
-<!--                    });-->
-<!--                   // <![CDATA[ -->
-<!--                   goog_snippet_vars = function() {-->
-<!--                     var w = window;-->
-<!--                     w.google_conversion_id = 932925977;-->
-<!--                     w.google_conversion_label = "RUS9CIvqx2IQmaTtvAM";-->
-<!--                     w.google_conversion_value = 100.00;-->
-<!--                     w.google_conversion_currency = "UAH";-->
-<!--                     w.google_remarketing_only = false;-->
-<!--                   }-->
-<!--                   // DO NOT CHANGE THE CODE BELOW.-->
-<!--                   goog_report_conversion = function(url) {-->
-<!--                     goog_snippet_vars();-->
-<!--                     window.google_conversion_format = "3";-->
-<!--                     window.google_is_call = true;-->
-<!--                     var opt = new Object();-->
-<!--                     opt.onload_callback = function() {-->
-<!--                     if (typeof(url) != 'undefined') {-->
-<!--                       window.location = url;-->
-<!--                     }-->
-<!--                   }-->
-<!--                   var conv_handler = window['google_trackConversion'];-->
-<!--                   if (typeof(conv_handler) == 'function') {-->
-<!--                     conv_handler(opt);-->
-<!--                   }-->
-<!--                }-->
-<!--                // ]]>-->
-<!--                </script>-->
-<!--                <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js"></script>-->
-<!--                <script>-->
-<!--                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
-<!--                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
-<!--                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
-<!--                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
-<!--                    ga('create', 'UA-71666923-1', 'auto');-->
-<!--                    ga('send', 'pageview');-->
-<!--                </script>-->
-<!--                <script type="text/javascript">-->
-<!--        /* <![CDATA[ */-->
-<!--        var google_conversion_id = 932925977;-->
-<!--        var google_custom_params = window.google_tag_params;-->
-<!--        var google_remarketing_only = true;-->
-<!--        /* ]]> */-->
-<!--        </script>-->
-<!--        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>-->
 
 <!--        <noscript>-->
 <!--            <div style="display:inline;">-->
@@ -158,7 +108,7 @@
                             Комільфо - тільки так
                             і не інакше!
                         </div>
-                        <a href="#" class="btn btn-default btn-sub" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
+                        <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
                 </div>
 
@@ -168,7 +118,7 @@
                             Комільфо - тільки так
                             і не інакше!
                         </div>
-                        <a href="#" class="btn btn-default btn-sub" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
+                        <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
                 </div>
 
@@ -178,7 +128,7 @@
                             Комільфо - тільки так
                             і не інакше!
                         </div>
-                        <a href="#" class="btn btn-default btn-sub" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
+                        <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
                 </div>
             </div>
@@ -210,22 +160,24 @@
         </div>
     </footer>
         <div class="fm black" style="display: none;"></div>
-        <div class="popup" style="display: none;">
-            <a href="" class="close"></a>
-            <div class="fm title_popup" id="popup_title"></div>
-            <div class="fm text_place"></div>
-            <div class="fm title_popup" id="form_title"></div>
-            <div class="fm input_place_popup">
-                <div class="fm input_item"><input type="text" name="name" placeholder="ВАШЕ ІМ’Я"></div>
-                <div class="fm input_item phone_inp"><input type="text" name="phone" placeholder="ВАШ ТЕЛЕФОН"></div>
-                <div class="fm input_item mail_inp"><input type="text" name="email" placeholder="ВАШ EMAIL"></div>
-                <div class="fm input_item mail_inp"><textarea name="message" placeholder="ВАШЕ ЗАПИТАННЯ"></textarea></div>
+        <form method="POST">
+            <div class="popup" style="display: none;">
+                <a href="" class="close"></a>
+                <div class="fm title_popup" id="popup_title"></div>
+                <div class="fm text_place"></div>
+                <div class="fm title_popup" id="form_title"></div>
+                <div class="fm input-place_popup">
+                    <div class="fm input-item"><input type="text" id="name" name="name" placeholder="ВАШЕ ІМ’Я"></div>
+                    <div class="fm input-item phone_inp"><input type="text" id="phone" name="phone" placeholder="ВАШ ТЕЛЕФОН"></div>
+        <!--                <div class="fm input-item mail_inp"><input type="text" name="email" placeholder="ВАШ EMAIL"></div>-->
+                    <div class="fm input-item mail_inp"><textarea name="message" id="message" placeholder="ВАШЕ ПОВІДОМЛЕННЯ"></textarea></div>
+                </div>
+                <div class="fm btn btn-default button button_big"><a href="#" id="btn_form"><span>ВІДПРАВИТИ</span></a></div>
             </div>
-            <div class="fm button button_big"><a href="#" id="send_form"><span>ВІДПРАВИТИ</span></a></div>
-        </div>
+        </form>
     <script type="text/javascript" src="<?=base_url('js/libs.min.js');?>"></script>
     <script type="text/javascript" src="<?=base_url('js/app.js');?>"></script>
-<!--    <script type="text/javascript" src="--><?//=base_url('js/map.js');?><!--"></script>-->
+    <script type="text/javascript" src="<?=base_url('js/popup.js');?>"></script>
 </body>
 </html>
 
@@ -244,71 +196,3 @@
       <html class="ie8">
     <![endif]-->
     <?php endif;?>
-
-<!--<script type="text/javascript">-->
-<!--//<!--  $(function () {-->
-<!--//<!--    $('#feedback_name_--><?php //////echo $component_id; ?><!--////,#feedback_email_--><?php //////echo $component_id; ?><!--////,#feedback_message_--><?php //////echo $component_id; ?><!--////').on('keyup blur paste', function () {-->
-<!--      var $field = $(this).parents('.evry_title:eq(0)');-->
-<!--      $field.removeClass('wrong');-->
-<!--    });-->
-<!--    $('#feedback_code_--><?php //echo $component_id; ?><!--').on('keyup blur paste', function () {-->
-<!--      $(this).closest('.evry_title').removeClass('wrong');-->
-<!--    });-->
-<!--    $('#feedback_send_--><?php //echo $component_id; ?><!--').on('click', function (event) {-->
-<!--      event.preventDefault();-->
-<!--      var request = {-->
-<!--          component_id: --><?php //echo $component_id; ?><!--,-->
-<!--          menu_id: --><?php //echo $menu_id; ?><!--,-->
-<!--          name:$.trim($('#feedback_name_--><?php //echo $component_id; ?><!--').val()),-->
-<!--          email:$.trim($('#feedback_email_--><?php //echo $component_id; ?><!--').val()),-->
-<!--          phone:$.trim($('#feedback_phone_--><?php //echo $component_id; ?><!--').val()),-->
-<!--          theme:$.trim($('#feedback_theme_--><?php //echo $component_id; ?><!--').val()),-->
-<!--          message:$.trim($('#feedback_message_--><?php //echo $component_id; ?><!--').val()),-->
-<!--          code:$.trim($('#feedback_code_--><?php //echo $component_id; ?><!--').val())-->
-<!--        },-->
-<!--        $error = $('#feedback_alert_--><?php //echo $component_id; ?><!--');-->
-<!--      if (request.name === '') {-->
-<!--        var $field = $('#feedback_name_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
-<!--        return false;-->
-<!--      }-->
-<!--      var email_test = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i;-->
-<!--      if (!email_test.test(request.email)) {-->
-<!--        var $field = $('#feedback_email_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
-<!--        return false;-->
-<!--      }-->
-<!--      if (request.message === '') {-->
-<!--        var $field = $('#feedback_message_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
-<!--        return false;-->
-<!--      }-->
-<!--      if (request.code === '') {-->
-<!--        $('#feedback_code_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
-<!--        return false;-->
-<!--      }-->
-<!--      $.post(-->
-<!--        '--><?php //echo $this->uri->full_url('feedback/send'); ?><!--',-->
-<!--        request,-->
-<!--        function (response) {-->
-<!--          if (response.error === 0) {-->
-<!--            $('#feedback_--><?php //echo $component_id; ?><!--').fadeTo(500, 0).slideUp(function () {-->
-<!--              $(this).remove();-->
-<!--              $error.stop().fadeTo(50, 0).html('--><?// if(LANG=='ua')echo'Повідомлення відправлено';if(LANG=='ru')echo'Cообщение отправлено';if(LANG=='en')echo'Message sent';?><!--!').fadeTo(500, 1);-->
-<!--            });-->
-<!--          }-->
-<!--          if (response.error === 1) {-->
-<!--            $('#feedback_code_--><?php //echo $component_id; ?><!--').closest('.evry_title').addClass('wrong');-->
-<!--            $('#feedback_recaptcha_--><?php //echo $component_id; ?><!--').click();-->
-<!--          }-->
-<!--        },-->
-<!--        'json'-->
-<!--      );-->
-<!--    });-->
-<!--    $('#feedback_recaptcha_--><?php //echo $component_id; ?><!--').on('click', function (event) {-->
-<!--      event.preventDefault();-->
-<!--      $('#feedback_captcha_--><?php //echo $component_id; ?><!--').find('img').fadeTo(200, 0, function () {-->
-<!--        $(this).attr('src', '--><?php //echo $this->uri->full_url('feedback/captcha'); ?><!--#' + Math.random()).ready(function () {-->
-<!--          $('#feedback_captcha_--><?php //echo $component_id; ?><!--').find('img').fadeTo(1000, 1);-->
-<!--//        });-->
-<!--//      });-->
-<!--//    });-->
-<!--//  });-->
-<!--</script>-->

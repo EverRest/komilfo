@@ -14,7 +14,7 @@
                                     <address class="address-details">
                                         <?=$google_map['schedule'];?>
                                     </address>
-                                    <a href="#" class="btn btn-default">ЗАПИС НА ПРИЙОМ</a>
+                                    <a href="#" class="btn btn-default open-popup">ЗАПИС НА ПРИЙОМ</a>
                                 </div>
                             </div>
 

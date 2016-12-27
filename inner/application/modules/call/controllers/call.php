@@ -19,16 +19,16 @@
 
 			$this->load->library('form_validation');
 
-			$email = $this->input->post('email');
+//			$email = $this->input->post('email');
 			$name = $this->input->post("name");
 			$phone = $this->input->post("phone");
 			$message = $this->input->post("message");
 
-			$response['email'] =  $email;
+//			$response['email'] =  $email;
 			$response['message'] =  $message;
-
 			$this->form_validation->set_rules('name', '', 'required');
-			if($email != null) $this->form_validation->set_rules('email', '', 'required');
+            $this->form_validation->set_rules('phone', '', 'required');
+//			if($email != null) $this->form_validation->set_rules('email', '', 'required');
 
 			
 			if ($this->form_validation->run() AND $this->config->item('site_email') != '')
@@ -37,11 +37,11 @@
 
 				$domain_name = str_replace('www.', '', $this->input->server('HTTP_HOST'));
 
-				$subject = $this->input->post('subject');
+				$subject = "Примірка";
 				
 				$tpl_data = array ();
 
-				if($email != null){$tpl_data['email'] = $email;}
+//				if($email != null){$tpl_data['email'] = $email;}
 				if($name != null){$tpl_data['name'] = $name;}
 				if($phone != null){$tpl_data['phone'] = $phone;}
 				if($message != null){$tpl_data['message'] = $message;}

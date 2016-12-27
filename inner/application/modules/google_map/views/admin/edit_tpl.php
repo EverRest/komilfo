@@ -46,15 +46,15 @@
 			<div class="google_map_tab google_map_tab_<?=$key;?>"<?=(($key != LANG) ? ' style="display: none"' : ''); ?>>
                 <div class="evry_title">
                     <label for="ca_information_ua" class="block_label">Контактна інформація:</label>
-                    <div class="no_float"><textarea class="component_google_map" id="ca_information_ua" name="information" style="height: 400px"><?=stripslashes($google_map['information_ua']);?></textarea></div>
+                    <div class="no_float"><textarea class="component_google_map component_cke" id="ca_information_ua" name="information" style="height: 400px"><?=stripslashes($google_map['information_ua']);?></textarea></div>
                 </div>
                 <div class="evry_title">
                     <label for="ca_schedule_ua" class="block_label">Графік роботи:</label>
-                    <div class="no_float"><textarea class="component_google_map" id="ca_schedule_ua" name="schedule" style="height: 400px"><?=stripslashes($google_map['schedule_ua']);?></textarea></div>
+                    <div class="no_float"><textarea class="component_google_map component_cke" id="ca_schedule_ua" name="schedule" style="height: 400px"><?=stripslashes($google_map['schedule_ua']);?></textarea></div>
                 </div>
                 <div class="evry_title">
                     <label for="ca_sale_ua" class="block_label">Акція:</label>
-                    <div class="no_float"><textarea class="component_google_map" id="ca_sale_ua" name="sale" style="height: 400px"><?=stripslashes($google_map['sale_ua']);?></textarea></div>
+                    <div class="no_float"><textarea class="component_google_map component_cke" id="ca_sale_ua" name="sale" style="height: 400px"><?=stripslashes($google_map['sale_ua']);?></textarea></div>
                 </div>
 			</div>
 			<?php endforeach; ?>
@@ -111,12 +111,14 @@
 </div>
 <script type="text/javascript">
 	function save_component_google_map(callback) {
+        component_loader_show($('.component_loader'), '');
+        $('.component_cke').ckeditor({action: 'update'});
 	    $('#component_google_map_form').ajaxSubmit({
-			beforeSubmit:function () {
-//				global_helper.loader($('.component_loader'), '');
-			},
+//			beforeSubmit:function () {
+//				component_loader_hide($('.component_loader'), '');
+//			},
 			success:function (response) {
-//				global_helper.loader($('.component_loader'), 'Зміни збережено');
+				component_loader_hide($('.component_loader'), 'Зміни збережено');
 
 				if ($.type(callback) == 'function') callback();
 			},
