@@ -93,6 +93,12 @@
 			return $result;
 		}
 
+        public function get_swiper()
+        {
+            $result = $this->db->get('component_swiper')->result_array();
+            return $result;
+        }
+
 		public function save_header($set)
 		{
 			$where = array('id'=>1);

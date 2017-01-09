@@ -55,3 +55,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color: #969696;}
 
 .input-place{width: 100%;}
 .input-item{width: 100%; margin: 0 0 15px;}
+/*------------ benefits-services ------------------*/
+input.btn-add { max-width: 10%; display: block; float: left; margin: 20px 15%; }
+input.btn-add:hover { background-color: #d2d2d2;color: #fff; }
+input.btn-add:active { background-color: #d6d6d6; color: #fff; }

@@ -97,6 +97,78 @@
 			}
 		}
 
+        /**
+         * Swiper сайту
+         */
+
+        public function swiper()
+        {
+            if ($this->init_model->is_admin() AND $this->init_model->check_access('config_header'))
+            {
+                $menu_id = intval($this->input->get('menu_id'));
+
+                $this->init_model->set_menu_id($menu_id, TRUE);
+
+                $this->template_lib->set_title('Налаштування свайпера сайту');
+                $this->template_lib->set_admin_menu_active('config');
+                $this->template_lib->set_admin_menu_active('swiper', 'sub_level');
+                $this->load->model('admin_config_model');
+
+                $template_data = array(
+                    'languages' => $this->config->item('languages'),
+                    'swiper' => $this->admin_config_model->get_swiper()
+                );
+
+                $this->template_lib->set_content($this->load->view('swiper_tpl', $template_data, TRUE));
+            }
+        }
+
+        /**
+         * Збереження налаштувань свайпера
+         */
+
+        public function save_swiper()
+        {
+            $response = array('success' => FALSE);
+
+            if ($this->init_model->is_admin() AND $this->init_model->check_access('config_header'))
+            {
+                $this->load->model('admin_config_model');
+                $this->load->helper('form');
+                echo '<pre>';print_r($this->input->post());
+                $slogan = $this->input->post('slogan');
+                $phone1 = $this->input->post('kyivstar');
+                $phone2 = $this->input->post('life');
+                $phone3 = $this->input->post('mts');
+
+                $off_timer = $this->input->post('off_timer') == 'on' ? 1 : 0;
+
+//				foreach ($slogan as $key => $val)
+//				{
+//					$data['slogan_' . $key] = form_prep($val);
+                $data['kyivstar_' . 'ua'] = form_prep($phone1["ua"]);
+                $data['life_' . 'ua'] = form_prep($phone2["ua"]);
+//					$data['mts_' . $key] = form_prep($phone3[$key]);
+
+//					if ($date[$key] != '')
+//					{
+//						$date[$key] = ($time[$key] != '') ? strtotime($date[$key] . ' ' . $time[$key]) : strtotime($date[$key]);
+//					}
+//					else
+//					{
+//						$date[$key] = time();
+//					}
+//				}
+
+
+
+                $this->admin_config_model->save_header($data);
+
+                $response['success'] = TRUE;
+            }
+
+            return json_encode($response);
+        }
 		/**
 		 * Збереження налаштувань хедера
 		 */

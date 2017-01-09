@@ -14,7 +14,7 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_URI} !(.*)/$
 	RewriteCond %{REQUEST_URI} !\.html$
-	RewriteRule ^(.*)$ http://kom.sufix/$1/ [L,R=301]
+	RewriteRule ^(.*)$ http://programmer/$1/ [L,R=301]
 
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d

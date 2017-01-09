@@ -198,7 +198,14 @@
 				'config' => '',
 				'class' => 'fm common_set',
 			),
-
+            array(
+                'name' => 'Свайпер',
+                'url' => 'admin/config/swiper?',
+                'module' => 'config',
+                'index' => 'swiper',
+                'config' => '',
+                'class' => 'fm com_brands',
+            ),
 			array(
 				'name' => 'Номери телефонів',
 				'url' => 'admin/config/header?',
