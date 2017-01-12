@@ -17,62 +17,39 @@
 			return $this->db->get_where('component_services', array('id' => 1))->row_array();
 		}
 
+        public function get_service($id)
+        {
+            return $this->db->get_where('component_services', array('component_id' => $id))->result_array();
+		}
+
 		/**
 		 * Збереження компоненту
 		 *
 		 */
 		public function update($data)
 		{
+            $res = array();
+            $res['component_id'] = $data['component_id'];
+            $res['menu_id'] = $data['menu_id'];
+            $res['header'] = $data['ca_header'];
 
-				$data['m1'] = str_replace(array("\r", "\n", "\t"), '', $data['m1']);
-				$data['m1'] = $this->db->escape_str($data['m1']);
+            unset($data['component_id']);
+            unset($data['menu_id']);
+            unset($data['ca_header']);
 
-				$data['m2'] = str_replace(array("\r", "\n", "\t"), '', $data['m2']);
-				$data['m2'] = $this->db->escape_str($data['m2']);
+            $arr_num = array();
 
-				$data['m3'] = str_replace(array("\r", "\n", "\t"), '', $data['m3']);
-				$data['m3'] = $this->db->escape_str($data['m3']);
+            foreach ($data as $key => $value) {
+                array_push($arr_num, $value);
+            }
 
-				$data['m4'] = str_replace(array("\r", "\n", "\t"), '', $data['m4']);
-				$data['m4'] = $this->db->escape_str($data['m4']);
+            for($x = 0; $x < count($arr_num) - 1; $x++) {
+                $res['description'] = $arr_num[$x];
+                $x++;
+                $res['price'] = $arr_num[$x];
+                $this->db->insert('component_services', $res);
+            }
 
-
-
-				$data['m_1'] = str_replace(array("\r", "\n", "\t"), '', $data['m_1']);
-				$data['m_1'] = $this->db->escape_str($data['m_1']);
-
-				$data['m_2'] = str_replace(array("\r", "\n", "\t"), '', $data['m_2']);
-				$data['m_2'] = $this->db->escape_str($data['m_2']);
-
-				$data['m_3'] = str_replace(array("\r", "\n", "\t"), '', $data['m_3']);
-				$data['m_3'] = $this->db->escape_str($data['m_3']);
-
-				$data['m_4'] = str_replace(array("\r", "\n", "\t"), '', $data['m_4']);
-				$data['m_4'] = $this->db->escape_str($data['m_4']);
-
-				$data['m_5'] = str_replace(array("\r", "\n", "\t"), '', $data['m_5']);
-				$data['m_5'] = $this->db->escape_str($data['m_5']);
-
-				$data['m_1_1'] = str_replace(array("\r", "\n", "\t"), '', $data['m_1_1']);
-				$data['m_1_1'] = $this->db->escape_str($data['m_1_1']);
-
-				$data['m_2_2'] = str_replace(array("\r", "\n", "\t"), '', $data['m_2_2']);
-				$data['m_2_2'] = $this->db->escape_str($data['m_2_2']);
-
-				$data['m_3_3'] = str_replace(array("\r", "\n", "\t"), '', $data['m_3_3']);
-				$data['m_3_3'] = $this->db->escape_str($data['m_3_3']);
-
-				$data['m_4_4'] = str_replace(array("\r", "\n", "\t"), '', $data['m_4_4']);
-				$data['m_4_4'] = $this->db->escape_str($data['m_4_4']);
-
-				$data['m_5_5'] = str_replace(array("\r", "\n", "\t"), '', $data['m_5_5']);
-				$data['m_5_5'] = $this->db->escape_str($data['m_5_5']);
-
-
-
-
-
-			$this->db->update('component_services', $data, array('id' => 1));
 		}
 
 		/**
@@ -83,7 +60,7 @@
 		public function delete_component($component_id)
 		{
 			$this->db->delete('components', array('component_id' => $component_id));
-			$this->db->delete('component_article', array('component_id' => $component_id));
+			$this->db->delete('component_services', array('component_id' => $component_id));
 		}
 
 	}

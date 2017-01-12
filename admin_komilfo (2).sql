@@ -2,10 +2,10 @@
 -- version 4.4.15.7
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 09, 2017 at 11:05 AM
--- Server version: 5.5.50
--- PHP Version: 5.6.23
+-- Хост: 127.0.0.1:3306
+-- Время создания: Янв 12 2017 г., 18:41
+-- Версия сервера: 5.5.50
+-- Версия PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `admin_komilfo`
+-- База данных: `admin_komilfo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_administrators`
+-- Структура таблицы `ko_administrators`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_administrators` (
@@ -42,16 +42,16 @@ CREATE TABLE IF NOT EXISTS `ko_administrators` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_administrators`
+-- Дамп данных таблицы `ko_administrators`
 --
 
 INSERT INTO `ko_administrators` (`admin_id`, `name`, `login`, `password`, `salt`, `create_date`, `login_date`, `site_menu`, `admin_menu`, `root`, `status`, `edited`) VALUES
-(1, 'Адміністратор', 'admin', '3fcc0f1c93aec089e3857f834b9d66e8', '2a81ce665b7a39f7e0c493e5af16ef40', 1410864123, 1483809530, '1,316', 'components,article_index,google_map_index,feedback_index,news_index,comments_index,menu,menu_1,seo,seo_tags,seo_seo_link,seo_xml,seo_site_name,config,config_common,config_languages,config_administrators,config_watermark', 1, 0, 1);
+(1, 'Адміністратор', 'admin', '3fcc0f1c93aec089e3857f834b9d66e8', '2a81ce665b7a39f7e0c493e5af16ef40', 1410864123, 1484234783, '1,316', 'components,article_index,google_map_index,feedback_index,news_index,comments_index,menu,menu_1,seo,seo_tags,seo_seo_link,seo_xml,seo_site_name,config,config_common,config_languages,config_administrators,config_watermark', 1, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_components`
+-- Структура таблицы `ko_components`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_components` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `ko_components` (
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_components`
+-- Дамп данных таблицы `ko_components`
 --
 
 INSERT INTO `ko_components` (`component_id`, `menu_id`, `position`, `hidden`, `module`, `method`, `config`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `ko_components` (`component_id`, `menu_id`, `position`, `hidden`, `m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_article`
+-- Структура таблицы `ko_component_article`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_article` (
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_article` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_benefits`
+-- Структура таблицы `ko_component_benefits`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_benefits` (
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_benefits` (
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_component_benefits`
+-- Дамп данных таблицы `ko_component_benefits`
 --
 
 INSERT INTO `ko_component_benefits` (`component_id`, `menu_id`, `wide`, `title_ua`, `quote_ua`, `text_ua`, `author_ua`, `btn_active`, `background_fone`) VALUES
@@ -125,7 +125,7 @@ INSERT INTO `ko_component_benefits` (`component_id`, `menu_id`, `wide`, `title_u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_contacts`
+-- Структура таблицы `ko_component_contacts`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_contacts` (
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_contacts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_footer`
+-- Структура таблицы `ko_component_footer`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_footer` (
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_footer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_component_footer`
+-- Дамп данных таблицы `ko_component_footer`
 --
 
 INSERT INTO `ko_component_footer` (`id`, `vk`, `fb`, `gplus`, `ing`) VALUES
@@ -168,7 +168,7 @@ INSERT INTO `ko_component_footer` (`id`, `vk`, `fb`, `gplus`, `ing`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_frequent`
+-- Структура таблицы `ko_component_frequent`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_frequent` (
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_frequent` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_component_frequent`
+-- Дамп данных таблицы `ko_component_frequent`
 --
 
 INSERT INTO `ko_component_frequent` (`id`, `answer`, `questions`) VALUES
@@ -197,7 +197,7 @@ INSERT INTO `ko_component_frequent` (`id`, `answer`, `questions`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_google_map`
+-- Структура таблицы `ko_component_google_map`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_google_map` (
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_google_map` (
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_component_google_map`
+-- Дамп данных таблицы `ko_component_google_map`
 --
 
 INSERT INTO `ko_component_google_map` (`component_id`, `menu_id`, `information_ua`, `schedule_ua`, `sale_ua`, `marker_lat`, `marker_lng`, `center_lat`, `center_lng`, `wide`, `zoom`) VALUES
@@ -224,7 +224,7 @@ INSERT INTO `ko_component_google_map` (`component_id`, `menu_id`, `information_u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_header`
+-- Структура таблицы `ko_component_header`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_header` (
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_header` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_component_header`
+-- Дамп данных таблицы `ko_component_header`
 --
 
 INSERT INTO `ko_component_header` (`id`, `slogan_ua`, `slogan_ru`, `address_ua`, `address_ru`, `kyivstar_ua`, `life_ua`, `mts_ua`, `phone4_ua`, `kyivstar_ru`, `life_ru`, `mts_ru`, `phone4_ru`, `title_action_ua`, `title_action_ru`, `main_action_ua`, `main_action_ru`, `time_ua`, `time_ru`) VALUES
@@ -259,32 +259,22 @@ INSERT INTO `ko_component_header` (`id`, `slogan_ua`, `slogan_ru`, `address_ua`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_services`
+-- Структура таблицы `ko_component_services`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_services` (
   `id` int(11) NOT NULL,
-  `t1` varchar(250) NOT NULL DEFAULT '0',
-  `t2` varchar(250) NOT NULL DEFAULT '0',
-  `t3` varchar(250) NOT NULL DEFAULT '0',
-  `t4` varchar(250) NOT NULL DEFAULT '0',
-  `m1` text NOT NULL,
-  `m2` text NOT NULL,
-  `m3` text NOT NULL,
-  `m4` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `ko_component_services`
---
-
-INSERT INTO `ko_component_services` (`id`, `t1`, `t2`, `t3`, `t4`, `m1`, `m2`, `m3`, `m4`) VALUES
-(1, 'ЛІФТИ', 'ЕСКАЛАТОРИ', 'ПІДЙОМНИКИ', 'ТРАВОЛАТОРИ', '<table class=\\"ep-dp-dt\\" style=\\"width: 630px; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: small; line-height: normal;\\"><tbody><tr id=\\":2o.calendarcontainer-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: middle; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><span style=\\"background-color:Lime;\\"><span style=\\"font-family:trebuchet ms,helvetica,sans-serif;\\"><label id=\\":2o.calendarcontainer-label\\">Календарь</label></span></span></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-calendar\\" id=\\":2o.calendarcontainer\\"><span style=\\"background-color:Lime;\\"><span style=\\"font-family:trebuchet ms,helvetica,sans-serif;\\">&quot;SUFIX&quot; web studio - Андрій Сагатий</span></span></div></td></tr><tr id=\\":2o.createdby-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><span style=\\"background-color:Lime;\\"><span style=\\"font-family:trebuchet ms,helvetica,sans-serif;\\"><label id=\\":2o.createdby-label\\">Автор:</label></span></span></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-createdby\\" id=\\":2o.createdby\\"><span style=\\"background-color:Lime;\\"><span style=\\"font-family:trebuchet ms,helvetica,sans-serif;\\">kirsland@gmail.com</span></span></div></td></tr><tr id=\\":2o.descript-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><span style=\\"background-color:Lime;\\"><span style=\\"font-family:trebuchet ms,helvetica,sans-serif;\\"><label id=\\":2o.descript-label\\">Описание</label></span></span></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-descript\\" id=\\":2o.descript\\" style=\\"line-height: 1.4em; white-space: pre-wrap;\\"><div class=\\"ui-sch\\" style=\\"padding-right: 6px;\\"><div class=\\"ui-sch-view\\" style=\\"border: 0px; margin: 0px; padding: 0px; max-width: 550px; overflow: auto;\\"><span style=\\"background-color:Lime;\\"><span style=\\"font-family:trebuchet ms,helvetica,sans-serif;\\">Верстка - 12 год*30=360 грн Програмування. Сайт натягнути на адмінку. Зроби ефект плавного появлення інформації при попаданні її на видиму область монітору. Обговоримо ще це. Всі блоки повинні бути як компоненти, які редагуються тільки у випадку наявності досить великої к-сті тексту. Потрібно мати можливість змінювати в редакторі всі тексти по компонентах та тексти всіх поп-ап вікон. Всі контакти повинні редагуватись в налаштуваннях, це стосується і позначки на Мапі. Це в нас буде кістяк для насупних лендінгів. Програмування: 15 год*40=600 грн Разом: 960 грн</span></span></div></div></div></td></tr><tr><td colspan=\\"2\\">&nbsp;</td></tr></tbody></table>', '<table class=\\"ep-dp-dt\\" style=\\"width: 630px; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: small; line-height: normal;\\"><tbody><tr id=\\":2o.calendarcontainer-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: middle; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.calendarcontainer-label\\">Календарь</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-calendar\\" id=\\":2o.calendarcontainer\\">&quot;SUFIX&quot; web studio - Андрій Сагатий</div></td></tr><tr id=\\":2o.createdby-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.createdby-label\\">Автор:</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-createdby\\" id=\\":2o.createdby\\">kirsland@gmail.com</div></td></tr><tr id=\\":2o.descript-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.descript-label\\">Описание</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-descript\\" id=\\":2o.descript\\" style=\\"line-height: 1.4em; white-space: pre-wrap;\\"><div class=\\"ui-sch\\" style=\\"padding-right: 6px;\\"><div class=\\"ui-sch-view\\" style=\\"border: 0px; margin: 0px; padding: 0px; max-width: 550px; overflow: auto;\\">Верстка - 12 год*30=360 грн Програмування. Сайт натягнути на адмінку. Зроби ефект плавного появлення інформації при попаданні її на видиму область монітору. Обговоримо ще це. Всі блоки повинні бути як компоненти, які редагуються тільки у випадку наявності досить великої к-сті тексту. Потрібно мати можливість змінювати в редакторі всі тексти по компонентах та тексти всіх поп-ап вікон. Всі контакти повинні редагуватись в налаштуваннях, це стосується і позначки на Мапі. Це в нас буде кістяк для насупних лендінгів. Програмування: 15 год*40=600 грн Разом: 960 грн</div></div></div></td></tr><tr><td colspan=\\"2\\">&nbsp;</td></tr></tbody></table>', '<table class=\\"ep-dp-dt\\" style=\\"width: 630px; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: small; line-height: normal;\\"><tbody><tr id=\\":2o.calendarcontainer-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: middle; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.calendarcontainer-label\\">Календарь</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-calendar\\" id=\\":2o.calendarcontainer\\">&quot;SUFIX&quot; web studio - Андрій Сагатий</div></td></tr><tr id=\\":2o.createdby-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.createdby-label\\">Автор:</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-createdby\\" id=\\":2o.createdby\\">kirsland@gmail.com</div></td></tr><tr id=\\":2o.descript-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.descript-label\\">Описание</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-descript\\" id=\\":2o.descript\\" style=\\"line-height: 1.4em; white-space: pre-wrap;\\"><div class=\\"ui-sch\\" style=\\"padding-right: 6px;\\"><div class=\\"ui-sch-view\\" style=\\"border: 0px; margin: 0px; padding: 0px; max-width: 550px; overflow: auto;\\">Верстка - 12 год*30=360 грн Програмування. Сайт натягнути на адмінку. Зроби ефект плавного появлення інформації при попаданні її на видиму область монітору. Обговоримо ще це. Всі блоки повинні бути як компоненти, які редагуються тільки у випадку наявності досить великої к-сті тексту. Потрібно мати можливість змінювати в редакторі всі тексти по компонентах та тексти всіх поп-ап вікон. Всі контакти повинні редагуватись в налаштуваннях, це стосується і позначки на Мапі. Це в нас буде кістяк для насупних лендінгів. Програмування: 15 год*40=600 грн Разом: 960 грн</div></div></div></td></tr><tr><td colspan=\\"2\\">&nbsp;</td></tr></tbody></table>', '<table class=\\"ep-dp-dt\\" style=\\"width: 630px; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: small; line-height: normal;\\"><tbody><tr id=\\":2o.calendarcontainer-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: middle; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.calendarcontainer-label\\">Календарь</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-calendar\\" id=\\":2o.calendarcontainer\\">&quot;SUFIX&quot; web studio - Андрій Сагатий</div></td></tr><tr id=\\":2o.createdby-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.createdby-label\\">Автор:</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-createdby\\" id=\\":2o.createdby\\">kirsland@gmail.com</div></td></tr><tr id=\\":2o.descript-row\\"><th class=\\"ep-dp-dt-th\\" style=\\"padding-bottom: 10px; vertical-align: top; color: rgb(51, 51, 51); padding-right: 10px; text-align: right; white-space: nowrap;\\"><label id=\\":2o.descript-label\\">Описание</label></th><td class=\\"ep-dp-dt-td\\" style=\\"padding-bottom: 10px; vertical-align: top; width: 459px;\\"><div class=\\"ep-dp-descript\\" id=\\":2o.descript\\" style=\\"line-height: 1.4em; white-space: pre-wrap;\\"><div class=\\"ui-sch\\" style=\\"padding-right: 6px;\\"><div class=\\"ui-sch-view\\" style=\\"border: 0px; margin: 0px; padding: 0px; max-width: 550px; overflow: auto;\\">Верстка - 12 год*30=360 грн Програмування. Сайт натягнути на адмінку. Зроби ефект плавного появлення інформації при попаданні її на видиму область монітору. Обговоримо ще це. Всі блоки повинні бути як компоненти, які редагуються тільки у випадку наявності досить великої к-сті тексту. Потрібно мати можливість змінювати в редакторі всі тексти по компонентах та тексти всіх поп-ап вікон. Всі контакти повинні редагуватись в налаштуваннях, це стосується і позначки на Мапі. Це в нас буде кістяк для насупних лендінгів. Програмування: 15 год*40=600 грн Разом: 960 грн</div></div></div></td></tr><tr><td colspan=\\"2\\">&nbsp;</td></tr></tbody></table>');
+  `component_id` int(6) NOT NULL,
+  `menu_id` int(6) NOT NULL,
+  `header` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_component_swiper`
+-- Структура таблицы `ko_component_swiper`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_component_swiper` (
@@ -299,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `ko_component_swiper` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_config`
+-- Структура таблицы `ko_config`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_config` (
@@ -308,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `ko_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_config`
+-- Дамп данных таблицы `ko_config`
 --
 
 INSERT INTO `ko_config` (`key`, `val`) VALUES
@@ -328,7 +318,7 @@ INSERT INTO `ko_config` (`key`, `val`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_gallery`
+-- Структура таблицы `ko_gallery`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_gallery` (
@@ -356,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `ko_gallery` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_google_map`
+-- Структура таблицы `ko_google_map`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_google_map` (
@@ -380,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `ko_google_map` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `ko_google_map`
+-- Дамп данных таблицы `ko_google_map`
 --
 
 INSERT INTO `ko_google_map` (`component_id`, `menu_id`, `center_lat`, `center_lng`, `marker_lat`, `marker_lng`, `zoom`, `title_en`, `description_en`, `contacts_check`, `title_ua`, `description_ua`, `url_ua`, `url_en`, `phone`, `photo`, `image_id`) VALUES
@@ -389,7 +379,7 @@ INSERT INTO `ko_google_map` (`component_id`, `menu_id`, `center_lat`, `center_ln
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_html_components`
+-- Структура таблицы `ko_html_components`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_html_components` (
@@ -400,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `ko_html_components` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_loyalty`
+-- Структура таблицы `ko_loyalty`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_loyalty` (
@@ -410,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `ko_loyalty` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_loyalty`
+-- Дамп данных таблицы `ko_loyalty`
 --
 
 INSERT INTO `ko_loyalty` (`id`, `component_id`, `text`) VALUES
@@ -419,7 +409,7 @@ INSERT INTO `ko_loyalty` (`id`, `component_id`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_menu`
+-- Структура таблицы `ko_menu`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_menu` (
@@ -463,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `ko_menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_menu`
+-- Дамп данных таблицы `ko_menu`
 --
 
 INSERT INTO `ko_menu` (`id`, `parent_id`, `level`, `menu_index`, `position`, `hidden`, `main`, `target`, `url_path_id`, `name_ua`, `title_ua`, `url_ua`, `url_path_ua`, `url_hash_ua`, `static_url_ua`, `name_ru`, `title_ru`, `url_ru`, `url_path_ru`, `url_hash_ru`, `static_url_ru`, `name_en`, `title_en`, `url_en`, `url_path_en`, `url_hash_en`, `static_url_en`, `name_pl`, `title_pl`, `url_pl`, `url_path_pl`, `url_hash_pl`, `static_url_pl`, `image`, `icon`, `code`, `update`) VALUES
@@ -473,7 +463,7 @@ INSERT INTO `ko_menu` (`id`, `parent_id`, `level`, `menu_index`, `position`, `hi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_news`
+-- Структура таблицы `ko_news`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_news` (
@@ -507,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `ko_news` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_news`
+-- Дамп данных таблицы `ko_news`
 --
 
 INSERT INTO `ko_news` (`news_id`, `menu_id`, `component_id`, `hidden`, `position`, `date`, `title_ua`, `title_ru`, `title_en`, `title_pl`, `url_ua`, `url_ru`, `url_en`, `url_pl`, `text_ua`, `text_ru`, `text_en`, `text_pl`, `anons_ua`, `anons_ru`, `anons_en`, `anons_pl`, `price_start_eur`, `price_end_eur`, `price_start_usd`, `price_end_usd`, `update`) VALUES
@@ -519,7 +509,7 @@ INSERT INTO `ko_news` (`news_id`, `menu_id`, `component_id`, `hidden`, `position
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_news_images`
+-- Структура таблицы `ko_news_images`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_news_images` (
@@ -533,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `ko_news_images` (
 ) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_news_images`
+-- Дамп данных таблицы `ko_news_images`
 --
 
 INSERT INTO `ko_news_images` (`image_id`, `menu_id`, `component_id`, `news_id`, `position`, `file_name`, `watermark_position`) VALUES
@@ -545,7 +535,7 @@ INSERT INTO `ko_news_images` (`image_id`, `menu_id`, `component_id`, `news_id`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_reviews`
+-- Структура таблицы `ko_reviews`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_reviews` (
@@ -569,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `ko_reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_seo_link`
+-- Структура таблицы `ko_seo_link`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_seo_link` (
@@ -580,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `ko_seo_link` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_seo_tags`
+-- Структура таблицы `ko_seo_tags`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_seo_tags` (
@@ -624,7 +614,7 @@ CREATE TABLE IF NOT EXISTS `ko_seo_tags` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1374 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_seo_tags`
+-- Дамп данных таблицы `ko_seo_tags`
 --
 
 INSERT INTO `ko_seo_tags` (`tags_id`, `item_id`, `component_id`, `menu_id`, `module`, `type_ua`, `title_ua`, `description_ua`, `keywords_ua`, `cache_title_ua`, `cache_description_ua`, `cache_keywords_ua`, `cache_ua`, `type_ru`, `title_ru`, `description_ru`, `keywords_ru`, `cache_title_ru`, `cache_description_ru`, `cache_keywords_ru`, `cache_ru`, `type_en`, `title_en`, `description_en`, `keywords_en`, `cache_title_en`, `cache_description_en`, `cache_keywords_en`, `cache_en`, `type_pl`, `title_pl`, `description_pl`, `keywords_pl`, `cache_title_pl`, `cache_description_pl`, `cache_keywords_pl`, `cache_pl`) VALUES
@@ -634,7 +624,7 @@ INSERT INTO `ko_seo_tags` (`tags_id`, `item_id`, `component_id`, `menu_id`, `mod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_site_links`
+-- Структура таблицы `ko_site_links`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_site_links` (
@@ -653,7 +643,7 @@ CREATE TABLE IF NOT EXISTS `ko_site_links` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_slider`
+-- Структура таблицы `ko_slider`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_slider` (
@@ -679,7 +669,7 @@ CREATE TABLE IF NOT EXISTS `ko_slider` (
 ) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ko_slider`
+-- Дамп данных таблицы `ko_slider`
 --
 
 INSERT INTO `ko_slider` (`slide_id`, `menu_id`, `position`, `hidden`, `title_ua`, `url_ua`, `file_name_ua`, `title_ru`, `url_ru`, `file_name_ru`, `title_en`, `url_en`, `hidden_ua`, `hidden_ru`, `hidden_en`, `file_name_en`, `description_ua`, `description_ru`, `description_en`) VALUES
@@ -690,7 +680,7 @@ INSERT INTO `ko_slider` (`slide_id`, `menu_id`, `position`, `hidden`, `title_ua`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ko_timer`
+-- Структура таблицы `ko_timer`
 --
 
 CREATE TABLE IF NOT EXISTS `ko_timer` (
@@ -708,147 +698,147 @@ CREATE TABLE IF NOT EXISTS `ko_timer` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `ko_administrators`
+-- Индексы таблицы `ko_administrators`
 --
 ALTER TABLE `ko_administrators`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `ko_components`
+-- Индексы таблицы `ko_components`
 --
 ALTER TABLE `ko_components`
   ADD PRIMARY KEY (`component_id`),
   ADD KEY `menu_id` (`menu_id`,`hidden`);
 
 --
--- Indexes for table `ko_component_article`
+-- Индексы таблицы `ko_component_article`
 --
 ALTER TABLE `ko_component_article`
   ADD PRIMARY KEY (`component_id`),
   ADD KEY `menu_id` (`menu_id`);
 
 --
--- Indexes for table `ko_component_benefits`
+-- Индексы таблицы `ko_component_benefits`
 --
 ALTER TABLE `ko_component_benefits`
   ADD PRIMARY KEY (`component_id`);
 
 --
--- Indexes for table `ko_component_contacts`
+-- Индексы таблицы `ko_component_contacts`
 --
 ALTER TABLE `ko_component_contacts`
   ADD PRIMARY KEY (`component_id`),
   ADD KEY `menu_id` (`menu_id`);
 
 --
--- Indexes for table `ko_component_footer`
+-- Индексы таблицы `ko_component_footer`
 --
 ALTER TABLE `ko_component_footer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ko_component_google_map`
+-- Индексы таблицы `ko_component_google_map`
 --
 ALTER TABLE `ko_component_google_map`
   ADD PRIMARY KEY (`component_id`);
 
 --
--- Indexes for table `ko_component_header`
+-- Индексы таблицы `ko_component_header`
 --
 ALTER TABLE `ko_component_header`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ko_component_services`
+-- Индексы таблицы `ko_component_services`
 --
 ALTER TABLE `ko_component_services`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ko_component_swiper`
+-- Индексы таблицы `ko_component_swiper`
 --
 ALTER TABLE `ko_component_swiper`
   ADD PRIMARY KEY (`slide_id`),
   ADD KEY `hidden` (`hidden`);
 
 --
--- Indexes for table `ko_config`
+-- Индексы таблицы `ko_config`
 --
 ALTER TABLE `ko_config`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indexes for table `ko_gallery`
+-- Индексы таблицы `ko_gallery`
 --
 ALTER TABLE `ko_gallery`
   ADD PRIMARY KEY (`slide_id`),
   ADD KEY `hidden` (`hidden`);
 
 --
--- Indexes for table `ko_google_map`
+-- Индексы таблицы `ko_google_map`
 --
 ALTER TABLE `ko_google_map`
   ADD PRIMARY KEY (`component_id`),
   ADD KEY `menu_id` (`menu_id`);
 
 --
--- Indexes for table `ko_html_components`
+-- Индексы таблицы `ko_html_components`
 --
 ALTER TABLE `ko_html_components`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ko_loyalty`
+-- Индексы таблицы `ko_loyalty`
 --
 ALTER TABLE `ko_loyalty`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ko_menu`
+-- Индексы таблицы `ko_menu`
 --
 ALTER TABLE `ko_menu`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent_id` (`parent_id`,`menu_index`,`hidden`);
 
 --
--- Indexes for table `ko_news`
+-- Индексы таблицы `ko_news`
 --
 ALTER TABLE `ko_news`
   ADD PRIMARY KEY (`news_id`),
   ADD KEY `component_id` (`component_id`);
 
 --
--- Indexes for table `ko_news_images`
+-- Индексы таблицы `ko_news_images`
 --
 ALTER TABLE `ko_news_images`
   ADD PRIMARY KEY (`image_id`),
   ADD KEY `news_id` (`news_id`);
 
 --
--- Indexes for table `ko_reviews`
+-- Индексы таблицы `ko_reviews`
 --
 ALTER TABLE `ko_reviews`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `component_id` (`component_id`);
 
 --
--- Indexes for table `ko_seo_link`
+-- Индексы таблицы `ko_seo_link`
 --
 ALTER TABLE `ko_seo_link`
   ADD PRIMARY KEY (`menu_id`);
 
 --
--- Indexes for table `ko_seo_tags`
+-- Индексы таблицы `ko_seo_tags`
 --
 ALTER TABLE `ko_seo_tags`
   ADD PRIMARY KEY (`tags_id`);
 
 --
--- Indexes for table `ko_site_links`
+-- Индексы таблицы `ko_site_links`
 --
 ALTER TABLE `ko_site_links`
   ADD PRIMARY KEY (`link_id`),
@@ -856,114 +846,114 @@ ALTER TABLE `ko_site_links`
   ADD KEY `item_id` (`item_id`,`module`);
 
 --
--- Indexes for table `ko_slider`
+-- Индексы таблицы `ko_slider`
 --
 ALTER TABLE `ko_slider`
   ADD PRIMARY KEY (`slide_id`),
   ADD KEY `hidden` (`hidden`);
 
 --
--- Indexes for table `ko_timer`
+-- Индексы таблицы `ko_timer`
 --
 ALTER TABLE `ko_timer`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `ko_administrators`
+-- AUTO_INCREMENT для таблицы `ko_administrators`
 --
 ALTER TABLE `ko_administrators`
   MODIFY `admin_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `ko_components`
+-- AUTO_INCREMENT для таблицы `ko_components`
 --
 ALTER TABLE `ko_components`
   MODIFY `component_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
 --
--- AUTO_INCREMENT for table `ko_component_benefits`
+-- AUTO_INCREMENT для таблицы `ko_component_benefits`
 --
 ALTER TABLE `ko_component_benefits`
   MODIFY `component_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
 --
--- AUTO_INCREMENT for table `ko_component_footer`
+-- AUTO_INCREMENT для таблицы `ko_component_footer`
 --
 ALTER TABLE `ko_component_footer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `ko_component_google_map`
+-- AUTO_INCREMENT для таблицы `ko_component_google_map`
 --
 ALTER TABLE `ko_component_google_map`
   MODIFY `component_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
--- AUTO_INCREMENT for table `ko_component_header`
+-- AUTO_INCREMENT для таблицы `ko_component_header`
 --
 ALTER TABLE `ko_component_header`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `ko_component_services`
+-- AUTO_INCREMENT для таблицы `ko_component_services`
 --
 ALTER TABLE `ko_component_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `ko_component_swiper`
+-- AUTO_INCREMENT для таблицы `ko_component_swiper`
 --
 ALTER TABLE `ko_component_swiper`
   MODIFY `slide_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
 --
--- AUTO_INCREMENT for table `ko_gallery`
+-- AUTO_INCREMENT для таблицы `ko_gallery`
 --
 ALTER TABLE `ko_gallery`
   MODIFY `slide_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
--- AUTO_INCREMENT for table `ko_html_components`
+-- AUTO_INCREMENT для таблицы `ko_html_components`
 --
 ALTER TABLE `ko_html_components`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `ko_loyalty`
+-- AUTO_INCREMENT для таблицы `ko_loyalty`
 --
 ALTER TABLE `ko_loyalty`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `ko_menu`
+-- AUTO_INCREMENT для таблицы `ko_menu`
 --
 ALTER TABLE `ko_menu`
   MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `ko_news`
+-- AUTO_INCREMENT для таблицы `ko_news`
 --
 ALTER TABLE `ko_news`
   MODIFY `news_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `ko_news_images`
+-- AUTO_INCREMENT для таблицы `ko_news_images`
 --
 ALTER TABLE `ko_news_images`
   MODIFY `image_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=151;
 --
--- AUTO_INCREMENT for table `ko_reviews`
+-- AUTO_INCREMENT для таблицы `ko_reviews`
 --
 ALTER TABLE `ko_reviews`
   MODIFY `review_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `ko_seo_tags`
+-- AUTO_INCREMENT для таблицы `ko_seo_tags`
 --
 ALTER TABLE `ko_seo_tags`
   MODIFY `tags_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1374;
 --
--- AUTO_INCREMENT for table `ko_site_links`
+-- AUTO_INCREMENT для таблицы `ko_site_links`
 --
 ALTER TABLE `ko_site_links`
   MODIFY `link_id` int(6) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `ko_slider`
+-- AUTO_INCREMENT для таблицы `ko_slider`
 --
 ALTER TABLE `ko_slider`
   MODIFY `slide_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
 --
--- AUTO_INCREMENT for table `ko_timer`
+-- AUTO_INCREMENT для таблицы `ko_timer`
 --
 ALTER TABLE `ko_timer`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;

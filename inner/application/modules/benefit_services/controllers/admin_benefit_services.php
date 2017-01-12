@@ -28,7 +28,7 @@
 				$template_data = array(
 					'menu_id' => $menu_id,
 					'component_id' => $component_id,
-					'article' => $this->admin_benefit_services_model->get_article(),
+					'services' => $this->admin_benefit_services_model->get_service($component_id),
 					'languages' => $this->config->item('languages'),
 				);
 				$this->template_lib->set_content($this->load->view('admin/edit_tpl', $template_data, TRUE));
@@ -51,32 +51,7 @@
 
 			if ($this->init_model->is_admin() AND $this->init_model->check_access('benefit_services_index', $menu_id) AND $menu_id > 0 AND $component_id > 0)
 			{
-				$data =array(
-				't1' => $this->input->post('t1'),
-				't2' => $this->input->post('t2'),
-				't3' => $this->input->post('t3'),
-				't4' => $this->input->post('t4'),
-				'm1' => $this->input->post('m1'),
-				'm2' => $this->input->post('m2'),
-				'm3' => $this->input->post('m3'),
-				'm4' => $this->input->post('m4'),
-					't_1' => $this->input->post('t_1'),
-					't_2' => $this->input->post('t_2'),
-					't_3' => $this->input->post('t_3'),
-					't_4' => $this->input->post('t_4'),
-					't_5' => $this->input->post('t_5'),
-					'm_1' => $this->input->post('m_1'),
-					'm_2' => $this->input->post('m_2'),
-					'm_3' => $this->input->post('m_3'),
-					'm_4' => $this->input->post('m_4'),
-					'm_5' => $this->input->post('m_5'),
-						'm_1_1' => $this->input->post('m_1_1'),
-						'm_2_2' => $this->input->post('m_2_2'),
-						'm_3_3' => $this->input->post('m_3_3'),
-						'm_4_4' => $this->input->post('m_4_4'),
-						'm_5_5' => $this->input->post('m_5_5'),
-
-				);
+				$data = $this->input->post();
 
 				$this->load->model('admin_benefit_services_model');
 				$this->load->helper('form');

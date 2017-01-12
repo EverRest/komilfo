@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<article>
-		<h1>Послуги і ціни</h1>
+        <h1>Наші послуги</h1>
 	</article>
 </div>
 <script type="text/javascript">

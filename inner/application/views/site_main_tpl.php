@@ -14,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Condensed|Roboto:400,700&amp;subset=cyrillic" rel="stylesheet">
         <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
         <link rel="stylesheet" href="<?=base_url('css/unique.css');?>">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" src="<?=base_url('js/jquery/jquery.min.js');?>"></script>
         <script type="text/javascript" src="<?=base_url('js/map.js');?>"></script>
         <?php if($this->init_model->is_admin()):?>
