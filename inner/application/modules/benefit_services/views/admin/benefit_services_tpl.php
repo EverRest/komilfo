@@ -1,4 +1,6 @@
 <?php defined('ROOT_PATH') OR exit('No direct script access allowed'); ?>
+
+<?php //print_r($services);exit;?>
 <div class="admin_component" id="admin_component_<?=$component_id;?>" data-component-id="<?=$component_id;?>" data-menu-id="<?=$menu_id;?>" data-module="article" data-css-class="article" data-visibility-url="<?=$this->uri->full_url('admin/components/toggle_visibility');?>" data-delete-url="<?=$this->uri->full_url('admin/benefit_services/delete_component');?>">
 	<div class="component_loader"><span></span></div>
 	<div class="fm adcom_panel">

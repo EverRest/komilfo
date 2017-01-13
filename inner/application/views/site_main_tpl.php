@@ -5,6 +5,7 @@
 	$languages = $this->config->item('database_languages');
 	$site_name = $this->config->item('site_name_'.LANG);
 ?>
+<?php error_reporting( E_ERROR ); ?>
 <!DOCTYPE html>
 <html lang="uk">
     <head>
@@ -98,40 +99,32 @@
                 <img src="<?=base_url('images/logo.png');?>" alt="">
             </a>
         </div>
-
         <!-- Swiper -->
         <div class="main-slider swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide slide-bg" style="background-image: url('images/main-slider/01.jpg')">
-                    <div class="slide-content">
-
-                        <div class="slide-text" data-caption-animate="fadeInUp">
-                            Комільфо - тільки так
-                            і не інакше!
+                <?php if ( !isset($swipe['file_name']) || empty($swipe['file_name']) ): ?>
+                    <?php $url = 'images/main-slider/01.jpg'; ?>
+                    <div class="swiper-slide slide-bg" style="background-image: url('<?= base_url($url); ?>')">
+                        <div class="slide-content">
+                            <div class="slide-text text-uppercase" data-caption-animate="fadeInUp">
+                                Комільфо - тільки так і не інакше
+                            </div>
+                            <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                         </div>
-                        <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
-                </div>
-
-                <div class="swiper-slide slide-bg" style="background-image: url('images/main-slider/01.jpg')">
-                    <div class="slide-content">
-                        <div class="slide-text" data-caption-animate="fadeInUp">
-                            Комільфо - тільки так
-                            і не інакше!
+                <? endif; ?>
+                <?php foreach($swipes as $swipe): ?>
+                    <?php $url = 'upload/swiper/1/'.$swipe['slide_id'].'/'.$swipe['file_name']; ?>
+                    <div class="swiper-slide slide-bg" style="background-image: url('<?= base_url($url);?>')">
+                        <div class="slide-content">
+                            <? $description = str_replace(array('<p>','<span style=&quot;color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; line-height: 20px; text-align: justify;&quot;>','</span>','</p>'),'',$swipe['description']);?>
+                            <div class="slide-text" data-caption-animate="fadeInUp">
+                                <?php echo $description; ?>
+                            </div>
+                            <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                         </div>
-                        <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                     </div>
-                </div>
-
-                <div class="swiper-slide slide-bg" style="background-image: url('images/main-slider/01.jpg')">
-                    <div class="slide-content">
-                        <div class="slide-text" data-caption-animate="fadeInUp">
-                            Комільфо - тільки так
-                            і не інакше!
-                        </div>
-                        <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
 

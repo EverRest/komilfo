@@ -16,7 +16,7 @@
 <!--			<a href="#" class="fm save"><b></b>Зберегти</a>-->
 <!--			<a href="#" class="fm apply"><b></b>Застосувати</a>-->
 <!--			<a href="#" class="fm cancel"><b></b>Скасувати</a>-->
-
+            <a id="add_title_service" href="#" class="fm save_adm"><i class="fa fa-plus" aria-hidden="true"></i>  Додати заголовок</a>
             <a id="add_service" href="#" class="fm save_adm"><i class="fa fa-plus" aria-hidden="true"></i>  Додати послугу</a>
 		</div>
 	</div>
@@ -73,8 +73,13 @@
 
     function service() {
         var i=2;
-
         checkout_input();
+
+        $('#add_title_service').on('click', function (e) {
+            e.preventDefault();
+            console.log('added title');
+        })
+
         $('#add_service').on('click', function (e) {
             e.preventDefault();
             var li = '<li data-id="'+i+'">'+

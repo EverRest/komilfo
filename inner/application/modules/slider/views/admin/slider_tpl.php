@@ -41,7 +41,7 @@
 					<div class="cell w_20 icon">
 						<a href="<?php echo $this->uri->full_url('admin/slider/edit?menu_id=' . $menu_id . '&slide_id=' . $slide['slide_id']); ?>" class="edit"></a>
 					</div>
-					<div class="cell auto"><span class="menu_item"><?php echo ($slide['title'] != '') ? $slide['title'] : 'Новий слайд'; ?></span></div>
+					<div class="cell auto"><span class="menu_item"><?php echo ($slide['description'] != '') ? $slide['description'] : 'Новий слайд'; ?></span></div>
 					<div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div>
 					<div class="cell w_20 icon"><a href="#" class="delete"></a></div>
 				</div>

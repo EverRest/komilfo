@@ -64,3 +64,7 @@ input.btn-add:active { background-color: #d6d6d6; color: #fff; }
 .service_container {padding: 0 70px;}
 .service_input {width:65% !important;}
 .hidden-btn {color:#008000;cursor:pointer;}
+.service-header {display:none;}
+.service-header:first-child {display:inline-block;}
+.service-item-title {display:none;}
+.service-item-title:first-child {display:inline-block;}

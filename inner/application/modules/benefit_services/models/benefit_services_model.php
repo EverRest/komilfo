@@ -11,6 +11,17 @@
 			return $this->db->get('component_services')->row_array();
 		}
 
+        public function get_service($id)
+        {
+            return $this->db->get_where('component_services',array('component_id'=>$id))->result_array();
+        }
+
+        public function get_services()
+        {
+            return $this->db->get('component_services')->result_array();
+
+        }
+
 		public function get_data()
 		{
 

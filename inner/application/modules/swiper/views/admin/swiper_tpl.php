@@ -12,22 +12,22 @@
 			<div class="gallery"></div>
 		</div>
 		<div class="fm component_edit_links">
-			<a class="fm add" href="#" id="add_slide"><b></b>Додати слайд</a>
+			<a class="fm add" href="#" id="add_swipe"><b></b>Додати слайд</a>
 			<a class="fm add_bottom" href="#"><b class="active"></b>Додавати внизу</a>
 			<a href="#" class="fm show_hide"><b></b><?=(($hidden == 0) ? 'Приховати' : 'Показати');?></a>
 		</div>
-		<div class="fmr component_del">
-			<a href="#" class="fm delete_component"><b></b></a>
-		</div>
-		<div class="fmr component_pos">
-			<a href="#" class="fm up_component"><b></b></a>
-			<a href="#" class="fm down_component"><b></b></a>
-		</div>
+<!--		<div class="fmr component_del">-->
+<!--			<a href="#" class="fm delete_component"><b></b></a>-->
+<!--		</div>-->
+<!--		<div class="fmr component_pos">-->
+<!--			<a href="#" class="fm up_component"><b></b></a>-->
+<!--			<a href="#" class="fm down_component"><b></b></a>-->
+<!--		</div>-->
 	</div>
 	<div class="fm admin_menu">
-		<ul id="slides_list">
-		<?php if (count($slides) > 0): ?>
-			<?php foreach ($slides as $slide): ?>
+		<ul id="swipes_list">
+		<?php if (count($swipes) > 0): ?>
+			<?php foreach ($swipes as $slide): ?>
 			<li data-id="<?php echo $slide['slide_id']; ?>">
 				<div class="holder<?php if ($slide['hidden'] == 1): ?> hidden<?php endif; ?>">
 					<div class="cell last_edit <?php if (isset($last_slide) AND ($slide['slide_id'] == $last_slide)) echo 'active'; ?>"></div>
@@ -41,7 +41,7 @@
 					<div class="cell w_20 icon">
 						<a href="<?php echo $this->uri->full_url('admin/swiper/edit?menu_id=' . $menu_id . '&slide_id=' . $slide['slide_id']); ?>" class="edit"></a>
 					</div>
-					<div class="cell auto"><span class="menu_item"><?php echo ($slide['title'] != '') ? $slide['title'] : 'Новий слайд'; ?></span></div>
+					<div class="cell auto"><span class="menu_item"><?php echo ($slide['description'] != '') ? $slide['description'] : 'Новий слайд'; ?></span></div>
 					<div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div>
 					<div class="cell w_20 icon"><a href="#" class="delete"></a></div>
 				</div>
@@ -56,7 +56,7 @@
 	var slide_add_top = 0;
 
 	function row_decor() {
-		$('#slides_list')
+		$('#swipes_list')
 			.find('li').removeClass('grey').each(function (i) { $(this).find('.number').text(i + 1); })
 			.end()
 			.find('li:even').addClass('grey');
@@ -65,7 +65,7 @@
 	}
 
 	function make_sortable() {
-		$("#slides_list")
+		$("#swipes_list")
 			.sortable({
 				axis:'y',
 				handle:'.sorter a',
@@ -80,19 +80,19 @@
 
 					component_loader_show($('.component_loader'), '');
 
-					var slides = [];
+					var swipes = [];
 
-					$('#slides_list').find('li').each(function (i) {
-						slides[i] = $(this).data('id');
+					$('#swipes_list').find('li').each(function (i) {
+						swipes[i] = $(this).data('id');
 						$(this).find('.number').text(i + 1);
 					});
 
 					$.post(
-						'<?=$this->uri->full_url('admin/swiper/slides_position');?>',
+						'<?=$this->uri->full_url('admin/swiper/swipes_position');?>',
 						{
 							menu_id: <?=$menu_id?>,
 							slide_id: $(object.item).data('id'),
-							slides: slides
+							swipes: swipes
 						},
 						function (response) {
 							if (response.success) {
@@ -112,9 +112,9 @@
 
 		row_decor();
 
-		var $slides_list = $('#slides_list');
+		var $swipes_list = $('#swipes_list');
 
-		$('#add_slide').on('click', function (e) {
+		$('#add_swipe').on('click', function (e) {
 			e.preventDefault();
 
 			component_loader_show($('.component_loader'), '');
@@ -128,10 +128,10 @@
 				function (response) {
 					if (response.success) {
 
-						$slides_list.find('.last_edit').removeClass('active');
+						$swipes_list.find('.last_edit').removeClass('active');
 
 						var slide = '<li data-id="' + response.slide_id + '"><div class="holder"><div class="cell last_edit active"></div><div class="cell w_20 number"></div><div class="cell w_20 icon"><a href="#" class="hide-show active"></a></div><div class="cell no_padding w_<?=$thumb[0];?>" style="width:300px; height:300px;"></div><div class="cell w_20 icon"><a href="<?=$this->uri->full_url('admin/swiper/edit?menu_id=' . $menu_id . '&slide_id='); ?>' + response.slide_id + '" class="edit"></a></div><div class="cell auto"><span class="menu_item">Новий слайд</span></div><div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div><div class="cell w_20 icon"><a href="#" class="delete"></a></div></div></li>';
-						(slide_add_top === 1) ? $slides_list.prepend(slide) : $slides_list.append(slide);
+						(slide_add_top === 1) ? $swipes_list.prepend(slide) : $swipes_list.append(slide);
 
 						row_decor();
 						component_loader_hide($('.component_loader'), '');
@@ -141,7 +141,7 @@
 			);
 		});
 
-		$slides_list
+		$swipes_list
 			/**
 			 * Відображення/приховування
 			 */
@@ -161,7 +161,7 @@
 				}
 
 				component_loader_show($('.component_loader'), '');
-				$('#slides_list').find('.last_edit').removeClass('active');
+				$('#swipes_list').find('.last_edit').removeClass('active');
 				$holder.find('.last_edit').addClass('active');
 
 				$.post(

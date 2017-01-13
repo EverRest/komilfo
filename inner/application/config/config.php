@@ -455,6 +455,7 @@
 		'guarantee',
 		'questions',
 		'slider',
+        'swiper',
         'google_map'
 	);
 

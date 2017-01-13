@@ -116,15 +116,15 @@
 //				'on_main' => TRUE,
 //				'check' => 'on_page'
 //			),
-//            array(
-//                'name' => 'Контакти',
-//                'module' => 'contacts',
-//                'index' => 'index',
-//                'config' => '',
-//                'class' => 'fm com_reviews component_add',
-//                'on_main' => TRUE,
-//                'check' => 'on_page'
-//            ),
+            array(
+                'name' => 'Swiper',
+                'module' => 'swiper',
+                'index' => 'index',
+                'config' => '',
+                'class' => 'fm com_reviews hidden component_add',
+                'on_main' => TRUE,
+                'check' => 'on_page'
+            ),
 			array(
 				'name' => 'Переваги',
 				'module' => 'guarantee',
@@ -198,14 +198,14 @@
 				'config' => '',
 				'class' => 'fm common_set',
 			),
-            array(
-                'name' => 'Свайпер',
-                'url' => 'admin/config/swiper?',
-                'module' => 'config',
-                'index' => 'swiper',
-                'config' => '',
-                'class' => 'fm com_brands',
-            ),
+//            array(
+//                'name' => 'Свайпер',
+//                'url' => 'admin/config/swiper?',
+//                'module' => 'config',
+//                'index' => 'swiper',
+//                'config' => '',
+//                'class' => 'fm com_brands',
+//            ),
 			array(
 				'name' => 'Номери телефонів',
 				'url' => 'admin/config/header?',

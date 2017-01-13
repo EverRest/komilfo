@@ -9,7 +9,9 @@
 
 	$this->template_lib->set_js('admin/ckeditor/ckeditor.js');
 	$this->template_lib->set_js('admin/jquery.form.js');
+
 ?>
+<?php error_reporting( E_ERROR ); ?>
 <div class="fm admin_component">
 	<div class="component_loader"></div>
 	<div class="fm adcom_panel">
@@ -38,7 +40,7 @@
 			if ($slide['file_name'] != '') $sizes = getimagesize(ROOT_PATH . 'upload/swiper/' . $menu_id . '/' . $slide_id . '/s_' . $slide['file_name']);
 		?>
 		<div class="lang_tab" id="box_<?=$key;?>"<?php if (LANG != $key) echo ' style="display:none"'; ?>>
-			
+
 <!--			<div class="evry_title">-->
 <!--				<label class="block_label">Ім'я:</label>-->
 <!--				<input type="text" name="title[--><?//=$key;?><!--]" value="--><?//=$slide['title'];?><!--">-->
@@ -50,7 +52,7 @@
             <div class="evry_title">
 				<label for="ca_text_<?=$key;?>" class="block_label">Текст до слайду:</label>
 				<div class="no_float"><textarea class="component_article" id="ca_text_<?=$key;?>" name="description[<?=$key;?>]" style="height: 400px"><?=stripslashes($slide['description']);?></textarea></div>
-			</div>	
+			</div>
 
 			<!-- <div class="evry_title">
 				<label class="block_label">Посилання:</label>

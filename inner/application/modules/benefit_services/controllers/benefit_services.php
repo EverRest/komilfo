@@ -25,16 +25,18 @@
 			$template_data = array(
 				'menu_id' => $menu_id,
 				'component_id' => $component_id,
-				'article' => $this->benefit_services_model->get_article(),
+//				'services' => $this->benefit_services_model->get_article(),
 			);
 
 			if ($this->init_model->is_admin())
 			{
 				$template_data['hidden'] = $hidden;
+                $template_data['services'] = $this->benefit_services_model->get_services();
 				return $this->load->view('admin/benefit_services_tpl', $template_data, TRUE);
 			}
 			else
 			{
+			    $template_data['services'] = $this->benefit_services_model->get_service($component_id);
 				return $this->load->view('benefit_services_tpl', $template_data, TRUE);
 			}
 		}

@@ -37,8 +37,8 @@
 	<form id="slide_form" action="<?=$this->uri->full_url('admin/swiper/save');?>" method="post">
 <!--		<input type="hidden" name="menu_id" value="--><?//=$menu_id;?><!--">-->
 <!--		<input type="hidden" name="slide_id" value="--><?//=$slide_id;?><!--">-->
-		<?php foreach ($swiper as $slide): ?>
-			<div class="lang_tab" id="box_<?=$key;?>"<?php if (LANG != $key) echo ' style="display:none"'; ?>>
+<!--		--><?php //foreach ($swiper as $slide): ?>
+			<div class="lang_tab" id="box">
 				<div class="evry_title">
 					<label for="ca_text_<?=$key;?>" class="block_label">Текст до слайду:</label>
 					<div class="no_float"><textarea class="component_article" id="ca_text_<?=$key;?>" name="description[<?=$key;?>]" style="height: 400px"><?=stripslashes($slide['description']);?></textarea></div>
@@ -57,9 +57,9 @@
 							<div class="fm for_photo_cut">
 								<div class="fm photo_cut" style="width:300px; height: 300px;">
 									<?php $sizes = getimagesize(ROOT_PATH . 'upload/swiper/' . $slide['file_name']); ?>
-									<div style="width:300px; height: 300px;"><img src="/upload/swiper/<?=$slide['slide_id'];?>/<?=$slide['file_name'] . '?t=' . time() . rand(10000, 1000000);?>" alt="" style="width:300px; height: 300px;"></div>
+									<div style="width:300px; height: 300px;"><img src="/upload/swiper/<?=$slide['file_name'] . '?t=' . time() . rand(10000, 1000000);?>" alt="" style="width:300px; height: 300px;"></div>
 									<div class="links">
-										<a href="#" class="fm fpc_edit" data-image-id="<?=$slide['slide_id'];?>" data-src="/upload/swiper/<?=$menu_id;?>/<?=$slide['slide_id'];?>/s_<?=$slide['file_name'];?>" data-width="<?=$sizes[0];?>" data-height="<?=$sizes[1];?>"><b></b>Редагувати</a>
+										<a href="#" class="fm fpc_edit" data-image-id="<?=$slide['slide_id'];?>" data-src="/upload/swiper/s_<?=$slide['file_name'];?>" data-width="<?=$sizes[0];?>" data-height="<?=$sizes[1];?>"><b></b>Редагувати</a>
 										<a href="#" class="fm fpc_delete"><b></b>Видалити</a>
 									</div>
 								</div>
@@ -69,7 +69,7 @@
 				</ul>
 			</div>
 		</div>
-        <?php endforeach; ?>
+<!--        --><?php //endforeach; ?>
 		<div class="fm for_sucsess">
 			<div class="fmr save_links">
 				<a href="#" class="fm save_adm"><b></b>Зберегти</a>

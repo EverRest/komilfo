@@ -10,6 +10,7 @@
 	$this->template_lib->set_js('admin/ckeditor/ckeditor.js');
 	$this->template_lib->set_js('admin/jquery.form.js');
 ?>
+<?php error_reporting( E_ERROR ); ?>
 <div class="fm admin_component">
 	<div class="component_loader"></div>
 	<div class="fm adcom_panel">

@@ -70,6 +70,7 @@
 	}
 ?>
 
+<?php error_reporting( E_ERROR ); ?>
 <div class="admin_base">
 	<div class="centre">
 	<div class="fm main_panel">
