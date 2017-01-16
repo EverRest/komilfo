@@ -69,11 +69,11 @@
 			<div class="no_float image_list" style="width:78%;">
 				<ul id="images_list" style="width:100%;">
 					<?php if( $slide['file_name'] !=''):?>
-						<li data-id="<?=$slide['slide_id'];?>" style="float: left; width:300px; height: 300px; margin-top: 2px; margin-left: 2px;">
+						<li data-id="<?=$slide['slide_id'];?>" style="float: left; width:300px; height: 150px; margin-top: 2px; margin-left: 2px;">
 								<div class="fm for_photo_cut">
-									<div class="fm photo_cut" style="width:300px; height: 300px;">
+									<div class="fm photo_cut" style="width:300px; height: 150px;">
 										<?php $sizes = getimagesize(ROOT_PATH . 'upload/swiper/'. $menu_id . '/' . $slide['slide_id'] . '/' . $slide['file_name']); ?>
-										<div style="width:300px; height: 300px;"><img src="/upload/swiper/<?=$menu_id;?>/<?=$slide['slide_id'];?>/<?=$slide['file_name'] . '?t=' . time() . rand(10000, 1000000);?>" alt="" style="width:300px; height: 300px;"></div>
+										<div style="width:300px; height: 150px;"><img src="/upload/swiper/<?=$menu_id;?>/<?=$slide['slide_id'];?>/<?=$slide['file_name'] . '?t=' . time() . rand(10000, 1000000);?>" alt="" style="width:300px; height: 150px;"></div>
 										<div class="links">
 											<a href="#" class="fm fpc_edit" data-image-id="<?=$slide['slide_id'];?>" data-src="/upload/swiper/<?=$menu_id;?>/<?=$slide['slide_id'];?>/s_<?=$slide['file_name'];?>" data-width="<?=$sizes[0];?>" data-height="<?=$sizes[1];?>"><b></b>Редагувати</a>
 											<a href="#" class="fm fpc_delete"><b></b>Видалити</a>
@@ -185,7 +185,7 @@
 								var $link = $(this),
 									width = $link.data('width') > 600 ? 600 : $link.data('width'),
 									height = width * $link.data('height') / $link.data('width'),
-									crop_modal = '<div id="crop_overlay" class="confirm_overlay" style="display: block; opacity: 0.5; height:' + $(window).height() + 'px"></div><div id="crop_modal"  class="crop_modal" style="height: 520px;"><div class="fm crop_area" style="z-index:600;"><div class="fm ca_panel"><a id="crop_cancel" href="#" class="fmr ca_cencel"><b></b>Скасувати</a><a id="crop_save" href="#" class="fmr ca_save"><b></b>Зберегти</a><span class="controls"><label class="check_label active"><i><input type="checkbox" name="proportion" checked="checked" value="1"></i>Пропорційно</label></span></div><div id="crop_preview" class="fm crop_review" style="width: 300px; height: 200px;"><div style="overflow: hidden" class="crop_prew_border"><img src="' + $link.data('src') + '" alt=""></div></div><div id="crop_source" class="fm crop_source"><img width="' + width + '" height="' + height + '" src="' + $link.data('src') + '"></div></div></div>';
+									crop_modal = '<div id="crop_overlay" class="confirm_overlay" style="display: block; opacity: 0.5; height:' + $(window).height() + 'px"></div><div id="crop_modal"  class="crop_modal" style="height: 520px;"><div class="fm crop_area" style="z-index:600;"><div class="fm ca_panel"><a id="crop_cancel" href="#" class="fmr ca_cencel"><b></b>Скасувати</a><a id="crop_save" href="#" class="fmr ca_save"><b></b>Зберегти</a><span class="controls"><label class="check_label active"><i><input type="checkbox" name="proportion" checked="checked" value="1"></i>Пропорційно</label></span></div><div id="crop_preview" class="fm crop_review" style="width: 600px; height: 300px;"><div style="overflow: hidden" class="crop_prew_border"><img src="' + $link.data('src') + '" alt=""></div></div><div id="crop_source" class="fm crop_source"><img width="' + width + '" height="' + height + '" src="' + $link.data('src') + '"></div></div></div>';
 								$('body').append(crop_modal);
 								$('#crop_modal').css('top', $(document).scrollTop() + 50);
 								$('#crop_source').find('img').Jcrop({
@@ -194,14 +194,14 @@
 									setSelect: [0, 0, 300, 300],
 									realSizes: [$link.data('width'), $link.data('height')],
 									onChange: function (coords) {
-										crop_preview($('#crop_preview').find('div'), coords, 300, 300, width, height);
+										crop_preview($('#crop_preview').find('div'), coords, 600, 300, width, height);
 									}
 								}, function () {
 									var api = this;
 									$('[name="proportion"]').off('change').on('change', function () {
 										if ($(this).prop('checked')) {
 											$(this).closest('label').addClass('active');
-											api.setOptions({aspectRatio: 300/300});
+											api.setOptions({aspectRatio: 600/300});
 										} else {
 											$(this).closest('label').removeClass('active');
 											api.setOptions({aspectRatio: 0});

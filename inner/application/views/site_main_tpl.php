@@ -101,7 +101,7 @@
         <!-- Swiper -->
         <div class="main-slider swiper-container">
             <div class="swiper-wrapper">
-                <?php if ( !isset($swipe['file_name']) || empty($swipe['file_name']) ): ?>
+                <?php if ( !isset($swipes[0]['file_name']) || empty($swipes[0]['file_name']) ): ?>
                     <?php $url = 'images/main-slider/01.jpg'; ?>
                     <div class="swiper-slide slide-bg" style="background-image: url('<?= base_url($url); ?>')">
                         <div class="slide-content">
@@ -111,7 +111,7 @@
                             <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                         </div>
                     </div>
-                <? endif; ?>
+                <?php endif; ?>
                 <?php foreach($swipes as $swipe): ?>
                     <?php $url = 'upload/swiper/1/'.$swipe['slide_id'].'/'.$swipe['file_name']; ?>
                     <div class="swiper-slide slide-bg" style="background-image: url('<?= base_url($url);?>')">

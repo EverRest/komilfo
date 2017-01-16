@@ -70,9 +70,9 @@
 					<?php if( $slide['file_name'] !=''):?>
 						<li data-id="<?=$slide['slide_id'];?>" style="float: left; width:300px; height: 300px; margin-top: 2px; margin-left: 2px;">
 								<div class="fm for_photo_cut">
-									<div class="fm photo_cut" style="width:300px; height: 300px;">
+									<div class="fm photo_cut" style="width:300px; height: 150px;">
 										<?php $sizes = getimagesize(ROOT_PATH . 'upload/slider/'. $menu_id . '/' . $slide['slide_id'] . '/' . $slide['file_name']); ?>
-										<div style="width:300px; height: 300px;"><img src="/upload/slider/<?=$menu_id;?>/<?=$slide['slide_id'];?>/<?=$slide['file_name'] . '?t=' . time() . rand(10000, 1000000);?>" alt="" style="width:300px; height: 300px;"></div>
+										<div style="width:300px; height: 150px;"><img src="/upload/slider/<?=$menu_id;?>/<?=$slide['slide_id'];?>/<?=$slide['file_name'] . '?t=' . time() . rand(10000, 1000000);?>" alt="" style="width:300px; height: 150px;"></div>
 										<div class="links">
                                             <? print_r($sizes);exit; ?>
 											<a href="#" class="fm fpc_edit" data-image-id="<?=$slide['slide_id'];?>" data-src="/upload/slider/<?=$menu_id;?>/<?=$slide['slide_id'];?>/s_<?=$slide['file_name'];?>" data-width="<?=$sizes[0];?>" data-height="<?=$sizes[1];?>"><b></b>Редагувати</a>
