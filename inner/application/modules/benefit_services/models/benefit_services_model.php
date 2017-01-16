@@ -22,6 +22,11 @@
 
         }
 
+        public function count_rows()
+        {
+            return $this->db->count_all('component_services');
+        }
+
 		public function get_data()
 		{
 

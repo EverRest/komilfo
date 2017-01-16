@@ -93,7 +93,6 @@
                 </div>
             </div>
         </div>
-
         <div class="logo">
             <a href="/">
                 <img src="<?=base_url('images/logo.png');?>" alt="">

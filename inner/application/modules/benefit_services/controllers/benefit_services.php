@@ -20,9 +20,18 @@
 
 		public function index($menu_id, $component_id, $hidden, $config = '')
 		{
+
 			$this->load->model('benefit_services_model');
 
-			$template_data = array(
+            if(!isset($_COOKIE['count']) || empty($_COOKIE['count']) ) {
+                $_COOKIE['count'] = 1;
+            }
+
+            if(!isset($_COOKIE['rows']) || empty($_COOKIE['rows']) ) {
+                $_COOKIE['rows'] = $this->benefit_services_model->count_rows();
+            }
+
+            $template_data = array(
 				'menu_id' => $menu_id,
 				'component_id' => $component_id,
 //				'services' => $this->benefit_services_model->get_article(),
@@ -37,7 +46,8 @@
 			else
 			{
 			    $template_data['services'] = $this->benefit_services_model->get_service($component_id);
-				return $this->load->view('benefit_services_tpl', $template_data, TRUE);
+                $templ = $this->load->view('benefit_services_tpl', $template_data, TRUE);
+                return $templ;
 			}
 		}
 

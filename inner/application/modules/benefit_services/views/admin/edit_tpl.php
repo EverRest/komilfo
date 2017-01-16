@@ -77,6 +77,7 @@
 
         $('#add_title_service').on('click', function (e) {
             e.preventDefault();
+            var el =
             console.log('added title');
         })
 
