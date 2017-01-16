@@ -25,12 +25,12 @@
                         <span class="service-price"><?php echo $service['price']; ?> грн</span>
                         <button class="btn btn-default btn-sub open-popup">ЗАПИСатись НА ПРИЙОМ</button>
                     </li>
-                    <?php $rows--;$_COOKIE['rows'] = $rows; ?>
+                    <?php $rows--;$_COOKIE['rows'] = $rows;$c--; ?>
             <?php endforeach; ?>
 
     <?php if ($c == 0): ?>
         </ul>
-        </div>
+    </div>
     <?php endif; ?>
 
     <?php if ($rows == 0): ?>
