@@ -2,7 +2,7 @@
 	defined('ROOT_PATH') OR exit('No direct script access allowed');
 
 	$this->template_lib->set_js('admin/ui/jquery-ui-1.10.3.custom.min.js');
-	$thumb = array(300, 300);
+	$thumb = array(300, 150);
 
 ?>
 <div class="fm admin_component" id="admin_component_<?=$component_id;?>" data-component-id="<?=$component_id;?>" data-menu-id="<?=$menu_id;?>" data-module="slider" data-css-class="slider" data-visibility-url="<?=$this->uri->full_url('admin/components/toggle_visibility');?>" data-delete-url="<?=$this->uri->full_url('admin/slider/delete_component');?>">
@@ -33,9 +33,9 @@
 					<div class="cell last_edit <?php if (isset($last_slide) AND ($slide['slide_id'] == $last_slide)) echo 'active'; ?>"></div>
 					<div class="cell w_20 number"></div>
 					<div class="cell w_20 icon"><a href="#" class="hide-show<?php if ($slide['hidden'] == 0): ?> active<?php endif; ?>"></a></div>
-					<div class="cell no_padding w_<?=$thumb[0];?>" style="width: 300px; height: 300px;">
+					<div class="cell no_padding w_<?=$thumb[0];?>" style="width: 300px; height: 150px;">
 						<?php if ($slide['file_name'] != ''): ?>
-						<img src="/upload/slider/<?php echo $menu_id; ?>/<?php echo $slide['slide_id']; ?>/<?php echo $slide['file_name']; ?>" style="width: 300px; height: 300px;">
+						<img src="/upload/slider/<?php echo $menu_id; ?>/<?php echo $slide['slide_id']; ?>/<?php echo $slide['file_name']; ?>" style="width: 300px; height: 150px;">
 						<?php endif; ?>
 					</div>
 					<div class="cell w_20 icon">
@@ -130,7 +130,7 @@
 
 						$slides_list.find('.last_edit').removeClass('active');
 
-						var slide = '<li data-id="' + response.slide_id + '"><div class="holder"><div class="cell last_edit active"></div><div class="cell w_20 number"></div><div class="cell w_20 icon"><a href="#" class="hide-show active"></a></div><div class="cell no_padding w_<?=$thumb[0];?>" style="width:300px; height:300px;"></div><div class="cell w_20 icon"><a href="<?=$this->uri->full_url('admin/slider/edit?menu_id=' . $menu_id . '&slide_id='); ?>' + response.slide_id + '" class="edit"></a></div><div class="cell auto"><span class="menu_item">Новий слайд</span></div><div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div><div class="cell w_20 icon"><a href="#" class="delete"></a></div></div></li>';
+						var slide = '<li data-id="' + response.slide_id + '"><div class="holder"><div class="cell last_edit active"></div><div class="cell w_20 number"></div><div class="cell w_20 icon"><a href="#" class="hide-show active"></a></div><div class="cell no_padding w_<?=$thumb[0];?>" style="width:300px; height:150px;"></div><div class="cell w_20 icon"><a href="<?=$this->uri->full_url('admin/slider/edit?menu_id=' . $menu_id . '&slide_id='); ?>' + response.slide_id + '" class="edit"></a></div><div class="cell auto"><span class="menu_item">Новий слайд</span></div><div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div><div class="cell w_20 icon"><a href="#" class="delete"></a></div></div></li>';
 						(slide_add_top === 1) ? $slides_list.prepend(slide) : $slides_list.append(slide);
 
 						row_decor();

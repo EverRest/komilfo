@@ -140,11 +140,11 @@
 						}).on('complete', function (event, id, fileName, response){
 							if (response.success) {
 								$('.qq-upload-success').remove();
-								var row = '<li data-id="' + response.slide_id + '" style="float: left; width:300px; height: 300px; margin-left:2px; margin-top:2px;">\
+								var row = '<li data-id="' + response.slide_id + '" style="float: left; width:300px; height: 150px; margin-left:2px; margin-top:2px;">\
 										<div class="fm for_photo_cut">\
-											<div class="fm photo_cut" style="width: 300px; height: 300px">\
-												<div style="width: 300px; height: 300px">\
-													<img src="/upload/swiper/<?=$menu_id;?>/<?=$slide_id;?>/' + response.file_name + '" alt="" style="width: 300px; height: 300px;">\
+											<div class="fm photo_cut" style="width: 300px; height: 150px">\
+												<div style="width: 300px; height: 150px">\
+													<img src="/upload/swiper/<?=$menu_id;?>/<?=$slide_id;?>/' + response.file_name + '" alt="" style="width: 300px; height: 150px;">\
 												</div>\
 												<div class="links">\
 													<a href="#" class="fm fpc_edit" data-image-id="' + response.slide_id + '" data-src="/upload/swiper/<?=$menu_id;?>/<?=$slide_id;?>/s_' + response.file_name + '" data-width="' + response.width + '" data-height="' + response.height + '"><b></b>Редагувати</a>\
