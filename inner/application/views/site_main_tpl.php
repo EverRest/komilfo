@@ -57,6 +57,7 @@
 <!--        </noscript>-->
     </head>
     <body>
+
     <!-- HEADER -->
     <header class="header">
         <div class="header-top">
@@ -81,11 +82,11 @@
                         <nav class="menu">
                             <div class="mobile-menu-icon icon-menu"></div>
                             <ul class="menu-list">
-                                <li class="menu-list-item"><a href="#benefits">Переваги</a></li>
-                                <li class="menu-list-item"><a href="#works">Наші роботи</a></li>
-                                <li class="menu-list-item"><a href="#price">Послуги та ціни</a></li>
-                                <li class="menu-list-item"><a href="#about">Про нас</a></li>
-                                <li class="menu-list-item"><a href="#contacts">Контакти</a></li>
+                                <?if(isset($menu['benefits']) && $menu_hidden['benefits'] != 1){?><li class="menu-list-item"><a href="#benefits">Про Нас</a></li><?}?>
+                                <?if(isset($menu['guarantee']) && $menu_hidden['guarantee'] != 1){?><li class="menu-list-item"><a href="#guarantee">Переваги</a></li><?}?>
+                                <?if(isset($menu['slider']) && $menu_hidden['slider'] != 1){?><li class="menu-list-item"><a href="#slider">Наші роботи</a></li><?}?>
+                                <?if(isset($menu['benefit_services']) && $menu_hidden['benefit_services'] != 1){?><li class="menu-list-item"><a href="#benefit_services">Послуги та ціни</a></li><?}?>
+                                <?if(isset($menu['google_map']) && $menu_hidden['google_map'] != 1){?><li class="menu-list-item"><a href="#google_map">Контакти</a></li><?}?>
                             </ul>
                         </nav>
 

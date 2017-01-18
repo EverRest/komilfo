@@ -2,7 +2,7 @@
 
 <? //$google_map['text'] = str_replace('<td>&nbsp;</td>', '<td><div class="fm detail_btn" style="text-align: center;"><a href="" class="open_form" data-component="order"  data-title="Замовлення" data-subject="Замовлення" data-type="order">ЗАМОВИТИ</a></div></td>', $google_map['text']); ?>
 <? if (isset($google_map) AND !empty($google_map)): ?>
-    <div id="contacts" class="section section-contact">
+    <div id="google_map" class="section section-contact">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">

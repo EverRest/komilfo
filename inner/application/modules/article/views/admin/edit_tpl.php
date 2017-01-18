@@ -31,22 +31,12 @@
 			<?php foreach ($languages as $key => $val): ?>
 			<div id="article_tab_<?=$key;?>" class="article_tab"<?=(($key != LANG) ? ' style="display: none"' : ''); ?>>
 				<div class="evry_title">
-					<label for="btn_a" class="block_label">Виводити кнопки "Замовити":</label>
-					<div ><input type="checkbox" id="btn_a" name="btn_a" <?=($article['btn_active'] == 1)? 'checked' : '' ;?> ></div>
-					<input type="hidden" name="btn_active" id="btn_active">
-				</div>
-				<div class="evry_title">
 					<label for="ca_title_<?=$key;?>" class="block_label">Назва статті:</label>
 					<input type="text" id="ca_title_<?=$key;?>" name="title[<?=$key;?>]" value="<?=$article['title_' . $key];?>">
 				</div>
 				<div class="evry_title">
 					<label for="ca_text_<?=$key;?>" class="block_label">Текст статті:</label>
 					<div class="no_float"><textarea class="component_article" id="ca_text_<?=$key;?>" name="text[<?=$key;?>]" style="height: 400px"><?=stripslashes($article['text_' . $key]);?></textarea></div>
-				</div>
-				<div class="evry_title">
-					<label for="background" class="block_label">Відключити фон:</label>
-					<div ><input type="checkbox" id="background" name="background" <?=($article['background_fone'] == 1)? 'checked' : '' ;?> ></div>
-					<input type="hidden" name="background_fone" id="background_fone">
 				</div>
 			</div>
 			<?php endforeach; ?>

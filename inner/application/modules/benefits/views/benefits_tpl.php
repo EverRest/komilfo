@@ -1,7 +1,7 @@
 <?php defined('ROOT_PATH') OR exit('No direct script access allowed'); ?>
 <? if (isset($benefits) AND !empty($benefits)): ?>
 <!--   --><?// echo '<pre>';print_r($benefits);exit; ?>
-<section id="about" class="section section-about">
+<section id="benefits" class="section section-about">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">

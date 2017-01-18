@@ -1,5 +1,5 @@
 
-<section id="benefits" class="section section-info">
+<section id="guarantee" class="section section-info">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

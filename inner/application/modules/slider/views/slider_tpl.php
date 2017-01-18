@@ -2,7 +2,7 @@
 	defined('ROOT_PATH') OR exit('No direct script access allowed');
 ?>
 <?if (isset($slides) AND !empty($slides)): ?>
-<section id="works" class="section section-works">
+<section id="slider" class="section section-works">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

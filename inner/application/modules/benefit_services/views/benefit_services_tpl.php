@@ -6,7 +6,7 @@
 <?php if (isset($services) AND !empty($services)):?>
 
     <?php if($count == 1): ?>
-    <section id="price" class="section section-price">
+    <section id="benefit_services" class="section section-price">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

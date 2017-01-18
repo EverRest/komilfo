@@ -12,7 +12,7 @@
 			<div class="gallery"></div>
 		</div>
 		<div class="fm component_edit_links">
-			<a class="fm add" href="#" id="add_slide"><b></b>Додати слайд</a>
+			<a class="fm add" href="#" id="add_slider"><b></b>Додати слайд</a>
 			<a class="fm add_bottom" href="#"><b class="active"></b>Додавати внизу</a>
 			<a href="#" class="fm show_hide"><b></b><?=(($hidden == 0) ? 'Приховати' : 'Показати');?></a>
 		</div>
@@ -41,7 +41,7 @@
 					<div class="cell w_20 icon">
 						<a href="<?php echo $this->uri->full_url('admin/slider/edit?menu_id=' . $menu_id . '&slide_id=' . $slide['slide_id']); ?>" class="edit"></a>
 					</div>
-					<div class="cell auto"><span class="menu_item"><?php echo ($slide['description'] != '') ? $slide['description'] : 'Новий слайд'; ?></span></div>
+					<div class="cell auto"><span class="menu_item"><?php echo ($slide['description'] != '') ? 'Слайд' : 'Новий слайд'; ?></span></div>
 					<div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div>
 					<div class="cell w_20 icon"><a href="#" class="delete"></a></div>
 				</div>
@@ -114,7 +114,7 @@
 
 		var $slides_list = $('#slides_list');
 
-		$('#add_slide').on('click', function (e) {
+		$('#add_slider').on('click', function (e) {
 			e.preventDefault();
 
 			component_loader_show($('.component_loader'), '');
