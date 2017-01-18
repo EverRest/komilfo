@@ -8,7 +8,7 @@
 			echo '<div class="holder' . (($val['hidden'] == 1) ? ' hidden' : '') . '">';
 			echo '<div class="cell last_edit' . (($val['id'] == $last) ? ' active' : '') . '"></div>';
 			echo '<div class="cell w_20 icon"><a href="#" class="hide-show ' . (($val['hidden'] == 0) ? ' active' : '') . '"></a></div>';
-			echo '<div class="cell w_30 number_cell"><div class="number">' . $val['position'] . '</div><div class="add_items"><a href="#" class="up_add"></a><a href="#" class="child_add"></a><a href="#" class="down_add"></a></div></div>';
+			echo '<div class="cell w_30 number_cell"><div class="number">' . $val['position'] . '</div><!--<div class="add_items"><a href="#" class="up_add"></a><a href="#" class="child_add"></a><a href="#" class="down_add"></a></div>--></div>';
 			echo '<div class="cell w_20 icon"><a class="picture' . ($val['image'] != '' ? ' active' : '') . '" href="' . base_url((LANG == DEF_LANG ? '' : LANG . '/') . 'admin/menu/edit/?menu_index=' . $menu_index . '&menu_id=' . $menu_id . '&item_id=' . $val['id']) . '"></a></div>';
 			echo '<div class="cell w_20 icon"><a class="edit"></a></div>';
 			echo '<div class="cell auto">';

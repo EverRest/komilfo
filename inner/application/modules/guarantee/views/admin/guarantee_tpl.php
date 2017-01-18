@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<article>
-		<h1> Компонент переваги </h1>
+		<h1> Переваги </h1><br>
 	</article>
 </div>
 <script type="text/javascript">

@@ -24,6 +24,7 @@
 		 */
 		public function index()
 		{
+
 			$menu_id = intval($this->input->get('menu_id'));
 
 			if (!$this->init_model->is_admin() OR !$this->init_model->check_access('menu'))

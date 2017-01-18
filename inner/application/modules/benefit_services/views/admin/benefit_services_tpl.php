@@ -21,7 +21,8 @@
 		</div>
 	</div>
 	<article>
-        <h1>Наші послуги</h1>
+        <h1>Послуги</h1>
+        <br>
 	</article>
 </div>
 <script type="text/javascript">

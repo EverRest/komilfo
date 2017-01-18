@@ -19,24 +19,14 @@
 				'name' => 'Налаштування',
 				'url' => '#',
 			),
-			/*
 			array(
-				'code' => '',
-				'name' => '',
-				'url' => '',
+				'code' => 'menu',
+				'name' => 'Меню',
+				'url' => 'admin/menu/index?menu_index=1&',
 			),
-			*/
 		),
 		'components' => array(
-//            array(
-//                'name' => 'Хедер',
-//                'module' => 'gallery',
-//                'index' => 'index',
-//                'config' => '',
-//                'class' => 'fm com_reviews component_add',
-//                'on_main' => TRUE,
-//                'check' => 'on_page'
-//            ),
+
 			array(
 				'name' => 'Стаття',
 				'module' => 'article',
@@ -62,24 +52,6 @@
 			 	'on_main' => TRUE,
 			 	'check' => 'on_page'
 			 ),
-//			array(
-//				'name' => 'Наші виконані роботи',
-//				'module' => 'slider',
-//				'index' => 'index',
-//				'config' => '',
-//				'class' => 'fm com_slider component_add',
-//				'on_main' => TRUE,
-//				'check' => 'on_page'
-//			),
-			// array(
-			// 	'name' => 'Часті запитання',
-			// 	'module' => 'frequent',
-			// 	'index' => 'index',
-			// 	'config' => '',
-			// 	'class' => 'fm com_frequent component_add',
-			// 	'on_main' => TRUE,
-			// 	'check' => 'on_page'
-			// ),
 			array(
 				'name' => 'Про нас',
 				'module' => 'benefits',
@@ -89,33 +61,6 @@
 				'on_main' => TRUE,
 				'check' => 'on_page'
 			),
-			// array(
-			// 	'name' => 'Відгуки',
-			// 	'module' => 'reviews',
-			// 	'index' => 'index',
-			// 	'config' => '',
-			// 	'class' => 'fm com_reviews component_add',
-			// 	'on_main' => TRUE,
-			// 	'check' => 'on_page'
-			// ),
-//			array(
-//				'name' => 'Послуги',
-//				'module' => 'news',
-//				'index' => 'index',
-//				'config' => '',
-//				'class' => 'fm com_news component_add',
-//				'on_main' => TRUE,
-//				'check' => 'on_page'
-//			),
-//			array(
-//				'name' => 'Система лояльності',
-//				'module' => 'loyalty_system',
-//				'index' => 'index',
-//				'config' => '',
-//				'class' => 'fm com_loyalty_system component_add',
-//				'on_main' => TRUE,
-//				'check' => 'on_page'
-//			),
             array(
                 'name' => 'Swiper',
                 'module' => 'swiper',
@@ -198,14 +143,14 @@
 				'config' => '',
 				'class' => 'fm common_set',
 			),
-//            array(
-//                'name' => 'Свайпер',
-//                'url' => 'admin/config/swiper?',
-//                'module' => 'config',
-//                'index' => 'swiper',
-//                'config' => '',
-//                'class' => 'fm com_brands',
-//            ),
+            array(
+                'name' => 'Меню',
+                'url' => 'admin/menu/index?',
+                'module' => 'menu',
+                'index' => 'index',
+                'config' => '',
+                'class' => 'fm menu',
+            ),
 			array(
 				'name' => 'Номери телефонів',
 				'url' => 'admin/config/header?',

@@ -162,8 +162,11 @@
 			$this->db->delete('site_links', array('item_id' => $id, 'component_id' => 0));
 			$this->db->delete('components', array('menu_id' => $id));
 			$this->db->delete('component_article', array('menu_id' => $id));
+            $this->db->delete('component_benefits', array('menu_id' => $id));
 			$this->db->delete('google_map', array('menu_id' => $id));
-			$this->db->delete('feedback', array('menu_id' => $id));
+            $this->db->delete('component_services', array('menu_id' => $id));
+            $this->db->delete('slider', array('menu_id'=>$id));
+//			$this->db->delete('feedback', array('menu_id' => $id));
 			$this->db->delete('seo_tags', array('component_id' => 0, 'menu_id' => $id));
 			$this->db->delete('seo_link', array('menu_id' => $id));
 
@@ -188,21 +191,21 @@
 			$this->db->delete('news_images', array('menu_id' => $id));
 
 			// Видалення галерей
-			$result = $this->db->select('gallery_id')->where('menu_id', $id)->get('galleries');
+//			$result = $this->db->select('gallery_id')->where('menu_id', $id)->get('galleries');
 
-			if ($result->num_rows() > 0)
-			{
-				$result_array = $result->result_array();
+//			if ($result->num_rows() > 0)
+//			{
+//				$result_array = $result->result_array();
+//
+//				foreach ($result_array as $row)
+//				{
+//					$dir = ROOT_PATH . 'upload/gallery/' . $this->init_model->dir_by_id($row['gallery_id']) . '/';
+//					if (file_exists($dir)) delete_files($dir, TRUE, FALSE, 1);
+//				}
+//			}
 
-				foreach ($result_array as $row)
-				{
-					$dir = ROOT_PATH . 'upload/gallery/' . $this->init_model->dir_by_id($row['gallery_id']) . '/';
-					if (file_exists($dir)) delete_files($dir, TRUE, FALSE, 1);
-				}
-			}
-
-			$this->db->delete('galleries', array('menu_id' => $id));
-			$this->db->delete('gallery_images', array('menu_id' => $id));
+//			$this->db->delete('galleries', array('menu_id' => $id));
+//			$this->db->delete('gallery_images', array('menu_id' => $id));
 
 			// Видалення пункту меню
 			$this->db->delete('menu', array('id' => $id));

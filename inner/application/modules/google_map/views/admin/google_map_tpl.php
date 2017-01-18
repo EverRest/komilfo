@@ -20,8 +20,8 @@
 	</div>
 	<article>
 		<?php if (isset($google_map) AND count($google_map) > 0): ?>
-			<?php if (!$h1): ?><h1><?='Графік роботи і контакти'?></h1><?php else: ?><h2><?='Графік роботи і контакти';?></h2><?php endif; ?>
-			<?=stripslashes($google_map['schedule']); ?><?=stripslashes($google_map['information']); ?>
+			<?php if (!$h1): ?><h1><?='Графік роботи і контакти'?></h1><?php else: ?><h2><?='Графік роботи і контакти';?></h2><?php endif; ?><br>
+			<?=stripslashes($google_map['schedule']); ?><br><?=stripslashes($google_map['information']); ?><br><br>
 		<?php else: ?>
 			<header><h2>Контакти</h2></header>
 		<?php endif; ?>

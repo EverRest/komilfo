@@ -456,7 +456,8 @@
 		'questions',
 		'slider',
         'swiper',
-        'google_map'
+        'google_map',
+        'menu'
 	);
 
 	/*
