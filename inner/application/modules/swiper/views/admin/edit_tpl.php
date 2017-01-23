@@ -181,65 +181,66 @@
 								);
 							});
 						}).on('click', '.fpc_edit', function (event) {
-								event.preventDefault();
-								var $link = $(this),
-									width = $link.data('width') > 600 ? 600 : $link.data('width'),
-									height = width * $link.data('height') / $link.data('width'),
-									crop_modal = '<div id="crop_overlay" class="confirm_overlay" style="display: block; opacity: 0.5; height:' + $(window).height() + 'px"></div><div id="crop_modal"  class="crop_modal" style="height: 520px;"><div class="fm crop_area" style="z-index:600;"><div class="fm ca_panel"><a id="crop_cancel" href="#" class="fmr ca_cencel"><b></b>Скасувати</a><a id="crop_save" href="#" class="fmr ca_save"><b></b>Зберегти</a><span class="controls"><label class="check_label active"><i><input type="checkbox" name="proportion" checked="checked" value="1"></i>Пропорційно</label></span></div><div id="crop_preview" class="fm crop_review" style="width: 600px; height: 300px;"><div style="overflow: hidden" class="crop_prew_border"><img src="' + $link.data('src') + '" alt=""></div></div><div id="crop_source" class="fm crop_source"><img width="' + width + '" height="' + height + '" src="' + $link.data('src') + '"></div></div></div>';
-								$('body').append(crop_modal);
-								$('#crop_modal').css('top', $(document).scrollTop() + 50);
-								$('#crop_source').find('img').Jcrop({
-									keySupport: false,
-									aspectRatio: 300/300,
-									setSelect: [0, 0, 300, 300],
-									realSizes: [$link.data('width'), $link.data('height')],
-									onChange: function (coords) {
-										crop_preview($('#crop_preview').find('div'), coords, 600, 300, width, height);
-									}
-								}, function () {
-									var api = this;
-									$('[name="proportion"]').off('change').on('change', function () {
-										if ($(this).prop('checked')) {
-											$(this).closest('label').addClass('active');
-											api.setOptions({aspectRatio: 600/300});
-										} else {
-											$(this).closest('label').removeClass('active');
-											api.setOptions({aspectRatio: 0});
-										}
-										api.focus();
-									});
-									$('#crop_cancel').off('click').on('click', function (e) {
-										e.preventDefault();
-										api.destroy();
-										$('#crop_modal').add('#crop_overlay').remove();
-									});
-									$('#crop_save').off('click').on('click', function (e) {
-										e.preventDefault();
-										component_loader_show($('.component_loader'));
-										$.post(
-											'<?=$this->uri->full_url('admin/swiper/crop');?>',
-											{
-												slide_id: $link.data('image-id'),
-												menu_id: <?= $menu_id;?>,
-												width: width,
-												coords: api.tellScaled()
-											},
-											function (response) {
-												if (response.success) {
-													api.destroy();
-													$link.closest('.for_photo_cut').find('img').attr('src', response.image);
-													$('#crop_modal').add('#crop_overlay').remove();
-													component_loader_hide($('.component_loader'));
-												}
-											},
-											'json'
-										);
-									});
-								});
-								$(this).closest('li').removeClass('active').on('mouseover', function () {
-									return false;
-								});
-							});
+                            event.preventDefault();
+                            var $link = $(this),
+                                width = $link.data('width') > 600 ? 600 : $link.data('width'),
+                                height = width * $link.data('height') / $link.data('width'),
+                                crop_modal = '<div id="crop_overlay" class="confirm_overlay" style="display: block; opacity: 0.5; height:' + $(window).height() + 'px"></div><div id="crop_modal"  class="crop_modal" style="height: 520px;"><div class="fm crop_area" style="z-index:600;"><div class="fm ca_panel"><a id="crop_cancel" href="#" class="fmr ca_cencel"><b></b>Скасувати</a><a id="crop_save" href="#" class="fmr ca_save"><b></b>Зберегти</a><span class="controls"><label class="check_label active"><i><input type="checkbox" name="proportion" checked="checked" value="1"></i>Пропорційно</label></span></div><div id="crop_preview" class="fm crop_review" style="width: 300px; height: 300px;"><div style="overflow: hidden" class="crop_prew_border"><img src="' + $link.data('src') + '" style="width:auto;" alt=""></div></div><div id="crop_source" class="fm crop_source" style="width: 600px"><img width="' + width + '" height="' + height + '" src="' + $link.data('src') + '"></div></div></div>';
+                            $('body').append(crop_modal);
+//                                $('#crop_preview').find('img').css({'width':'auto';});
+                            $('#crop_modal').css('top', $(document).scrollTop() + 50);
+                            $('#crop_source').find('img').Jcrop({
+                                keySupport: false,
+                                aspectRatio: 300/300,
+                                setSelect: [0, 0, 300, 300],
+                                realSizes: [$link.data('width'), $link.data('height')],
+                                onChange: function (coords) {
+                                    crop_preview($('#crop_preview').find('div'), coords, 300, 300, width, height);
+                                }
+                            }, function () {
+                                var api = this;
+                                $('[name="proportion"]').off('change').on('change', function () {
+                                    if ($(this).prop('checked')) {
+                                        $(this).closest('label').addClass('active');
+                                        api.setOptions({aspectRatio: 300/300});
+                                    } else {
+                                        $(this).closest('label').removeClass('active');
+                                        api.setOptions({aspectRatio: 0});
+                                    }
+                                    api.focus();
+                                });
+                                $('#crop_cancel').off('click').on('click', function (e) {
+                                    e.preventDefault();
+                                    api.destroy();
+                                    $('#crop_modal').add('#crop_overlay').remove();
+                                });
+                                $('#crop_save').off('click').on('click', function (e) {
+                                    e.preventDefault();
+                                    component_loader_show($('.component_loader'));
+                                    $.post(
+                                        '<?=$this->uri->full_url('admin/slider/crop');?>',
+                                        {
+                                            slide_id: $link.data('image-id'),
+                                            menu_id: <?= $menu_id;?>,
+                                            width: width,
+                                            coords: api.tellScaled()
+                                        },
+                                        function (response) {
+                                            if (response.success) {
+                                                api.destroy();
+                                                $link.closest('.for_photo_cut').find('img').attr('src', response.image);
+                                                $('#crop_modal').add('#crop_overlay').remove();
+                                                component_loader_hide($('.component_loader'));
+                                            }
+                                        },
+                                        'json'
+                                    );
+                                });
+                            });
+                            $(this).closest('li').removeClass('active').on('mouseover', function () {
+                                return false;
+                            });
+                        });
 		/**
 		 * Відправка форми
 		 */

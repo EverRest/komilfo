@@ -68,3 +68,7 @@ input.btn-add:active { background-color: #d6d6d6; color: #fff; }
 .service-header:first-child {display:inline-block;}
 .service-item-title {display:none;}
 .service-item-title:first-child {display:inline-block;}
+/*--------------------- img ------------------------------------*/
+#crop_preview img {
+    max-width: none;
+}

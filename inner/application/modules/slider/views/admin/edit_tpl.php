@@ -68,7 +68,7 @@
 			<div class="no_float image_list" style="width:78%;">
 				<ul id="images_list" style="width:100%;">
 					<?php if( $slide['file_name'] !=''):?>
-						<li data-id="<?=$slide['slide_id'];?>" style="float: left; width:300px; height: 300px; margin-top: 2px; margin-left: 2px;">
+						<li data-id="<?=$slide['slide_id'];?>" style="float: left; width:300px; height: 150px; margin-top: 2px; margin-left: 2px;">
 								<div class="fm for_photo_cut">
 									<div class="fm photo_cut" style="width:300px; height: 150px;">
 										<?php $sizes = getimagesize(ROOT_PATH . 'upload/slider/'. $menu_id . '/' . $slide['slide_id'] . '/' . $slide['file_name']); ?>

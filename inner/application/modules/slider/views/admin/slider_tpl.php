@@ -33,9 +33,9 @@
 					<div class="cell last_edit <?php if (isset($last_slide) AND ($slide['slide_id'] == $last_slide)) echo 'active'; ?>"></div>
 					<div class="cell w_20 number"></div>
 					<div class="cell w_20 icon"><a href="#" class="hide-show<?php if ($slide['hidden'] == 0): ?> active<?php endif; ?>"></a></div>
-					<div class="cell no_padding w_<?=$thumb[0];?>" style="width: 300px; height: 150px;">
+					<div class="cell no_padding w_<?=$thumb[0];?>" style="width: 400px; height: 200px;">
 						<?php if ($slide['file_name'] != ''): ?>
-						<img src="/upload/slider/<?php echo $menu_id; ?>/<?php echo $slide['slide_id']; ?>/<?php echo $slide['file_name']; ?>" style="width: 300px; height: 150px;">
+						<img src="/upload/slider/<?php echo $menu_id; ?>/<?php echo $slide['slide_id']; ?>/<?php echo $slide['file_name']; ?>" style="width: 400px; height: 200px;">
 						<?php endif; ?>
 					</div>
 					<div class="cell w_20 icon">
