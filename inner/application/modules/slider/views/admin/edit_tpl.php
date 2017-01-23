@@ -190,7 +190,7 @@
                             $('#crop_modal').css('top', $(document).scrollTop() + 50);
                             $('#crop_source').find('img').Jcrop({
                                 keySupport: false,
-                                aspectRatio: 300/300,
+                                aspectRatio: 300/150,
                                 setSelect: [0, 0, 300, 300],
                                 realSizes: [$link.data('width'), $link.data('height')],
                                 onChange: function (coords) {

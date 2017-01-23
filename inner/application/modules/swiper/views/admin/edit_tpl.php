@@ -191,7 +191,7 @@
                             $('#crop_modal').css('top', $(document).scrollTop() + 50);
                             $('#crop_source').find('img').Jcrop({
                                 keySupport: false,
-                                aspectRatio: 300/300,
+                                aspectRatio: 300/150,
                                 setSelect: [0, 0, 300, 300],
                                 realSizes: [$link.data('width'), $link.data('height')],
                                 onChange: function (coords) {
@@ -218,7 +218,7 @@
                                     e.preventDefault();
                                     component_loader_show($('.component_loader'));
                                     $.post(
-                                        '<?=$this->uri->full_url('admin/slider/crop');?>',
+                                        '<?=$this->uri->full_url('admin/swiper/crop');?>',
                                         {
                                             slide_id: $link.data('image-id'),
                                             menu_id: <?= $menu_id;?>,

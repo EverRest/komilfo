@@ -260,7 +260,7 @@
 								$x2 = $coords['x2'] * $w_index;
 								$y2 = $coords['y2'] * $h_index;
 								$this->load->library('Image_lib');
-								$this->image_lib->crop($dir . 's_' . $image['file_name'], $dir . $image['file_name'], $x2 - $x, $y2 - $y, $x, $y, 300, 300);
+								$this->image_lib->crop($dir . 's_' . $image['file_name'], $dir . $image['file_name'], $x2 - $x, $y2 - $y, $x, $y, 1600, 800);
 
 								$response['success'] = TRUE;
 								$response['image'] = '/upload/swiper/' . $menu_id . '/' . $image['slide_id'] .'/'. $image['file_name'] . '?t' . time();
