@@ -143,14 +143,14 @@
 				'config' => '',
 				'class' => 'fm common_set',
 			),
-            array(
-                'name' => 'Меню',
-                'url' => 'admin/menu/index?',
-                'module' => 'menu',
-                'index' => 'index',
-                'config' => '',
-                'class' => 'fm menu',
-            ),
+//            array(
+//                'name' => 'Меню',
+//                'url' => 'admin/menu/index?',
+//                'module' => 'menu',
+//                'index' => 'index',
+//                'config' => '',
+//                'class' => 'fm menu',
+//            ),
 			array(
 				'name' => 'Номери телефонів',
 				'url' => 'admin/config/header?',
