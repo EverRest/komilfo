@@ -119,7 +119,7 @@
 					'admin_id' => $admin_id,
 					'menu_id' => $menu_id,
 
-					'admin_menu' => include APPPATH . 'modules/menu/config/admin_menu.php',
+					'admin_menu' => include APPPATH . 'modules/menu/config/admin_services.php',
 					'site_menu' => $this->admin_administrators_model->get_menus(),
 				);
 

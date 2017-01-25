@@ -429,7 +429,8 @@
 		'guarantee',
 		'questions',
 		'news',
-        'google_map'
+        'google_map',
+        'services'
 	);
 
 	/*
@@ -457,7 +458,8 @@
 		'slider',
         'swiper',
         'google_map',
-        'menu'
+        'menu',
+        'services'
 	);
 
 	/*

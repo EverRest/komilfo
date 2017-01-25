@@ -45,7 +45,7 @@
             ),
 			 array(
 			 	'name' => 'Послуги',
-			 	'module' => 'benefit_services',
+			 	'module' => 'services',
 			 	'index' => 'index',
 			 	'config' => '',
 			 	'class' => 'fm com_catalog component_add',
@@ -107,6 +107,14 @@
 				'config' => '',
 				'class' => 'fm main_menu',
 			),
+            array(
+                'name' => 'Сервіси',
+                'url' => 'admin/menu/index?menu_index=2&',
+                'module' => 'menu',
+                'index' => 2,
+                'config' => '',
+                'class' => 'fm main_menu',
+            ),
 		),
 		'seo' => array(
 			array(

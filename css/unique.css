@@ -72,3 +72,7 @@ input.btn-add:active { background-color: #d6d6d6; color: #fff; }
 #crop_preview img {
     max-width: none;
 }
+/*----------------------  section-about  -------------------------------------*/
+.article-about p, .section-title {
+    color: #676767;
+}
