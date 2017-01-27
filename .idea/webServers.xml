@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e7678e0b-a4fc-4024-b632-84c5281c3dec" name="komilfo.websufix.com" url="http://komilfo.websufix.com">
+        <fileTransfer host="komilfo.websufix.com" port="21" rootFolder="/public_html" password="dfd9dfe6dfccdfe7dfe9dfe8dfe7dfd9dff0dfd9" username="admin_adminko">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

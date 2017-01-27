@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 12 2017 г., 18:41
+-- Время создания: Янв 27 2017 г., 12:01
 -- Версия сервера: 5.5.50
 -- Версия PHP: 5.6.23
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `ko_administrators` (
 --
 
 INSERT INTO `ko_administrators` (`admin_id`, `name`, `login`, `password`, `salt`, `create_date`, `login_date`, `site_menu`, `admin_menu`, `root`, `status`, `edited`) VALUES
-(1, 'Адміністратор', 'admin', '3fcc0f1c93aec089e3857f834b9d66e8', '2a81ce665b7a39f7e0c493e5af16ef40', 1410864123, 1484234783, '1,316', 'components,article_index,google_map_index,feedback_index,news_index,comments_index,menu,menu_1,seo,seo_tags,seo_seo_link,seo_xml,seo_site_name,config,config_common,config_languages,config_administrators,config_watermark', 1, 0, 1);
+(1, 'Адміністратор', 'admin', '3fcc0f1c93aec089e3857f834b9d66e8', '2a81ce665b7a39f7e0c493e5af16ef40', 1410864123, 1485358717, '1,316', 'components,article_index,google_map_index,feedback_index,news_index,comments_index,menu,menu_1,seo,seo_tags,seo_seo_link,seo_xml,seo_site_name,config,config_common,config_languages,config_administrators,config_watermark', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `ko_components` (
   `module` varchar(30) NOT NULL,
   `method` varchar(30) NOT NULL,
   `config` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `ko_components`
@@ -71,9 +71,14 @@ CREATE TABLE IF NOT EXISTS `ko_components` (
 INSERT INTO `ko_components` (`component_id`, `menu_id`, `position`, `hidden`, `module`, `method`, `config`) VALUES
 (46, 1, 5, 0, 'benefits', 'index', ''),
 (47, 1, 6, 0, 'google_map', 'index', ''),
-(48, 1, 3, 0, 'slider', 'index', ''),
-(49, 1, 2, 0, 'guarantee', 'index', ''),
-(51, 1, 0, 0, 'benefit_services', 'index', '');
+(68, 1, 0, 0, 'swiper', 'index', ''),
+(82, 1, 4, 0, 'slider', 'index', ''),
+(83, 1, 2, 0, 'article', 'index', ''),
+(84, 1, 3, 0, 'guarantee', 'index', ''),
+(86, 9, 2, 0, 'benefits', 'index', ''),
+(87, 9, 1, 0, 'guarantee', 'index', ''),
+(88, 9, 0, 0, 'slider', 'index', ''),
+(100, 1, 1, 0, 'services', 'index', '');
 
 -- --------------------------------------------------------
 
@@ -96,6 +101,13 @@ CREATE TABLE IF NOT EXISTS `ko_component_article` (
   `background_fone` int(1) NOT NULL,
   `btn_active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ko_component_article`
+--
+
+INSERT INTO `ko_component_article` (`component_id`, `menu_id`, `title_ua`, `title_ru`, `title_en`, `title_pl`, `text_ua`, `text_ru`, `text_en`, `text_pl`, `wide`, `background_fone`, `btn_active`) VALUES
+(83, 1, 'Pellentesque ut justo ut metus rhoncus ultrices at ut ligula.', '', '', '', '<p><span font-size:=\\"\\" line-height:=\\"\\" open=\\"\\" style=\\"color: rgb(0, 0, 0); font-family: \\" text-align:=\\"\\">Nulla imperdiet facilisis lectus, at accumsan dolor gravida id. Curabitur eget interdum urna. Ut tempor efficitur quam, ac posuere metus ornare sed. Etiam sit amet risus volutpat, facilisis turpis a, iaculis nunc. Vivamus condimentum at purus a tincidunt. Morbi et pellentesque justo. Pellentesque varius magna velit, sed fringilla diam luctus non. Suspendisse a orci nisl. Integer quis lorem vitae est mollis fermentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed sagittis ligula eros, id molestie leo cursus ac. Maecenas vehicula facilisis dolor, et iaculis lectus.</span></p>', '', '', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -268,7 +280,12 @@ CREATE TABLE IF NOT EXISTS `ko_component_services` (
   `menu_id` int(6) NOT NULL,
   `header` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `price` int(11) NOT NULL
+  `price` int(11) NOT NULL,
+  `title_ua` varchar(255) NOT NULL,
+  `text_ua` text NOT NULL,
+  `wide` int(16) NOT NULL,
+  `background_fone` varchar(255) NOT NULL,
+  `btn_active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -450,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `ko_menu` (
   `icon` varchar(255) NOT NULL,
   `code` varchar(20) NOT NULL,
   `update` int(11) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `ko_menu`
@@ -458,7 +475,20 @@ CREATE TABLE IF NOT EXISTS `ko_menu` (
 
 INSERT INTO `ko_menu` (`id`, `parent_id`, `level`, `menu_index`, `position`, `hidden`, `main`, `target`, `url_path_id`, `name_ua`, `title_ua`, `url_ua`, `url_path_ua`, `url_hash_ua`, `static_url_ua`, `name_ru`, `title_ru`, `url_ru`, `url_path_ru`, `url_hash_ru`, `static_url_ru`, `name_en`, `title_en`, `url_en`, `url_path_en`, `url_hash_en`, `static_url_en`, `name_pl`, `title_pl`, `url_pl`, `url_path_pl`, `url_hash_pl`, `static_url_pl`, `image`, `icon`, `code`, `update`) VALUES
 (1, 0, 0, 1, 0, 0, 1, 0, '', 'Головна', '', 'golovna', 'golovna', '00eb099a6cb6877236b7c6b1184e6bc3', '', 'Главная', '', 'glavnaya', '', '', '', 'holovna', '', 'holovna', 'holovna', '78a7a9af2f1ac44fbc028d5d23d3149b', '', '', '', '', '', '', '', '', '', '', 0),
-(2, 0, 0, 1, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1423813381);
+(8, 0, 0, 1, 0, 0, 0, 0, '', 'Головна', '', 'golovna', 'golovna', '00eb099a6cb6877236b7c6b1184e6bc3', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1484749242),
+(9, 0, 0, 1, 1, 0, 0, 0, '', 'Послуга', '', 'posluga', 'posluga', 'b0563fc3054aa259b684b4eb783c08ef', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1484749244),
+(10, 0, 0, 2, 0, 0, 0, 0, '', 'Перукарські послуги', '', 'perukarski-poslugy', 'perukarski-poslugy', '5a0949635ef9be185b081927e624095f', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338180),
+(11, 0, 0, 2, 5, 0, 0, 0, '', 'Послуги манікюру і педікюру', '', 'poslugy-manikyuru-i-pedikyuru', 'poslugy-manikyuru-i-pedikyuru', 'ec09d0751bc191d8fe56ef6fd50ce597', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338213),
+(12, 10, 1, 2, 1, 0, 0, 0, '.10.', 'Полубокс-200', '', 'poluboks-200', 'perukarski-poslugy/poluboks-200', '86c18a8ad0a516d614aefd39aa3ac3ff', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338248),
+(14, 10, 1, 2, 2, 0, 0, 0, '.10.', 'Налисо-100', '', 'nalyso-100', 'perukarski-poslugy/nalyso-100', '0e7b91f22f76f1e5dba6e7d2868f506a', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338277),
+(15, 10, 1, 2, 3, 0, 0, 0, '.10.', 'Під шапочку-250', '', 'pid-shapochku-250', 'perukarski-poslugy/pid-shapochku-250', 'ac1e5db4bfbfc60e630a4cf30ab9a3c7', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338286),
+(17, 10, 1, 2, 4, 0, 0, 0, '.10.', 'Каре-400', '', 'kare-400', 'perukarski-poslugy/kare-400', '66908f131bda02db5183fe8964685441', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338325),
+(18, 11, 1, 2, 6, 0, 0, 0, '.11.', 'Манікюр-150', '', 'manikyur-150', 'poslugy-manikyuru-i-pedikyuru/manikyur-150', '019b6935f1f264dcb4fd9359d4483e57', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338337),
+(19, 11, 1, 2, 7, 0, 0, 0, '.11.', 'Педікюр-250', '', 'pedikyur-250', 'poslugy-manikyuru-i-pedikyuru/pedikyur-250', '4eff14c222b8d52b5ae604c065adfa11', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338338),
+(20, 11, 1, 2, 8, 0, 0, 0, '.11.', 'Наведення красоти-800', '', 'navedennya-krasoty-800', 'poslugy-manikyuru-i-pedikyuru/navedennya-krasoty-800', 'c584a7db5ea373b804ec464061af27d1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338338),
+(21, 0, 0, 2, 9, 0, 0, 0, '', 'Ще якась біліберда', '', 'sche-yakas-biliberda', 'sche-yakas-biliberda', '83f5e0ba961657c05e712cc73031f473', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338511),
+(22, 21, 1, 2, 0, 0, 0, 0, '.21.', 'Масаж-500', '', 'masaj-500', 'sche-yakas-biliberda/masaj-500', 'ea7c7145816ff37d5c96b4adeac74121', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338528),
+(23, 21, 1, 2, 1, 0, 0, 0, '.21.', 'Тайський масаж-800', '', 'tayskyy-masaj-800', 'sche-yakas-biliberda/tayskyy-masaj-800', 'c1d6b06025bc74a44fed6f6cbf4fbe1d', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1485338529);
 
 -- --------------------------------------------------------
 
@@ -611,7 +641,7 @@ CREATE TABLE IF NOT EXISTS `ko_seo_tags` (
   `cache_description_pl` text NOT NULL,
   `cache_keywords_pl` text NOT NULL,
   `cache_pl` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=1374 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1378 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `ko_seo_tags`
@@ -619,7 +649,55 @@ CREATE TABLE IF NOT EXISTS `ko_seo_tags` (
 
 INSERT INTO `ko_seo_tags` (`tags_id`, `item_id`, `component_id`, `menu_id`, `module`, `type_ua`, `title_ua`, `description_ua`, `keywords_ua`, `cache_title_ua`, `cache_description_ua`, `cache_keywords_ua`, `cache_ua`, `type_ru`, `title_ru`, `description_ru`, `keywords_ru`, `cache_title_ru`, `cache_description_ru`, `cache_keywords_ru`, `cache_ru`, `type_en`, `title_en`, `description_en`, `keywords_en`, `cache_title_en`, `cache_description_en`, `cache_keywords_en`, `cache_en`, `type_pl`, `title_pl`, `description_pl`, `keywords_pl`, `cache_title_pl`, `cache_description_pl`, `cache_keywords_pl`, `cache_pl`) VALUES
 (1372, 0, 0, 1, '', 1, 'Комільфо Львів | Перукарські послуги | Послуги манікюру і педикюру', 'Салон краси &quot;Комільфо&quot; надає перукарські послуги, а також послуги манікюру і педикюру', 'Комільфо Львів, перукарські послуги Львів, послуги манікюру і педикюру Львів', 'Про нас', 'Про нас Клінінгова компанія &quot;Чиста Оселя&quot; надає послуги професійного прибирання у м. Львів: прибирання після ремонту, генеральне прибирання, щоденне прибирання: квартир, будинків, бізнес центрів, офісів та складів &ndash; миття вікон, хімчистка &amp; аквачистка доріжок, килимів, ковроліну та м&rsquo;яких меблів (диванів, матрасів,', 'прибирання, послуги, часу, області, львова, професійне', 0, 0, '', '', '', '', '  ', '', 1, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0),
-(1373, 0, 0, 0, '', 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0);
+(1373, 0, 0, 0, '', 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0),
+(1376, 0, 0, 9, '', 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0),
+(1377, 0, 0, 14, '', 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ko_services`
+--
+
+CREATE TABLE IF NOT EXISTS `ko_services` (
+  `id` int(6) unsigned NOT NULL,
+  `parent_id` int(6) unsigned NOT NULL DEFAULT '0',
+  `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `services_index` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `position` int(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `main` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `target` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `url_path_id` varchar(100) NOT NULL,
+  `name_ua` varchar(255) NOT NULL,
+  `title_ua` varchar(50) NOT NULL,
+  `url_ua` varchar(255) NOT NULL,
+  `url_path_ua` varchar(255) NOT NULL,
+  `url_hash_ua` char(32) NOT NULL,
+  `static_url_ua` varchar(255) NOT NULL,
+  `name_ru` varchar(255) NOT NULL,
+  `title_ru` varchar(50) NOT NULL,
+  `url_ru` varchar(255) NOT NULL,
+  `url_path_ru` varchar(255) NOT NULL,
+  `url_hash_ru` char(32) NOT NULL,
+  `static_url_ru` varchar(255) NOT NULL,
+  `name_en` varchar(255) NOT NULL,
+  `title_en` varchar(50) NOT NULL,
+  `url_en` varchar(255) NOT NULL,
+  `url_path_en` varchar(255) NOT NULL,
+  `url_hash_en` char(32) NOT NULL,
+  `static_url_en` varchar(255) NOT NULL,
+  `name_pl` varchar(255) NOT NULL,
+  `title_pl` varchar(50) NOT NULL,
+  `url_pl` varchar(255) NOT NULL,
+  `url_path_pl` varchar(255) NOT NULL,
+  `url_hash_pl` char(32) NOT NULL,
+  `static_url_pl` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `code` varchar(20) NOT NULL,
+  `update` int(11) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -638,7 +716,45 @@ CREATE TABLE IF NOT EXISTS `ko_site_links` (
   `hash_en` char(32) NOT NULL,
   `hash_pl` char(32) NOT NULL,
   `hash_ru` char(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ko_site_links`
+--
+
+INSERT INTO `ko_site_links` (`link_id`, `item_id`, `component_id`, `menu_id`, `module`, `method`, `hash_ua`, `hash_en`, `hash_pl`, `hash_ru`) VALUES
+(6, 8, 0, 8, 'components', 'get_components', '00eb099a6cb6877236b7c6b1184e6bc3', '', '', ''),
+(7, 9, 0, 9, 'components', 'get_components', 'b0563fc3054aa259b684b4eb783c08ef', '', '', ''),
+(8, 5, 5, 0, 'components', 'get_components', '', '', '', ''),
+(9, 6, 6, 0, 'components', 'get_components', '', '', '', ''),
+(10, 7, 7, 0, 'components', 'get_components', '', '', '', ''),
+(11, 8, 8, 0, 'components', 'get_components', '', '', '', ''),
+(12, 9, 9, 0, 'components', 'get_components', '', '', '', ''),
+(13, 10, 10, 0, 'components', 'get_components', '', '', '', ''),
+(14, 11, 11, 0, 'components', 'get_components', '', '', '', ''),
+(15, 12, 12, 0, 'components', 'get_components', '', '', '', ''),
+(16, 13, 13, 0, 'components', 'get_components', '', '', '', ''),
+(17, 14, 14, 0, 'components', 'get_components', '', '', '', ''),
+(18, 15, 15, 0, 'components', 'get_components', '', '', '', ''),
+(19, 16, 16, 0, 'components', 'get_components', '', '', '', ''),
+(20, 17, 17, 0, 'components', 'get_components', '', '', '', ''),
+(21, 18, 18, 0, 'components', 'get_components', '', '', '', ''),
+(22, 19, 19, 0, 'components', 'get_components', '', '', '', ''),
+(23, 20, 20, 0, 'components', 'get_components', '', '', '', ''),
+(24, 21, 21, 0, 'components', 'get_components', '', '', '', ''),
+(25, 22, 22, 0, 'components', 'get_components', '', '', '', ''),
+(26, 10, 0, 10, 'components', 'get_components', '5a0949635ef9be185b081927e624095f', '', '', ''),
+(27, 11, 0, 11, 'components', 'get_components', 'ec09d0751bc191d8fe56ef6fd50ce597', '', '', ''),
+(28, 12, 0, 12, 'components', 'get_components', '86c18a8ad0a516d614aefd39aa3ac3ff', '', '', ''),
+(30, 14, 0, 14, 'components', 'get_components', '0e7b91f22f76f1e5dba6e7d2868f506a', '', '', ''),
+(31, 15, 0, 15, 'components', 'get_components', 'ac1e5db4bfbfc60e630a4cf30ab9a3c7', '', '', ''),
+(33, 17, 0, 17, 'components', 'get_components', '66908f131bda02db5183fe8964685441', '', '', ''),
+(34, 18, 0, 18, 'components', 'get_components', '019b6935f1f264dcb4fd9359d4483e57', '', '', ''),
+(35, 19, 0, 19, 'components', 'get_components', '4eff14c222b8d52b5ae604c065adfa11', '', '', ''),
+(36, 20, 0, 20, 'components', 'get_components', 'c584a7db5ea373b804ec464061af27d1', '', '', ''),
+(37, 21, 0, 21, 'components', 'get_components', '83f5e0ba961657c05e712cc73031f473', '', '', ''),
+(38, 22, 0, 22, 'components', 'get_components', 'ea7c7145816ff37d5c96b4adeac74121', '', '', ''),
+(39, 23, 0, 23, 'components', 'get_components', 'c1d6b06025bc74a44fed6f6cbf4fbe1d', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -666,16 +782,53 @@ CREATE TABLE IF NOT EXISTS `ko_slider` (
   `description_ua` varchar(255) NOT NULL,
   `description_ru` varchar(255) NOT NULL,
   `description_en` varchar(255) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `ko_slider`
 --
 
 INSERT INTO `ko_slider` (`slide_id`, `menu_id`, `position`, `hidden`, `title_ua`, `url_ua`, `file_name_ua`, `title_ru`, `url_ru`, `file_name_ru`, `title_en`, `url_en`, `hidden_ua`, `hidden_ru`, `hidden_en`, `file_name_en`, `description_ua`, `description_ru`, `description_en`) VALUES
-(64, 1, 1, 0, '', '', '0116358_www.nevseoboi_.com_.ua_.jpg', '', '', '', '', '', 0, 0, 0, '', '<p>no bad i think</p>\r\n', '', ''),
-(65, 1, 2, 0, '', '', '0116373_www.nevseoboi_.com_.ua_.jpg', '', '', '', '', '', 0, 0, 0, '', '<p>better then something</p>\r\n', '', ''),
-(66, 1, 3, 0, '', '', '0116410_www.nevseoboi_.com_.ua_.jpg', '', '', '', '', '', 0, 0, 0, '', '<p>yep... that&#39;s our guys</p>\r\n', '', '');
+(59, 1, 10, 0, '', '', '159608_litso_kistochki_akvarel_kraski_.jpg', '', '', '', '', '', 0, 0, 0, '', '', '', ''),
+(57, 1, 8, 0, '', '', '159341_facebook_logotip_logo_.jpg', '', '', '', '', '', 0, 0, 0, '', '', '', ''),
+(58, 1, 9, 0, '', '', '163729_samuray_busido_yaponiya_katana_by_sira_.jpg', '', '', '', '', '', 0, 0, 0, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ko_swiper`
+--
+
+CREATE TABLE IF NOT EXISTS `ko_swiper` (
+  `slide_id` int(6) unsigned NOT NULL,
+  `menu_id` int(6) unsigned NOT NULL DEFAULT '0',
+  `position` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `title_ua` varchar(255) NOT NULL,
+  `url_ua` varchar(255) NOT NULL,
+  `file_name_ua` varchar(255) NOT NULL,
+  `title_ru` varchar(255) NOT NULL,
+  `url_ru` varchar(255) NOT NULL,
+  `file_name_ru` varchar(255) NOT NULL,
+  `title_en` varchar(255) NOT NULL,
+  `url_en` varchar(255) NOT NULL,
+  `hidden_ua` int(1) NOT NULL,
+  `hidden_ru` int(1) NOT NULL,
+  `hidden_en` int(1) NOT NULL,
+  `file_name_en` varchar(255) NOT NULL,
+  `description_ua` varchar(255) NOT NULL,
+  `description_ru` varchar(255) NOT NULL,
+  `description_en` varchar(255) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ko_swiper`
+--
+
+INSERT INTO `ko_swiper` (`slide_id`, `menu_id`, `position`, `hidden`, `title_ua`, `url_ua`, `file_name_ua`, `title_ru`, `url_ru`, `file_name_ru`, `title_en`, `url_en`, `hidden_ua`, `hidden_ru`, `hidden_en`, `file_name_en`, `description_ua`, `description_ru`, `description_en`) VALUES
+(26, 1, 1, 0, '', '', '150565_nike_just_do_it_slogan_.jpg', '', '', '', '', '', 0, 0, 0, '', '', '', ''),
+(27, 1, 2, 0, '', '', '160069_android_yabloko_mech_android_apple_.jpg', '', '', '', '', '', 0, 0, 0, '', '', '', ''),
+(28, 1, 3, 0, '', '', '160944_shaman_maska_posoh_cherep_krilya_perya_magiya_.jpg', '', '', '', '', '', 0, 0, 0, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -838,6 +991,13 @@ ALTER TABLE `ko_seo_tags`
   ADD PRIMARY KEY (`tags_id`);
 
 --
+-- Индексы таблицы `ko_services`
+--
+ALTER TABLE `ko_services`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`,`services_index`,`hidden`);
+
+--
 -- Индексы таблицы `ko_site_links`
 --
 ALTER TABLE `ko_site_links`
@@ -849,6 +1009,13 @@ ALTER TABLE `ko_site_links`
 -- Индексы таблицы `ko_slider`
 --
 ALTER TABLE `ko_slider`
+  ADD PRIMARY KEY (`slide_id`),
+  ADD KEY `hidden` (`hidden`);
+
+--
+-- Индексы таблицы `ko_swiper`
+--
+ALTER TABLE `ko_swiper`
   ADD PRIMARY KEY (`slide_id`),
   ADD KEY `hidden` (`hidden`);
 
@@ -871,7 +1038,7 @@ ALTER TABLE `ko_administrators`
 -- AUTO_INCREMENT для таблицы `ko_components`
 --
 ALTER TABLE `ko_components`
-  MODIFY `component_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+  MODIFY `component_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT для таблицы `ko_component_benefits`
 --
@@ -921,7 +1088,7 @@ ALTER TABLE `ko_loyalty`
 -- AUTO_INCREMENT для таблицы `ko_menu`
 --
 ALTER TABLE `ko_menu`
-  MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT для таблицы `ko_news`
 --
@@ -941,17 +1108,27 @@ ALTER TABLE `ko_reviews`
 -- AUTO_INCREMENT для таблицы `ko_seo_tags`
 --
 ALTER TABLE `ko_seo_tags`
-  MODIFY `tags_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1374;
+  MODIFY `tags_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1378;
+--
+-- AUTO_INCREMENT для таблицы `ko_services`
+--
+ALTER TABLE `ko_services`
+  MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `ko_site_links`
 --
 ALTER TABLE `ko_site_links`
-  MODIFY `link_id` int(6) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `link_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT для таблицы `ko_slider`
 --
 ALTER TABLE `ko_slider`
-  MODIFY `slide_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
+  MODIFY `slide_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+--
+-- AUTO_INCREMENT для таблицы `ko_swiper`
+--
+ALTER TABLE `ko_swiper`
+  MODIFY `slide_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT для таблицы `ko_timer`
 --

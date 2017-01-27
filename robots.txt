@@ -1,4 +1,4 @@
-Host: mastersswim.com.ua
+Host: komilfo.websufix.com
 User-agent: *
 Disallow:
-Sitemap: http://mastersswim.com.ua/sitemap.xml
+Sitemap: http://komilfo.websufix.com/sitemap.xml
