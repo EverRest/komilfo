@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Condensed|Roboto:400,700&amp;subset=cyrillic" rel="stylesheet">
         <link rel="stylesheet" href="<?=base_url('css/style.css')?>">
         <link rel="stylesheet" href="<?=base_url('css/unique.css');?>">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script type="text/javascript" src="<?=base_url('js/jquery/jquery.min.js');?>"></script>
         <script type="text/javascript" src="<?=base_url('js/map.js');?>"></script>
         <?php if($this->init_model->is_admin()):?>
@@ -114,16 +114,18 @@
                     </div>
                 <?php endif; ?>
                 <?php foreach($swipes as $swipe): ?>
+                    <?php if($swipe['hidden'] != 1): ?>
                     <?php $url = 'upload/swiper/1/'.$swipe['slide_id'].'/'.$swipe['file_name']; ?>
                     <div class="swiper-slide slide-bg" style="background-image: url('<?= base_url($url);?>')">
                         <div class="slide-content">
-                            <? $description = str_replace(array('<p>','<span style=&quot;color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; line-height: 20px; text-align: justify;&quot;>','</span>','</p>'),'',$swipe['description']);?>
+                            <? $description = str_replace(array('<p>','<span style="color: rgb(0, 0, 0); font-family: "Open Sans";, Arial, sans-serif; font-size: 14px; line-height: 20px; text-align: justify;">','</span>','</p>'),'',$swipe['description']);?>
                             <div class="slide-text" data-caption-animate="fadeInUp">
                                 <?php echo $description; ?>
                             </div>
                             <a href="#" class="btn btn-default btn-sub open-popup" data-caption-delay="450" data-caption-animate="fadeIn"><span>ЗАПИС НА ПРИЙОМ</span></a>
                         </div>
                     </div>
+                    <? endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -147,7 +149,7 @@
                 </div>
 
                 <div class="col-md-6 col-xs-6">
-                    <div class="author">Розробка<a href="#"> SUFIX web studio</a></div>
+                    <div class="author"><a href="<?=base_url('/');?>">Лендінг Пейдж Львів - Sufix agency</a></div>
                 </div>
             </div>
         </div>
@@ -155,8 +157,8 @@
         <div class="fm black" style="display: none;"></div>
         <form method="POST">
             <div class="popup" style="display: none;">
-                <a href="" class="close"></a>
-                <div class="fm title_popup" id="popup_title"></div>
+                <a href="#" class="btn-close close"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <div class="fm title_popup" id="popup_title">Для запису телефонуйте</div>
                 <div class="fm text_place"></div>
                 <div class="fm title_popup" id="form_title"></div>
                 <div class="fm input-place_popup">

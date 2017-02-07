@@ -61,7 +61,6 @@ input.btn-add:hover { background-color: #d2d2d2;color: #fff; }
 input.btn-add:active { background-color: #d6d6d6; color: #fff; }
 /*---------------- service_container -----------------------------*/
 .service_form {overflow: hidden;}
-.service_container {padding: 0 70px;}
 .service_input {width:65% !important;}
 .hidden-btn {color:#008000;cursor:pointer;}
 .service-header {display:none;}
@@ -76,3 +75,13 @@ input.btn-add:active { background-color: #d6d6d6; color: #fff; }
 .article-about p, .section-title {
     color: #676767;
 }
+/*------------------------ .popup -----------------------------------*/
+a.btn-close.close { position: absolute; color: #d4d4d4; right: 10px; top: 0; font-size: 1.4em;}
+a.edit:hover {cursor: pointer;}
+.cell {text-align: center;}
+.cell .add_subservice:hover {color: darkgreen;cursor: pointer;}
+input#price_item {width: 80%;}
+input.title-item,input.title{width: 93%;}
+/*------------------------- Footer links ----------------------------------------*/
+.author a, .copyright a {color:#fff;}
+.author a:hover, .copyright a:hover {text-decoration:none;}

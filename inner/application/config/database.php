@@ -5,7 +5,7 @@
 
 	$db['default'] = array(
 		'dsn' => '',
-		'hostname' => 'localhost',
+		'hostname' => 'komilfo.sufix',
 		'username' => 'root',
 		'password' => '',
 		'database' => 'admin_komilfo',

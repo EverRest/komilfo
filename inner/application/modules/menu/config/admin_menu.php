@@ -9,6 +9,11 @@
 				'name' => 'Сторінка',
 				'url' => '',
 			),
+            array(
+                'code' => 'menu',
+                'name' => 'Меню',
+                'url' => 'admin/menu/index?menu_index=1&',
+            ),
 			array(
 				'code' => 'seo',
 				'name' => 'SEO',
@@ -18,12 +23,7 @@
 				'code' => 'config',
 				'name' => 'Налаштування',
 				'url' => '#',
-			),
-			array(
-				'code' => 'menu',
-				'name' => 'Меню',
-				'url' => 'admin/menu/index?menu_index=1&',
-			),
+			)
 		),
 		'components' => array(
 
@@ -62,11 +62,11 @@
 				'check' => 'on_page'
 			),
             array(
-                'name' => 'Swiper',
+                'name' => 'Свайпер',
                 'module' => 'swiper',
                 'index' => 'index',
                 'config' => '',
-                'class' => 'fm com_reviews hidden component_add',
+                'class' => 'fm com_reviews component_add',
                 'on_main' => TRUE,
                 'check' => 'on_page'
             ),
@@ -107,14 +107,14 @@
 				'config' => '',
 				'class' => 'fm main_menu',
 			),
-            array(
-                'name' => 'Сервіси',
-                'url' => 'admin/menu/index?menu_index=2&',
-                'module' => 'menu',
-                'index' => 2,
-                'config' => '',
-                'class' => 'fm main_menu',
-            ),
+//            array(
+//                'name' => 'Сервіси',
+//                'url' => 'admin/menu/index?menu_index=2&',
+//                'module' => 'menu',
+//                'index' => 2,
+//                'config' => '',
+//                'class' => 'fm main_menu',
+//            ),
 		),
 		'seo' => array(
 			array(

@@ -338,7 +338,7 @@
 		/**
 		 * Збереження порядку сортування
 		 */
-		public function slides_position()
+		public function swipes_position()
 		{
 			$response = array('success' => FALSE);
 			$menu_id = intval($this->input->post('menu_id'));

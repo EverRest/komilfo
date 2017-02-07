@@ -5,6 +5,7 @@
 	$thumb = array(300, 150);
 
 ?>
+<?php $_SESSION['uri'] = $_SERVER['REQUEST_URI'];?>
 <div class="fm admin_component" id="admin_component_<?=$component_id;?>" data-component-id="<?=$component_id;?>" data-menu-id="<?=$menu_id;?>" data-module="slider" data-css-class="slider" data-visibility-url="<?=$this->uri->full_url('admin/components/toggle_visibility');?>" data-delete-url="<?=$this->uri->full_url('admin/slider/delete_component');?>">
 	<div class="component_loader"></div>
 	<div class="fm adcom_panel">
@@ -41,7 +42,7 @@
 					<div class="cell w_20 icon">
 						<a href="<?php echo $this->uri->full_url('admin/slider/edit?menu_id=' . $menu_id . '&slide_id=' . $slide['slide_id']); ?>" class="edit"></a>
 					</div>
-					<div class="cell auto"><span class="menu_item"><?php echo ($slide['description'] != '') ? 'Слайд' : 'Новий слайд'; ?></span></div>
+					<div class="cell auto"><span class="menu_item"><?php echo ($slide['description'] != '') ? $slide['description'] : 'Слайд'; ?></span></div>
 					<div class="cell w_20 icon sorter"><a href="#" class="single_arrows"></a></div>
 					<div class="cell w_20 icon"><a href="#" class="delete"></a></div>
 				</div>
@@ -52,7 +53,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-
 	var slide_add_top = 0;
 
 	function row_decor() {

@@ -5,7 +5,7 @@
 
     $this->template_lib->set_js('admin/ckeditor/ckeditor.js');
     $this->template_lib->set_js('mustache.min.js');
-    $this->template_lib->set_js('http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB9f4vaqJWN_wp_rxw5lDTwveJbD4Qo-Lg', FALSE);
+    $this->template_lib->set_js('http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCB75vW4bg9iqNliLrcfUd9XUgn90qpMpc', FALSE);
     $this->template_lib->set_js('admin/jquery.form.js');
 //        ->set_css('js/admin/ui/jquery-ui-1.10.3.custom.min.css', true)
 //        ->set_js('admin/ui/jquery-ui-1.10.3.custom.min.js')

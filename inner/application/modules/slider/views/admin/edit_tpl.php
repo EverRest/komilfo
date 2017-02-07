@@ -10,6 +10,7 @@
 	$this->template_lib->set_js('admin/ckeditor/ckeditor.js');
 	$this->template_lib->set_js('admin/jquery.form.js');
 ?>
+
 <?php error_reporting( E_ERROR ); ?>
 <div class="fm admin_component">
 	<div class="component_loader"></div>
@@ -88,13 +89,17 @@
 			<div class="fmr save_links">
 				<a href="#" class="fm save_adm"><b></b>Зберегти</a>
 				<a href="#" class="fm apply_adm"><b></b>Застосувати</a>
-				<a href="<?=base_url();?>" class="fm cansel_adm"><b></b>До списку слайдів</a>
+				<a href="<?=base_url('/');?>" class="fm cansel_adm"><b></b>До списку слайдів</a>
 			</div>
 		</div>
 	</form>
 </div>
 <script type="text/javascript">
 	$(document).ready(function () {
+        var pathname = window.location.pathname; // Returns path only
+        var url      = window.location.href;     // Returns full URL
+        console.log(pathname);
+        console.log(url);
 		$('.component_article').ckeditor({height: 300});
 		$('.component_lang').find('a').each(function () {
 			var language = $(this).data('language');
@@ -253,7 +258,7 @@
 				success:function (response) {
 					if (response.success) {
 						component_loader_hide($('.component_loader'), '');
-						window.location.href = '<?=base_url();?>';
+						window.location.href = '<?=base_url().'/'.$_SESSION["uri"];?>';
 					}
 				},
 				dataType: 'json'
